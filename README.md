@@ -42,7 +42,9 @@ pnpm dev
 
 ## 💬 커밋 메시지
 
-`<type>: <message> (#<issue-number>)`
+```bash
+<type>: <message> (#<issue-number>)
+```
 
 **type**
 - feat: 기능 개발
