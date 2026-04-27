@@ -1,5 +1,7 @@
 # 🌏 Pangea
 
+> 사람이 설명이 아니라 흔적으로 이해되는 세계를 만든다.
+
 ## 🚀 시작하기
 
 ```bash
@@ -19,7 +21,7 @@ pnpm dev
 - Supabase
 
 **Styling & Animation**
-- Tailwid CSS
+- Tailwind CSS
 - Motion.js
 
 **Deployment**
@@ -33,29 +35,9 @@ pnpm dev
 - **Commit Convention:** commitlint
 - **CI/CD:** GitHub Actions
 
-## 🌿 브랜치 전략
+## 📚 문서
 
-```bash
-main                      # 배포 브랜치 (protected)
-dev                       # 개발 통합 브랜치 (protected)
-
-feature/<이슈번호>-<설명>
-fix/<이슈번호>-<설명>
-chore/<이슈번호>-<설명>
-```
-
-## 💬 커밋 메시지
-
-```bash
-<type>: <message> (#<issue-number>)
-```
-
-**type**
-- feat: 기능 개발
-- fix: 버그 수정
-- chore: 설정 변경
-- refactor: 리팩토링
-- docs: 문서 수정
-- style: 포맷팅
+- [기여 가이드 (CONTRIBUTING.md)](./CONTRIBUTING.md) — 개발 환경, 브랜치 전략, PR 절차
+- [코딩 컨벤션 (CODING_CONVENTION.md)](./CODING_CONVENTION.md) — 네이밍, 폴더 구조, 스타일 규칙
 
   
