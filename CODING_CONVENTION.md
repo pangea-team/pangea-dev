@@ -79,3 +79,5 @@ export default function Button({ title, onClick }: Props) {
 - 반복되는 클래스 조합은 `cn()` 유틸 + `cva` 활용
 - 디자인 토큰을 우선 사용하고, 임의값(`w-[327px]`)은 토큰이 없을 때만 사용
 - 인라인 스타일(`style={{}}`) 사용 지양
+
+
