@@ -35,10 +35,14 @@ pnpm dev
 
 ## 🌿 브랜치 전략
 
-- main: 배포 브랜치 (protected)
-- feature/<이슈번호>-<설명>
-- fix/<이슈번호>-<설명>
-- chore/<이슈번호>-<설명>
+```bash
+main                      # 배포 브랜치 (protected)
+dev                       # 개발 통합 브랜치 (protected)
+
+feature/<이슈번호>-<설명>
+fix/<이슈번호>-<설명>
+chore/<이슈번호>-<설명>
+```
 
 ## 💬 커밋 메시지
 
