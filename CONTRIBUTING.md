@@ -87,3 +87,9 @@ chore: CI 워크플로우 노드 버전 업그레이드 (#56)
 
 - 기능 / 버그 / 기타 모두 [이슈 템플릿](.github/ISSUE_TEMPLATE/issue.md)을 사용해 주세요.
 - 작업 단위가 큰 경우 `TODO` 체크리스트를 활용해 진행 상황을 공유합니다.
+
+## 코딩 컨벤션
+
+Biome가 잡아주지 못하는 영역에 대한 팀 합의 사항은 별도 문서로 관리합니다.
+
+👉 [CODING_CONVENTION.md](./CODING_CONVENTION.md)
