@@ -1,0 +1,81 @@
+# Coding Convention
+
+`pangea-dev`의 코딩 컨벤션 문서입니다. Biome로 자동화되지 않는 영역에 대한 팀 합의 사항을 정리합니다.
+
+## 📑 Table of Contents
+
+- [네이밍](#네이밍)
+- [폴더 구조](#폴더-구조)
+- [TypeScript](#typescript)
+- [React / Next.js](#react--nextjs)
+- [Styling (Tailwind CSS)](#styling-tailwind-css)
+
+## 네이밍
+
+| 대상 | 규칙 | 예시 |
+| :--- | :--- | :--- |
+| 파일명 | `kebab-case` | `user-profile.tsx` |
+| 컴포넌트 | `PascalCase` | `UserProfile` |
+| 변수 / 함수 | `camelCase` | `getUserData` |
+| 상수 | `UPPER_SNAKE_CASE` | `MAX_RETRY_COUNT` |
+| 타입 | `PascalCase` | `type User = { ... }` |
+| Boolean | `is`, `has`, `should` 접두사 | `isLoading`, `hasError` |
+| 이벤트 핸들러 (내부) | `handle*` | `handleClick` |
+| 이벤트 핸들러 (props) | `on*` | `onClick`, `onSubmit` |
+
+> 타입 선언은 `type`으로 통일합니다. (`interface` 사용 지양)
+
+## 폴더 구조
+
+```
+pangea-dev/
+├── app/                    # Next.js App Router (라우팅 관련만)
+│   └── (route)/
+│       ├── _components/    # 페이지 전용 컴포넌트
+│       ├── _hooks/         # 페이지 전용 훅
+│       ├── page.tsx
+│       └── layout.tsx
+├── components/             # 공통 컴포넌트
+├── hooks/                  # 공통 훅
+├── lib/                    # 유틸 & 외부 클라이언트
+├── types/                  # 공통 타입
+└── public/                 # 정적 파일
+```
+
+- `app/` 폴더에는 라우팅 관련 파일만 위치 (`page`, `layout`, `loading` 등)
+- 페이지 전용 리소스는 `_components`, `_hooks`처럼 underscore prefix 폴더에 배치
+- import 경로는 `@/` absolute path 사용
+- import 순서는 Biome가 자동 정렬
+
+## TypeScript
+
+- `any` 사용 금지 — 불가피할 경우 `unknown`으로 받고 narrowing
+- 함수 파라미터가 3개 이상이면 객체로 받기
+- 컴포넌트 props는 `Props` 타입으로 통일
+- `as` 타입 단언은 최소화하고, 사용 시 사유를 주석으로 명시
+
+```ts
+type Props = {
+  title: string;
+  onClick: () => void;
+};
+
+export default function Button({ title, onClick }: Props) {
+  // ...
+}
+```
+
+## React / Next.js
+
+- **Server Component 우선** — 필요할 때만 `'use client'` 선언
+- `'use client'` 지시어는 파일 최상단에 명시
+- 데이터 페칭은 Server Component에서 처리
+- 클라이언트 mutation 및 캐싱이 필요한 경우 TanStack Query 사용
+- 한 파일에 하나의 컴포넌트, `export default` 통일
+
+## Styling (Tailwind CSS)
+
+- 클래스 순서는 Biome가 자동 정렬
+- 반복되는 클래스 조합은 `cn()` 유틸 + `cva` 활용
+- 디자인 토큰을 우선 사용하고, 임의값(`w-[327px]`)은 토큰이 없을 때만 사용
+- 인라인 스타일(`style={{}}`) 사용 지양
