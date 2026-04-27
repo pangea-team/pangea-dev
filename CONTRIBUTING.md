@@ -92,4 +92,4 @@ chore: CI 워크플로우 노드 버전 업그레이드 (#56)
 
 Biome가 잡아주지 못하는 영역에 대한 팀 합의 사항은 별도 문서로 관리합니다.
 
-👉 [CODING_CONVENTION.md](./CODING_CONVENTION.md)
+[CODING_CONVENTION.md](./CODING_CONVENTION.md)
