@@ -29,21 +29,23 @@
 
 ```
 pangea-dev/
-├── app/                    # Next.js App Router (라우팅 관련만)
-│   └── (route)/
-│       ├── _components/    # 페이지 전용 컴포넌트
-│       ├── _hooks/         # 페이지 전용 훅
+├── app/                         # Next.js App Router
+│   └── (route)/                 # 라우트 세그먼트별
 │       ├── page.tsx
-│       └── layout.tsx
-├── components/             # 공통 컴포넌트
-├── hooks/                  # 공통 훅
-├── lib/                    # 유틸 & 외부 클라이언트
-├── types/                  # 공통 타입
-└── public/                 # 정적 파일
+│       ├── layout.tsx
+│       ├── _components/         # 해당 라우트(트리) 전용 컴포넌트
+│       ├── _hooks/              # 해당 라우트 전용 훅 (필요 시)
+│       ├── _lib/                # 해당 라우트 전용 목업·토큰 등 (필요 시)
+│       └── ...                  # loading, error, route handlers 등
+├── components/                  # 여러 라우트에서 쓰는 공통 UI
+├── hooks/                       # 공통 훅
+├── lib/                         # 유틸 & 외부 클라이언트
+├── types/                       # 공통 타입
+└── public/                      # 정적 파일
 ```
 
-- `app/` 폴더에는 라우팅 관련 파일만 위치 (`page`, `layout`, `loading` 등)
-- 페이지 전용 리소스는 `_components`, `_hooks`처럼 underscore prefix 폴더에 배치
+- 라우트별 화면 조립은 `app/.../page.tsx` 등에서 하고, 그 페이지 전용 UI는 같은 세그먼트의 `_components/`에 둔다.
+- 여러 라우트에서 재사용되는 조각만 루트의 `components/`, `hooks/`, `lib/`로 올린다.
 - import 경로는 `@/` absolute path 사용
 - import 순서는 Biome가 자동 정렬
 

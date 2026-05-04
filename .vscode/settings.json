@@ -1,4 +1,7 @@
 {
+  "terminal.integrated.env.windows": {
+    "PATH": "${env:APPDATA}\\npm;${env:PATH}"
+  },
   "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
