@@ -1,0 +1,119 @@
+/* ============================================================
+ * Pangea Design System — Typography Tokens
+ *
+ * 3개 폰트 패밀리:
+ *   1. Cormorant     — 영문 세리프. 로고·디스플레이.
+ *   2. Noto Sans KR  — 한글 메인. 제목·본문 전반.
+ *   3. Pretendard    — 한글 보조. 모던한 본문.
+ * ============================================================ */
+
+@theme {
+
+    /* ━━━ Cormorant ━━━ */
+  --text-cormorant-logo: 30px;
+  --text-cormorant-logo--line-height: 36px;
+  --text-cormorant-logo--font-weight: 400;
+
+  --text-cormorant-display-2: 42px;
+  --text-cormorant-display-2--line-height: 50px;
+  --text-cormorant-display-2--font-weight: 400;
+
+  --text-cormorant-display-3: 20px;
+  --text-cormorant-display-3--line-height: 24px;
+  --text-cormorant-display-3--font-weight: 400;
+
+
+    /* ━━━ Noto Sans KR ━━━ */
+  --text-noto-display: 48px;
+  --text-noto-display--line-height: 60px;
+  --text-noto-display--font-weight: 600;
+
+  --text-noto-heading-1: 30px;
+  --text-noto-heading-1--line-height: 40px;
+  --text-noto-heading-1--font-weight: 600;
+
+  --text-noto-title-1: 30px;
+  --text-noto-title-1--line-height: 40px;
+  --text-noto-title-1--font-weight: 500;
+
+  --text-noto-title-2: 24px;
+  --text-noto-title-2--line-height: 32px;
+  --text-noto-title-2--font-weight: 600;
+
+  --text-noto-subtitle-1: 18px;
+  --text-noto-subtitle-1--line-height: 26px;
+  --text-noto-subtitle-1--font-weight: 400;
+
+  --text-noto-subtitle-2: 18px;
+  --text-noto-subtitle-2--line-height: 26px;
+  --text-noto-subtitle-2--font-weight: 500;
+
+  --text-noto-body-1: 13px;
+  --text-noto-body-1--line-height: 20px;
+  --text-noto-body-1--font-weight: 400;
+
+  --text-noto-body-2: 10px;
+  --text-noto-body-2--line-height: 18px;
+  --text-noto-body-2--font-weight: 400;
+
+  --text-noto-caption: 10px;
+  --text-noto-caption--line-height: 18px;
+  --text-noto-caption--font-weight: 300;
+
+  /* ━━━ Pretendard ━━━ */
+  --text-pretendard-subtitle-1: 18px;
+  --text-pretendard-subtitle-1--line-height: 26px;
+  --text-pretendard-subtitle-1--font-weight: 400;
+
+  --text-pretendard-body-1: 16px;
+  --text-pretendard-body-1--line-height: 24px;
+  --text-pretendard-body-1--font-weight: 300;
+
+  --text-pretendard-body-2: 14px;
+  --text-pretendard-body-2--line-height: 20px;
+  --text-pretendard-body-2--font-weight: 300;
+
+  --text-pretendard-body-3: 12px;
+  --text-pretendard-body-3--line-height: 18px;
+  --text-pretendard-body-3--font-weight: 300;
+
+  --text-pretendard-caption: 10px;
+  --text-pretendard-caption--line-height: 18px;
+  --text-pretendard-caption--font-weight: 300;
+}
+
+@theme inline {
+  --font-cormorant: var(--font-cormorant);
+  --font-noto: var(--font-noto);
+  --font-pretendard: var(--font-pretendard);
+}
+
+/* ------------------------------------------------------------
+ * font-family 자동 적용
+ * text-* 클래스에 사이즈/높이/굵기 + font-family까지 한 번에
+ * ------------------------------------------------------------ */
+.text-cormorant-logo,
+.text-cormorant-display-2,
+.text-cormorant-display-3 {
+  font-family: var(--font-cormorant);
+}
+
+.text-noto-display,
+.text-noto-heading-1,
+.text-noto-title-1,
+.text-noto-title-2,
+.text-noto-subtitle-1,
+.text-noto-subtitle-2,
+.text-noto-body-1,
+.text-noto-body-2,
+.text-noto-caption {
+  font-family: var(--font-noto);
+}
+
+.text-pretendard-subtitle-1,
+.text-pretendard-body-1,
+.text-pretendard-body-2,
+.text-pretendard-body-3,
+.text-pretendard-caption {
+  font-family: var(--font-pretendard);
+}
