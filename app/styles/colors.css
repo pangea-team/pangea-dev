@@ -1,0 +1,45 @@
+@theme {
+  
+  --color-ink-100: #493c5d;
+  --color-ink-200: #3d324d;
+  --color-ink-300: #31283e;
+  --color-ink-400: #251e2e; /* ★ primary dark */
+  --color-ink-500: #18141f;
+
+  --color-tint-blue: #3c415d;
+  --color-tint-indigo: #413c5d;
+  --color-tint-violet: #493c5d;
+  --color-tint-plum: #523c5d;
+  --color-tint-rose: #5a3c5d;
+
+  --color-surface-0: #ffffff;
+  --color-surface-50: #fbfbfb;
+  --color-surface-100: #f4f2f7;
+
+  --color-lilac-300: #bfb8c9; 
+
+  --color-neutral-700: #4a3d5e;
+  --color-neutral-800: #4b4752;
+  --color-neutral-900: #5a3c5d;
+}
+
+:root {
+  --background: var(--color-surface-100); /* #f4f2f7 페이지 배경 */
+  --text: var(--color-ink-400);           /* #251e2e 메인 텍스트 */
+
+  --primary: var(--color-ink-400);        /* #251e2e 메인 브랜드 퍼플 */
+  --purple2: var(--color-tint-plum);      /* #523c5d 보조 퍼플 */
+  --purple3: var(--color-lilac-300);      /* #bfb8c9 옅은 라일락 */
+
+  --white: var(--color-surface-0);        /* #ffffff */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-text: var(--text);
+  --color-primary: var(--primary);
+  --color-purple2: var(--purple2);
+  --color-purple3: var(--purple3);
+  --color-white: var(--white);
+
+}
