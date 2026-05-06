@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Cormorant, Noto_Sans_KR } from 'next/font/google';
+import { Cormorant, Noto_Serif_KR } from 'next/font/google';
 import localFont from 'next/font/local';
 import './styles/globals.css';
 
@@ -9,7 +9,7 @@ const cormorant = Cormorant({
   weight: ['400'],
 });
 
-const notoSansKR = Noto_Sans_KR({
+const notoSerifKR = Noto_Serif_KR({
   variable: '--font-noto',
   subsets: ['latin'],
   weight: ['300', '400', '500', '600'],
@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${cormorant.variable} ${notoSansKR.variable} ${pretendard.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${notoSerifKR.variable} ${pretendard.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-noto">{children}</body>
     </html>
