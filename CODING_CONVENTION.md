@@ -27,7 +27,7 @@
 
 ## 폴더 구조
 
-```
+​```text
 pangea-dev/
 ├── app/                         # Next.js App Router
 │   └── (route)/                 # 라우트 세그먼트별
@@ -42,7 +42,7 @@ pangea-dev/
 ├── lib/                         # 유틸 & 외부 클라이언트
 ├── types/                       # 공통 타입
 └── public/                      # 정적 파일
-```
+​```
 
 - 라우트별 화면 조립은 `app/.../page.tsx` 등에서 하고, 그 페이지 전용 UI는 같은 세그먼트의 `_components/`에 둔다.
 - 여러 라우트에서 재사용되는 조각만 루트의 `components/`, `hooks/`, `lib/`로 올린다.
@@ -56,7 +56,7 @@ pangea-dev/
 - 컴포넌트 props는 `Props` 타입으로 통일
 - `as` 타입 단언은 최소화하고, 사용 시 사유를 주석으로 명시
 
-```ts
+​```ts
 type Props = {
   title: string;
   onClick: () => void;
@@ -65,7 +65,7 @@ type Props = {
 export default function Button({ title, onClick }: Props) {
   // ...
 }
-```
+​```
 
 ## React / Next.js
 
@@ -78,7 +78,7 @@ export default function Button({ title, onClick }: Props) {
 ## Styling (Tailwind CSS)
 
 - 클래스 순서는 Biome가 자동 정렬
-- 디자인 토큰을 우선 사용  — 색/간격/폰트는 `app/styles/colors.css`, `typography.css`에 정의된 토큰을 사용
+- 디자인 토큰을 우선 사용 — 색/간격/폰트는 `app/styles/colors.css`, `typography.css`에 정의된 토큰을 사용
 - 토큰에 없는 값만 임의값(`w-[327px]`) 사용
 - 인라인 스타일(`style={{}}`) 사용 지양
 - **`cn()` 은 다음 두 경우에만 사용**:
