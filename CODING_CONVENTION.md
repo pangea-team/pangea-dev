@@ -78,8 +78,12 @@ export default function Button({ title, onClick }: Props) {
 ## Styling (Tailwind CSS)
 
 - 클래스 순서는 Biome가 자동 정렬
-- 반복되는 클래스 조합은 `cn()` 유틸 + `cva` 활용
-- 디자인 토큰을 우선 사용하고, 임의값(`w-[327px]`)은 토큰이 없을 때만 사용
+- 디자인 토큰을 우선 사용  — 색/간격/폰트는 `app/styles/colors.css`, `typography.css`에 정의된 토큰을 사용
+- 토큰에 없는 값만 임의값(`w-[327px]`) 사용
 - 인라인 스타일(`style={{}}`) 사용 지양
-
-
+- **`cn()` 은 다음 두 경우에만 사용**:
+  - 외부 `className` prop 머지: `cn('base', className)`
+  - 2개 이상의 조건부 클래스: `cn('base', isActive && 'border-primary')`
+  - 그 외엔 일반 문자열 또는 템플릿 리터럴 사용
+    - ❌ `cn('mt-4 text-primary')` → ✅ `"mt-4 text-primary"`
+    - ❌ `cn(baseStyles, 'mt-4')` → ✅ `` `${baseStyles} mt-4` ``
