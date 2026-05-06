@@ -51,7 +51,7 @@
 
 전체 목록은 CODING_CONVENTION.md에 있습니다. 핵심만 추리면:
 
-- 파일명: `kebab-case.tsx`. 컴포넌트: `PascalCase`. `interface` 대신 `type` 사용.
+- 컴포넌트 파일명: `PascalCase.tsx`. 컴포넌트: `PascalCase`. `interface` 대신 `type` 사용.
 - 한 파일에 하나의 컴포넌트, `export default` 사용.
 - 컴포넌트 props 타입은 `Props`로 통일. 함수 파라미터가 3개 이상이면 객체로 받기.
 - `any`는 Biome가 경고 — `unknown`으로 받고 narrowing 할 것.

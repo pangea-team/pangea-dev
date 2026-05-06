@@ -14,7 +14,7 @@
 
 | 대상 | 규칙 | 예시 |
 | :--- | :--- | :--- |
-| 파일명 | `kebab-case` | `user-profile.tsx` |
+| 컴포넌트 파일 | `PascalCase` | `UserProfile.tsx` |
 | 컴포넌트 | `PascalCase` | `UserProfile` |
 | 변수 / 함수 | `camelCase` | `getUserData` |
 | 상수 | `UPPER_SNAKE_CASE` | `MAX_RETRY_COUNT` |
