@@ -3,7 +3,7 @@
  *
  * 3개 폰트 패밀리:
  *   1. Cormorant     — 영문 세리프. 로고·디스플레이.
- *   2. Noto Sans KR  — 한글 메인. 제목·본문 전반.
+ *   2. Noto Serif KR  — 한글 메인. 제목·본문 전반.
  *   3. Pretendard    — 한글 보조. 모던한 본문.
  * ============================================================ */
 
@@ -23,7 +23,7 @@
   --text-cormorant-display-3--font-weight: 400;
 
 
-    /* ━━━ Noto Sans KR ━━━ */
+    /* ━━━ Noto Serif KR ━━━ */
   --text-noto-display: 48px;
   --text-noto-display--line-height: 60px;
   --text-noto-display--font-weight: 600;
