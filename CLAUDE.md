@@ -38,7 +38,10 @@
 - 글로벌 진입점: `app/styles/globals.css`에서 Tailwind, `colors.css`, `typography.css`를 import. `app/layout.tsx`에서 한 번만 로드됨.
 - `app/styles/colors.css`는 색상 토큰(`--color-ink-*`, `--color-tint-*` 등)과 시맨틱 별칭(`--color-background`, `--color-text`, `--color-primary` 등)을 정의함.
 - `app/styles/typography.css`는 텍스트 토큰(예: `text-noto-body-1`)을 정의하고 클래스별로 `font-family`도 함께 바인딩함. 따라서 `<p className="text-noto-body-1">`만으로 이미 Noto Serif KR이 적용되므로 별도의 `font-*` 유틸리티를 함께 쓰지 말 것.
-- body에는 암묵적으로 `background: var(--color-background)`와 `color: var(--color-text)`가 적용되어 있음. 페이지에서 기본 배경/텍스트 색을 다시 선언하지 말 것 — 의도적으로 기본값과 다르게 할 때만 오버라이드.
+- `app/styles/spacing.css`는 반응형 간격 토큰(`--spacing-comp-*`, `--spacing-section-*`, `--spacing-hero`, `--spacing-page-x` 등)을 `clamp()`로 정의함. 간격을 적용할 때:
+  - **작은 값(4~24px)**: Tailwind 기본 scale(`p-1` ~ `p-6`, `gap-1` ~ `gap-6` 등) 그대로 사용 — 화면 크기에 따라 변하지 않아도 되는 자잘한 간격.
+  - **중간(컴포넌트 간) / 큰(섹션 간) 값**: `spacing.css`의 반응형 토큰 사용 (`p-section-md`, `gap-comp-sm` 등). 직접 `clamp()`나 임의값(`py-[80px]`)을 쓰지 말 것
+- body에는 암묵적으로 `background: var(--color-background)`와 `color: var(--color-text)`가 적용되어 있음. 즉 `bg-background`, `text-primary`(기본 텍스트 색)는 이미 상속되므로 다시 붙이지 말 것 — 의도적으로 기본값과 다르게 할 때만 오버라이드.
 
 ### 폰트 (3가지, `app/layout.tsx`에 연결됨)
 
