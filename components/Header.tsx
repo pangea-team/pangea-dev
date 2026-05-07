@@ -8,7 +8,7 @@ export default function Header() {
         <span className="text-cormorant-logo tracking-[6px] whitespace-nowrap">PANGEA</span>
       </div>
       <div className="flex items-center">
-        <p className="text-pretendard-body-1">Login</p>
+        <p className="text-pretendard-body-1">Login hi</p>
         <button
           type="button"
           aria-label="메뉴 열기"
