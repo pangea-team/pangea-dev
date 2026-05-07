@@ -22,6 +22,14 @@
   --text-cormorant-display-3--line-height: 24px;
   --text-cormorant-display-3--font-weight: 400;
 
+  --text-cormorant-footer-tagline: 22px;
+  --text-cormorant-footer-tagline--line-height: normal;
+  --text-cormorant-footer-tagline--font-weight: 400;
+
+  --text-cormorant-footer-meta: 16px;
+  --text-cormorant-footer-meta--line-height: 20px;
+  --text-cormorant-footer-meta--font-weight: 400;
+
 
     /* ━━━ Noto Serif KR ━━━ */
   --text-noto-display: 40px;
@@ -65,6 +73,15 @@
   --text-pretendard-subtitle-1--line-height: 26px;
   --text-pretendard-subtitle-1--font-weight: 400;
 
+  /* 헤더 Login 등 내비 라벨 (PANGEA UI) */
+  --text-pretendard-nav: 20px;
+  --text-pretendard-nav--line-height: 24px;
+  --text-pretendard-nav--font-weight: 400;
+
+  --text-pretendard-footer-meta: 16px;
+  --text-pretendard-footer-meta--line-height: 20px;
+  --text-pretendard-footer-meta--font-weight: 400;
+
   --text-pretendard-body-1: 16px;
   --text-pretendard-body-1--line-height: 24px;
   --text-pretendard-body-1--font-weight: 300;
@@ -94,8 +111,14 @@
  * ------------------------------------------------------------ */
 .text-cormorant-logo,
 .text-cormorant-display-2,
-.text-cormorant-display-3 {
+.text-cormorant-display-3,
+.text-cormorant-footer-tagline,
+.text-cormorant-footer-meta {
   font-family: var(--font-cormorant);
+}
+
+.text-cormorant-footer-tagline {
+  font-style: italic;
 }
 
 .text-noto-display,
@@ -111,6 +134,8 @@
 }
 
 .text-pretendard-subtitle-1,
+.text-pretendard-nav,
+.text-pretendard-footer-meta,
 .text-pretendard-body-1,
 .text-pretendard-body-2,
 .text-pretendard-body-3,

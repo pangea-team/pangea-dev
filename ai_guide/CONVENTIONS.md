@@ -12,6 +12,7 @@
 - **세미콜론**: 사용 (`always`)
 - **trailing comma**: `all`
 - **import 정렬**: Biome `organizeImports`가 자동 처리
+- **Tailwind 클래스 순서**: Biome가 자동 정렬 (`pnpm check` 시 적용)
 - **`any` 사용**: `warn` (불가피할 경우 `unknown` + narrowing)
 - **non-null assertion (`!`)**: `warn` (최소화)
 
@@ -84,6 +85,7 @@ export default function Button({ title, isActive, onClick }: Props) {
 
 ## 스타일링 규칙
 
+- 클래스 순서는 Biome가 자동 정렬합니다.
 - Tailwind 토큰 우선 (`text-noto-body-1`, `bg-background`, `p-comp-sm` 등)
 - 임의값 (`w-[327px]`)은 토큰이 없을 때만 허용
 - 인라인 `style={{}}` 지양
