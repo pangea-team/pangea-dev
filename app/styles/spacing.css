@@ -1,0 +1,12 @@
+@theme {
+
+  --spacing-comp-sm: clamp(1.25rem, 1rem + 1vw, 2.5rem);   /* 작은 컴포넌트 간격: 20 ~ 40px */
+
+  --spacing-section-sm: clamp(3rem, 2rem + 3vw, 5rem);    /* 작은 섹션 간격: 48 ~ 80px */
+  --spacing-section-md: clamp(4rem, 2.5rem + 5vw, 8rem);    /* 중간 섹션 간격: 64 ~ 128px */
+  --spacing-section-lg: clamp(5rem, 3rem + 7vw, 10rem);   /* 큰 섹션 간격: 80 ~ 160px */
+
+  --spacing-hero: clamp(6rem, 20vw, 15.75rem);   /* Hero 간격: 96 ~ 252px */
+
+  --spacing-page-x: clamp(1.5rem, 0.5rem + 3vw, 5rem);    /* 페이지 좌우 padding: 24 ~ 80px */
+}
