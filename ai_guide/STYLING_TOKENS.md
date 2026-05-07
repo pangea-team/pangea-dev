@@ -85,11 +85,13 @@ body {
 
 ### Cormorant (영문 세리프, 로고·디스플레이)
 
-| 클래스 | 크기 | 행간 | 굵기 |
-| :--- | :--- | :--- | :--- |
-| `text-cormorant-logo` | 24px | 28px | 400 |
-| `text-cormorant-display-2` | 42px | 50px | 400 |
-| `text-cormorant-display-3` | 20px | 24px | 400 |
+| 클래스 | 크기 | 행간 | 굵기 | 비고 |
+| :--- | :--- | :--- | :--- | :--- |
+| `text-cormorant-logo` | 24px | 28px | 400 | |
+| `text-cormorant-display-2` | 42px | 50px | 400 | |
+| `text-cormorant-display-3` | 20px | 24px | 400 | |
+| `text-cormorant-footer-tagline` | 22px | normal | 400 | italic |
+| `text-cormorant-footer-meta` | 16px | 20px | 400 | |
 
 ### Noto Serif KR (한글 메인, 제목·본문)
 
@@ -110,10 +112,22 @@ body {
 | 클래스 | 크기 | 행간 | 굵기 |
 | :--- | :--- | :--- | :--- |
 | `text-pretendard-subtitle-1` | 18px | 26px | 400 |
+| `text-pretendard-nav` | 20px | 24px | 400 |
+| `text-pretendard-footer-meta` | 16px | 20px | 400 |
 | `text-pretendard-body-1` | 16px | 24px | 300 |
 | `text-pretendard-body-2` | 14px | 20px | 300 |
 | `text-pretendard-body-3` | 12px | 18px | 300 |
 | `text-pretendard-caption` | 10px | 18px | 300 |
+
+### letter-spacing 토큰
+
+| Tailwind 클래스 | 값 | 사용처 |
+| :--- | :--- | :--- |
+| `tracking-logo` | 0.2em | 헤더 로고 텍스트 |
+| `tracking-nav` | 0.2em | 헤더 nav 링크 (Login 등) |
+| `tracking-display-2` | 0.2em | 푸터 PANGEA 디스플레이 |
+| `tracking-footer-tagline` | 0.1em | 푸터 tagline |
+| `tracking-footer-meta` | 0.1em | 푸터 메타 텍스트 |
 
 권장 규칙:
 

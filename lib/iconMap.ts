@@ -1,5 +1,5 @@
-import Instagram from '@/public/icons/Icon_instagram.svg';
-import Kakao from '@/public/icons/Icon_kakao.svg';
+import Instagram from '@/public/icons/icon-instagram.svg';
+import Kakao from '@/public/icons/icon-kakao.svg';
 import Logo from '@/public/icons/logo.svg';
 import Menubar from '@/public/icons/menubar.svg';
 

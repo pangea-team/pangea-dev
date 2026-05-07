@@ -68,6 +68,13 @@
   --text-noto-caption--line-height: 18px;
   --text-noto-caption--font-weight: 300;
 
+  /* ━━━ letter-spacing ━━━ */
+  --tracking-logo: 0.2em;
+  --tracking-nav: 0.2em;
+  --tracking-display-2: 0.2em;
+  --tracking-footer-tagline: 0.1em;
+  --tracking-footer-meta: 0.1em;
+
   /* ━━━ Pretendard ━━━ */
   --text-pretendard-subtitle-1: 18px;
   --text-pretendard-subtitle-1--line-height: 26px;

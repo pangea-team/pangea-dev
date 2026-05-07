@@ -1,4 +1,5 @@
 import Icon from '@/components/Icon';
+import { cn } from '@/lib/utils';
 
 const SOCIAL = {
   kakaoTalk: 'https://pf.kakao.com/',
@@ -11,13 +12,11 @@ type Props = {
 
 export default function Footer({ className }: Props) {
   return (
-    <footer className={`mt-auto shrink-0 px-page-x pt-10 pb-10 ${className ?? ''}`}>
+    <footer className={cn('mt-auto shrink-0 px-page-x py-10', className)}>
       <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col">
-          <p className="text-cormorant-display-2 py-2 uppercase tracking-[8.4px] text-primary">
-            PANGEA
-          </p>
-          <p className="text-cormorant-footer-tagline tracking-[2.2px] text-primary">
+          <p className="py-2 uppercase tracking-display-2 text-cormorant-display-2">PANGEA</p>
+          <p className="tracking-footer-tagline text-cormorant-footer-tagline">
             Someone is reading you.
           </p>
         </div>
@@ -45,17 +44,17 @@ export default function Footer({ className }: Props) {
 
       <div className="border-purple3 mt-10 flex flex-col gap-6 border-t pt-8 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col gap-2">
-          <p className="text-pretendard-footer-meta tracking-[1.6px] text-primary">
+          <p className="tracking-footer-meta text-pretendard-footer-meta">
             판게아&nbsp;&nbsp;|&nbsp;&nbsp;권 하 경
           </p>
           <a
             href="mailto:khkbt3731@gmail.com"
-            className="text-cormorant-footer-meta tracking-[1.6px] text-primary"
+            className="tracking-footer-meta text-cormorant-footer-meta"
           >
             khkbt3731@gmail.com
           </a>
         </div>
-        <p className="text-cormorant-footer-meta shrink-0 tracking-[1.6px] text-primary sm:text-right">
+        <p className="shrink-0 tracking-footer-meta text-cormorant-footer-meta sm:text-right">
           ©&nbsp;Pangea&nbsp;&nbsp;|&nbsp;&nbsp;All Rights reserved.
         </p>
       </div>

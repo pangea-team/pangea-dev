@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Icon from '@/components/Icon';
+import { cn } from '@/lib/utils';
 
 type Props = {
   className?: string;
@@ -8,18 +9,18 @@ type Props = {
 export default function Header({ className }: Props) {
   return (
     <header
-      className={`flex h-15 shrink-0 items-center justify-between px-page-x py-2 ${className ?? ''}`}
+      className={cn('flex h-15 shrink-0 items-center justify-between px-page-x py-2', className)}
     >
       <Link href="/" className="flex items-center gap-5">
         <Icon name="logo" width={60} height={60} />
-        <span className="text-cormorant-logo leading-9 tracking-[4.8px] whitespace-nowrap uppercase">
+        <span className="whitespace-nowrap uppercase leading-9 tracking-logo text-cormorant-logo">
           PANGEA
         </span>
       </Link>
       <div className="flex items-center gap-6">
         <Link
           href="/login"
-          className="text-pretendard-nav px-3 py-2 tracking-[4px] whitespace-nowrap text-primary"
+          className="whitespace-nowrap px-3 py-2 tracking-nav text-pretendard-nav"
         >
           Login
         </Link>
