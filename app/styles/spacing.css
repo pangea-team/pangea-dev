@@ -9,4 +9,6 @@
   --spacing-hero: clamp(6rem, 20vw, 15.75rem);   /* Hero 간격: 96 ~ 252px */
 
   --spacing-page-x: clamp(1.5rem, 0.5rem + 3vw, 5rem);    /* 페이지 좌우 padding: 24 ~ 80px */
+
+  --spacing-icon-touch: 3.75rem;   /* 아이콘 클릭 영역 (touch target): 60px */
 }

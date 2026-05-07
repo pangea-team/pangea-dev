@@ -12,7 +12,7 @@ type Props = {
 
 export default function Footer({ className }: Props) {
   return (
-    <footer className={cn('mt-auto shrink-0 px-page-x py-10', className)}>
+    <footer className={cn('mt-auto shrink-0 px-page-x py-comp-sm', className)}>
       <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col">
           <p className="py-2 uppercase tracking-display-2 text-cormorant-display-2">PANGEA</p>
@@ -25,7 +25,7 @@ export default function Footer({ className }: Props) {
             href={SOCIAL.kakaoTalk}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex size-[60px] items-center justify-center"
+            className="flex size-icon-touch items-center justify-center"
             aria-label="판게아 카카오톡 채널"
           >
             <Icon name="kakao" width={60} height={60} />
@@ -34,7 +34,7 @@ export default function Footer({ className }: Props) {
             href={SOCIAL.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex size-[60px] items-center justify-center"
+            className="flex size-icon-touch items-center justify-center"
             aria-label="판게아 인스타그램"
           >
             <Icon name="instagram" width={60} height={60} />
@@ -42,7 +42,7 @@ export default function Footer({ className }: Props) {
         </div>
       </div>
 
-      <div className="border-purple3 mt-10 flex flex-col gap-6 border-t pt-8 sm:flex-row sm:items-start sm:justify-between">
+      <div className="border-purple3 mt-comp-sm flex flex-col gap-6 border-t pt-comp-sm sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col gap-2">
           <p className="tracking-footer-meta text-pretendard-footer-meta">
             판게아&nbsp;&nbsp;|&nbsp;&nbsp;권 하 경

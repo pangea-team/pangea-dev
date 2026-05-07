@@ -90,7 +90,7 @@ body {
 | `text-cormorant-logo` | 24px | 28px | 400 | |
 | `text-cormorant-display-2` | 42px | 50px | 400 | |
 | `text-cormorant-display-3` | 20px | 24px | 400 | |
-| `text-cormorant-footer-tagline` | 22px | normal | 400 | italic |
+| `text-cormorant-footer-tagline` | 22px | 26px | 400 | italic |
 | `text-cormorant-footer-meta` | 16px | 20px | 400 | |
 
 ### Noto Serif KR (한글 메인, 제목·본문)
@@ -148,6 +148,7 @@ body {
 | `p-section-lg` / `gap-section-lg` | 80 ~ 160px | 큰 섹션 간격 |
 | `p-hero` | 96 ~ 252px | Hero 영역 상하 간격 |
 | `px-page-x` | 24 ~ 80px | 페이지 좌우 padding |
+| `size-icon-touch` / `h-icon-touch` | 60px (고정) | 아이콘 클릭 영역 (touch target) |
 
 간격 사용 기준:
 

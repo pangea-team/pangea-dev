@@ -26,7 +26,7 @@ export default function Header({ className }: Props) {
         </Link>
         <button
           type="button"
-          className="flex h-[60px] w-[90px] shrink-0 items-center justify-center"
+          className="flex h-icon-touch w-[90px] shrink-0 items-center justify-center"
           aria-label="메뉴 열기"
         >
           <Icon name="menubar" width={90} height={60} className="text-primary" />
