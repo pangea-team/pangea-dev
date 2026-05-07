@@ -10,8 +10,8 @@
 @theme {
 
     /* ━━━ Cormorant ━━━ */
-  --text-cormorant-logo: 30px;
-  --text-cormorant-logo--line-height: 36px;
+  --text-cormorant-logo: 24px;
+  --text-cormorant-logo--line-height: 28px;
   --text-cormorant-logo--font-weight: 400;
 
   --text-cormorant-display-2: 42px;
@@ -24,8 +24,8 @@
 
 
     /* ━━━ Noto Serif KR ━━━ */
-  --text-noto-display: 48px;
-  --text-noto-display--line-height: 60px;
+  --text-noto-display: 40px;
+  --text-noto-display--line-height: 48px;
   --text-noto-display--font-weight: 600;
 
   --text-noto-heading-1: 30px;
