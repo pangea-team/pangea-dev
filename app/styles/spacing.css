@@ -1,23 +1,12 @@
 @theme {
-  /* ─────────────────────────────────────
-     반응형 spacing 토큰
-     ───────────────────────────────────── */
 
-     /* 작은 컴포넌트 간격: 20 ~ 40px */
-  --spacing-comp-sm: clamp(1.25rem, 3vw, 2.5rem);
+  --spacing-comp-sm: clamp(1.25rem, 1rem + 1vw, 2.5rem);   /* 작은 컴포넌트 간격: 20 ~ 40px */
 
-  /* 작은 섹션 간격: 48 ~ 80px */
-  --spacing-section-sm: clamp(3rem, 6vw, 5rem);
+  --spacing-section-sm: clamp(3rem, 2rem + 3vw, 5rem);    /* 작은 섹션 간격: 48 ~ 80px */
+  --spacing-section-md: clamp(4rem, 2.5rem + 5vw, 8rem);    /* 중간 섹션 간격: 64 ~ 128px */
+  --spacing-section-lg: clamp(5rem, 3rem + 7vw, 10rem);   /* 큰 섹션 간격: 80 ~ 160px */
 
-  /* 중간 섹션 간격: 64 ~ 128px */
-  --spacing-section-md: clamp(4rem, 10vw, 8rem);
+  --spacing-hero: clamp(6rem, 20vw, 15.75rem);   /* Hero 간격: 96 ~ 252px */
 
-  /* 큰 섹션 간격: 80 ~ 160px */
-  --spacing-section-lg: clamp(5rem, 14vw, 10rem);
-
-  /* Hero 간격: 96 ~ 252px */
-  --spacing-hero: clamp(6rem, 20vw, 15.75rem);
-
-  /* 페이지 좌우 padding: 24 ~ 80px */
-  --spacing-page-x: clamp(1.5rem, 5vw, 5rem);
+  --spacing-page-x: clamp(1.5rem, 0.5rem + 3vw, 5rem);    /* 페이지 좌우 padding: 24 ~ 80px */
 }
