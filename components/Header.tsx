@@ -1,22 +1,29 @@
-import Icon from './Icon';
+import Image from 'next/image';
+import Link from 'next/link';
+import Icon from '@/components/Icon';
 
 export default function Header() {
   return (
-    <header className="flex justify-between h-15 shrink-0 items-center px-4 py-2">
-      <div className="flex items-center gap-2">
-        <Icon name="logo" width={60} height={60} />
-        <span className="text-cormorant-logo tracking-[6px] whitespace-nowrap">PANGEA</span>
-      </div>
-      <div className="flex items-center">
-        <p className="text-pretendard-body-1">Login</p>
+    <header className="flex h-15 shrink-0 items-center justify-between px-page-x py-2">
+      <Link href="/" className="flex items-center gap-5">
+        <Image src="/icons/logo.png" alt="" width={60} height={60} className="shrink-0" priority />
+        <span className="whitespace-nowrap uppercase leading-9 tracking-logo text-cormorant-logo">
+          PANGEA
+        </span>
+      </Link>
+      <div className="flex items-center gap-6">
+        <Link
+          href="/login"
+          className="whitespace-nowrap px-3 py-2 tracking-nav text-pretendard-nav"
+        >
+          Login
+        </Link>
         <button
           type="button"
+          className="flex shrink-0 items-center justify-center"
           aria-label="메뉴 열기"
-          // onClick={() => {
-          //   // TODO: 메뉴 열기 동작 구현
-          // }}
         >
-          <Icon name="menubar" width={90} height={60} />
+          <Icon name="menubar" width={90} height={60} className="text-primary" />
         </button>
       </div>
     </header>
