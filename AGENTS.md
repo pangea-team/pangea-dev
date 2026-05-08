@@ -22,7 +22,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 ## 스택 정보
 
-- **Next.js 16.2.4** (App Router 전용). AGENTS.md에 명시된 대로, 이 버전은 학습 데이터와 비교해 breaking changes가 있으므로 Next.js 관련 코드를 작성하기 전에 `node_modules/next/dist/docs/`의 관련 문서를 먼저 읽을 것.
+- **Next.js 16.2.4** (App Router 전용). 위 nextjs-agent-rules에 명시된 대로, 이 버전은 학습 데이터와 비교해 breaking changes가 있으므로 Next.js 관련 코드를 작성하기 전에 `node_modules/next/dist/docs/`의 관련 문서를 먼저 읽을 것.
 - **React 19.2.4** + React Server Components. 기본은 Server Component이며, 필요할 때만 `'use client'`를 추가할 것.
 - **Tailwind CSS v4** (PostCSS 기반). 디자인 토큰은 `app/styles/colors.css`와 `app/styles/typography.css`의 `@theme` 블록에 정의되어 있으며, Tailwind가 이 토큰들로부터 유틸리티 클래스를 자동 생성함.
 - **Biome**가 린터/포매터 (ESLint/Prettier 아님). Husky pre-commit 훅이 lint-staged를 통해 `biome check --write`를 실행함.
