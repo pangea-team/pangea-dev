@@ -52,23 +52,11 @@
 
 ## 컨벤션
 
-전체 목록은 CODING_CONVENTION.md에 있습니다. 핵심만 추리면:
-
-- 컴포넌트 파일명: `PascalCase.tsx`. 컴포넌트: `PascalCase`. `interface` 대신 `type` 사용.
-- 한 파일에 하나의 컴포넌트, `export default` 사용.
-- 컴포넌트 props 타입은 `Props`로 통일. 함수 파라미터가 3개 이상이면 객체로 받기.
-- `any`는 Biome가 경고 — `unknown`으로 받고 narrowing 할 것.
-- 인라인 `style={{}}` 지양, Tailwind 토큰 사용. 임의값(`w-[327px]`)은 토큰이 없을 때만.
-- `cn()`은 외부 `className` 머지 또는 2개 이상의 조건부 클래스에만 사용 — 자세한 건 CODING_CONVENTION.md 참고.
-- 이벤트 핸들러: 내부는 `handle*`, props는 `on*`.
+코드 스타일, 네이밍, TypeScript/React 규칙, Tailwind 사용법 등 세부 규칙은 [CODING_CONVENTION.md](./docs/CODING_CONVENTION.md)를 참고할 것.
 
 ## Git 워크플로우
 
-- `dev`에서 브랜치를 분기하고 `dev`로 머지. `main`은 배포 브랜치.
-- commitlint가 commit-msg 훅을 통해 Conventional Commits를 강제함.
-  - 허용 타입: `feat`, `fix`, `chore`, `refactor`, `docs`, `style` (소문자만)
-  - 형식: `<type>: <subject> (#issue)` — 이슈 번호 필수, 헤더 100자 이하, 끝에 마침표 없음
-- 푸시 전: `pnpm check`와 `pnpm build`가 모두 통과해야 함. CI는 Lint & Build(`.github/workflows/ci.yml`)를 실행하며 실패 시 머지가 차단됨.
+브랜치 전략, 커밋 컨벤션, PR 절차는 [CONTRIBUTING.md](./docs/CONTRIBUTING.md)를 참고할 것.
 
 ## 작업 방식
 
