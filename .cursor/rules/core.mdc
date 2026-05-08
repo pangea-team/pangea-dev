@@ -1,0 +1,12 @@
+---
+alwaysApply: true
+description: "프로젝트 핵심 가이드 — 모든 작업 전 필독"
+---
+
+# 프로젝트 가이드
+
+이 프로젝트의 모든 규칙은 루트의 [AGENTS.md](../../AGENTS.md)에 정의되어 있습니다.
+작업 전 반드시 AGENTS.md를 먼저 읽고 따를 것.
+
+세부 규칙: [docs/CODING_CONVENTION.md](../../docs/CODING_CONVENTION.md)
+워크플로우: [docs/CONTRIBUTING.md](../../docs/CONTRIBUTING.md)
