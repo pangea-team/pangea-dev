@@ -16,6 +16,9 @@ export default {
     // subject 끝에 마침표 금지
     'subject-full-stop': [2, 'never', '.'],
 
+    // 대소문자 혼용 가능
+    'subject-case': [0],
+
     // 전체 커밋 메시지 제목(header) 최대 길이
     'header-max-length': [2, 'always', 100],
 
