@@ -1,18 +1,13 @@
 import Icon from '@/components/Icon';
-import { cn } from '@/lib/utils';
 
 const SOCIAL = {
   kakaoTalk: 'https://pf.kakao.com/',
   instagram: 'https://www.instagram.com/',
 } as const;
 
-type Props = {
-  className?: string;
-};
-
-export default function Footer({ className }: Props) {
+export default function Footer() {
   return (
-    <footer className={cn('mt-auto shrink-0 px-page-x py-comp-sm', className)}>
+    <footer className="mt-auto shrink-0 px-page-x py-comp-sm">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col">
           <p className="py-2 uppercase tracking-display-2 text-cormorant-display-2">PANGEA</p>
