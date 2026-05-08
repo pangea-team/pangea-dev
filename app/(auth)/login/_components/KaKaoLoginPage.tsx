@@ -1,6 +1,6 @@
 import KaKaoLoginButton from './KaKaoLoginButton';
 
-export default function KaKaoLoginView() {
+export default function KaKaoLoginPage() {
   return (
     <div className="flex flex-col items-center">
       <p className="text-cormorant-display-2 tracking-wider pt-hero  ">PANGEA</p>
