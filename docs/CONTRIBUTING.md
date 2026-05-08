@@ -44,7 +44,7 @@ chore/#56-ci-config
 
 - 포맷터 / 린터는 [Biome](https://biomejs.dev/)을 사용합니다. 설정은 [biome.json](biome.json) 참고.
 - 커밋 전 `pnpm check`로 자동 정리할 수 있습니다.
-- Husky `pre-commit` 훅이 `lint-staged`를 통해 변경된 파일에만 `biome check --write`를 실행합니다.
+- Husky `pre-commit` 훅이 `lint-staged`를 통해 변경된 `*.{js,jsx,ts,tsx,json}` 파일에 `biome check --write`를 자동 실행합니다.
 
 ## 커밋 메시지 규칙
 
@@ -81,6 +81,8 @@ chore: CI 워크플로우 노드 버전 업그레이드 (#56)
    - **작업 내용**: 변경 사항 요약
    - **리뷰 요청 사항**: 리뷰어가 집중해서 봐주면 좋을 부분
 5. CI([.github/workflows/ci.yml](.github/workflows/ci.yml))의 `Lint & Build` 잡이 통과해야 머지할 수 있습니다.
+   - `pnpm install --frozen-lockfile` → `pnpm check` → `pnpm build` 순으로 실행됩니다.
+   - lockfile이 최신이 아니거나 빌드·린트 오류가 있으면 CI가 실패합니다.
 6. 리뷰 승인 후 머지합니다.
 
 ## 이슈
