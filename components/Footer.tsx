@@ -25,7 +25,7 @@ export default function Footer({ className }: Props) {
             href={SOCIAL.kakaoTalk}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex size-icon-touch items-center justify-center"
+            className="flex items-center justify-center"
             aria-label="판게아 카카오톡 채널"
           >
             <Icon name="kakao" width={60} height={60} />
@@ -34,7 +34,7 @@ export default function Footer({ className }: Props) {
             href={SOCIAL.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex size-icon-touch items-center justify-center"
+            className="flex items-center justify-center"
             aria-label="판게아 인스타그램"
           >
             <Icon name="instagram" width={60} height={60} />
