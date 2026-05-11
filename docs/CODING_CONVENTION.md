@@ -74,6 +74,8 @@ export default function Button({ title, onClick }: Props) {
 - 데이터 페칭은 Server Component에서 처리
 - 클라이언트 mutation 및 캐싱이 필요한 경우 TanStack Query 사용
 - 한 파일에 하나의 컴포넌트, `export default` 통일
+- `next/image`에서 `public` 이미지 사용 시 문자열 경로(`src="/images/..."`) 대신 정적 import를 사용한다.
+
 
 ## Styling (Tailwind CSS)
 
@@ -87,3 +89,5 @@ export default function Button({ title, onClick }: Props) {
   - 그 외엔 일반 문자열 또는 템플릿 리터럴 사용
     - ❌ `cn('mt-4 text-primary')` → ✅ `"mt-4 text-primary"`
     - ❌ `cn(baseStyles, 'mt-4')` → ✅ `` `${baseStyles} mt-4` ``
+
+
