@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
-import KaKaoLoginView from './_components/KaKaoLoginView';
+import LoginSentenceView from './_components/LoginSentenceView';
+
 export const metadata: Metadata = {
-  title: 'Login | Pangea',
+  title: '로그인 | Pangea',
 };
 
 export default function LoginPage() {
-  return <KaKaoLoginView />;
+  return <LoginSentenceView />;
 }

@@ -10,10 +10,8 @@ export default function Footer() {
     <footer className="mt-auto shrink-0 px-page-x py-comp-sm">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col">
-          <p className="py-2 uppercase tracking-display-2 text-cormorant-display-2">PANGEA</p>
-          <p className="tracking-footer-tagline text-cormorant-footer-tagline">
-            Someone is reading you.
-          </p>
+          <p className="py-2 uppercase tracking-logo text-cormorant-display-2">PANGEA</p>
+          <p className="tracking-body text-cormorant-footer-tagline">Someone is reading you.</p>
         </div>
         <div className="flex shrink-0 self-end sm:self-start">
           <a
@@ -39,17 +37,14 @@ export default function Footer() {
 
       <div className="border-purple3 mt-comp-sm flex flex-col gap-6 border-t pt-comp-sm sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col gap-2">
-          <p className="tracking-footer-meta text-pretendard-footer-meta">
+          <p className="tracking-body text-pretendard-footer-meta">
             판게아&nbsp;&nbsp;|&nbsp;&nbsp;권 하 경
           </p>
-          <a
-            href="mailto:khkbt3731@gmail.com"
-            className="tracking-footer-meta text-cormorant-footer-meta"
-          >
+          <a href="mailto:khkbt3731@gmail.com" className="tracking-body text-cormorant-footer-meta">
             khkbt3731@gmail.com
           </a>
         </div>
-        <p className="shrink-0 tracking-footer-meta text-cormorant-footer-meta sm:text-right">
+        <p className="shrink-0 tracking-body text-cormorant-footer-meta sm:text-right">
           ©&nbsp;Pangea&nbsp;&nbsp;|&nbsp;&nbsp;All Rights reserved.
         </p>
       </div>

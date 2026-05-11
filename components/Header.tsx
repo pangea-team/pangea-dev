@@ -13,8 +13,8 @@ export default function Header() {
       </Link>
       <div className="flex items-center gap-6">
         <Link
-          href="/login"
-          className="whitespace-nowrap px-3 py-2 tracking-nav text-pretendard-nav"
+          href="/kakaologin"
+          className="whitespace-nowrap px-3 py-2 tracking-body text-pretendard-nav"
         >
           Login
         </Link>

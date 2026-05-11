@@ -9,6 +9,11 @@
 
 @theme {
 
+  /* ━━━ Letter Spacing ━━━ */
+  --tracking-logo: 0.2em;
+  --tracking-body: 0.1em;
+  --tracking-snug: 0.05em;
+
     /* ━━━ Cormorant ━━━ */
   --text-cormorant-logo: 24px;
   --text-cormorant-logo--line-height: 28px;
@@ -67,13 +72,6 @@
   --text-noto-caption: 10px;
   --text-noto-caption--line-height: 18px;
   --text-noto-caption--font-weight: 300;
-
-  /* ━━━ letter-spacing ━━━ */
-  --tracking-logo: 0.2em;
-  --tracking-nav: 0.2em;
-  --tracking-display-2: 0.2em;
-  --tracking-footer-tagline: 0.1em;
-  --tracking-footer-meta: 0.1em;
 
   /* ━━━ Pretendard ━━━ */
   --text-pretendard-subtitle-1: 18px;
