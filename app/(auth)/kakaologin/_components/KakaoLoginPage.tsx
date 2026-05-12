@@ -1,6 +1,6 @@
 import KakaoLoginButton from './KakaoLoginButton';
 
-export default function KakaoLoginView() {
+export default function KakaoLoginPage() {
   return (
     <main className="flex min-h-dvh flex-col items-center">
       <p className="text-cormorant-display-2 tracking-logo pt-hero">PANGEA</p>

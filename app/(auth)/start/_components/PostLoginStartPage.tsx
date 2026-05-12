@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function PostLoginStartView() {
+export default function PostLoginStartPage() {
   return (
     <main className="flex h-dvh w-full flex-col items-center justify-center overflow-hidden px-page-x">
       <div className="flex aspect-[1440/1024] w-full max-w-[90rem] flex-col justify-center">

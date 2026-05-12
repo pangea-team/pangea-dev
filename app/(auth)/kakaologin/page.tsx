@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
-import KakaoLoginView from './_components/KakaoLoginView';
+import KakaoLoginPage from './_components/KakaoLoginPage';
 
 export const metadata: Metadata = {
   title: '카카오 로그인 | Pangea',
 };
 
-export default function KakaoLoginPage() {
-  return <KakaoLoginView />;
+export default function KakaoLogin() {
+  return <KakaoLoginPage />;
 }

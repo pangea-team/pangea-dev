@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
-import PostLoginStartView from './_components/PostLoginStartView';
+import PostLoginStartPage from './_components/PostLoginStartPage';
 
 export const metadata: Metadata = {
   title: '시작 | Pangea',
 };
 
-export default function PostLoginStartPage() {
-  return <PostLoginStartView />;
+export default function PostLoginStart() {
+  return <PostLoginStartPage />;
 }

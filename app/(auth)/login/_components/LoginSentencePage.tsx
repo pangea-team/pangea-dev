@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { type FormEvent, useState } from 'react';
 import Header from '@/components/Header';
 
-export default function LoginSentenceView() {
+export default function LoginSentencePage() {
   const router = useRouter();
   const [displayName, setDisplayName] = useState('');
   const [oneLineTrace, setOneLineTrace] = useState('');
