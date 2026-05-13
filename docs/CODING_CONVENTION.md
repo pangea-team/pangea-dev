@@ -10,7 +10,6 @@
 - [TypeScript](#typescript)
 - [React / Next.js](#react--nextjs)
 - [Styling (Tailwind CSS)](#styling-tailwind-css)
-- [새 코드 추가 체크리스트](#새-코드-추가-체크리스트)
 
 ## Biome 자동화 기준
 
@@ -110,12 +109,3 @@ export default function Button({ title, onClick }: Props) {
   - 그 외엔 일반 문자열 또는 템플릿 리터럴 사용
     - ❌ `cn('mt-4 text-primary')` → ✅ `"mt-4 text-primary"`
     - ❌ `cn(baseStyles, 'mt-4')` → ✅ `` `${baseStyles} mt-4` ``
-
-## 새 코드 추가 체크리스트
-
-- [ ] 같은 도메인의 기존 파일 구조를 먼저 확인했는가?
-- [ ] 컴포넌트 배치 경계가 올바른가? (라우트 전용 `_components/` vs 공통 `components/`)
-- [ ] `'use client'` 필요 여부를 확인했는가? (`useState`, `useEffect`, 브라우저 API, TanStack Query hooks, `useRouter` 등)
-- [ ] import 경로에 `@/` alias를 사용했는가?
-- [ ] Tailwind 토큰을 우선 사용했는가? (임의값은 토큰이 없을 때만 허용)
-- [ ] `pnpm check` + `pnpm build`를 통과하는가?
