@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Cormorant, Noto_Serif_KR } from 'next/font/google';
 import localFont from 'next/font/local';
-import { QueryProvider } from '@/lib/providers/QueryProvider';
+import { QueryProvider } from '@/components/QueryProvider';
 import './styles/globals.css';
 
 const cormorant = Cormorant({
