@@ -1,8 +1,6 @@
 ---
-alwaysApply: true
-description: "프로젝트 핵심 가이드 — 모든 작업 전 필독"
+alwaysApply: false
 ---
-
 # 프로젝트 가이드
 
 이 프로젝트의 모든 규칙은 루트의 [AGENTS.md](../../AGENTS.md)에 정의되어 있습니다.

@@ -4,11 +4,30 @@
 
 ## 📑 Table of Contents
 
+- [Biome 자동화 기준](#biome-자동화-기준)
 - [네이밍](#네이밍)
 - [폴더 구조](#폴더-구조)
 - [TypeScript](#typescript)
 - [React / Next.js](#react--nextjs)
 - [Styling (Tailwind CSS)](#styling-tailwind-css)
+
+## Biome 자동화 기준
+
+이 프로젝트는 **Biome**를 린터/포매터로 사용합니다 (ESLint/Prettier 아님). 아래 항목은 `biome.json` 설정 기준으로 자동 적용되며, 커밋 전 `pnpm check` 실행 시 모두 반영됩니다.
+
+| 항목 | 설정 |
+| :--- | :--- |
+| 들여쓰기 | space, 2칸 |
+| 줄 너비 | 100자 |
+| 따옴표 | 싱글 (`'`), JSX는 더블 (`"`) |
+| 세미콜론 | 항상 사용 (`always`) |
+| trailing comma | `all` |
+| import 정렬 | `organizeImports` 자동 처리 |
+| Tailwind 클래스 순서 | 자동 정렬 |
+| `any` 사용 | `warn` — 불가피하면 `unknown` + narrowing |
+| non-null assertion (`!`) | `warn` — 최소화 |
+
+> Husky `pre-commit` 훅이 `lint-staged`를 통해 변경된 `*.{js,jsx,ts,tsx,json}` 파일에 `biome check --write`를 자동 실행합니다.
 
 ## 네이밍
 
@@ -16,6 +35,9 @@
 | :--- | :--- | :--- |
 | 컴포넌트 파일 | `PascalCase` | `UserProfile.tsx` |
 | 컴포넌트 | `PascalCase` | `UserProfile` |
+| 훅 파일 | `kebab-case` + `use-` 접두사 | `use-feed.ts` |
+| 훅 함수 | `camelCase` + `use` 접두사 | `useGetFeedList` |
+| 유틸 / lib 파일 | `kebab-case` | `query-client.ts` |
 | 변수 / 함수 | `camelCase` | `getUserData` |
 | 상수 | `UPPER_SNAKE_CASE` | `MAX_RETRY_COUNT` |
 | 타입 | `PascalCase` | `type User = { ... }` |
