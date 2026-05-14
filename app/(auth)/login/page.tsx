@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
-import KaKaoLoginPage from './_components/KaKaoLoginPage';
+import LoginSentencePage from './_components/LoginSentencePage';
+
 export const metadata: Metadata = {
-  title: 'Login | Pangea',
+  title: '로그인 | Pangea',
 };
 
-export default function KaKaoLogin() {
-  return <KaKaoLoginPage />;
+export default function Login() {
+  return <LoginSentencePage />;
 }

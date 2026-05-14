@@ -1,4 +1,4 @@
-import { type IconName, iconMap } from '@/lib/iconMap';
+import { type IconName, iconMap } from '@/lib/icon-map';
 
 type Props = {
   name: IconName;

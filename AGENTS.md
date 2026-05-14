@@ -10,11 +10,20 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 이 파일은 AI 코딩 에이전트(Claude Code, Cursor, Copilot 등)가 이 저장소에서 작업할 때 참고하는 가이드입니다.
 
+## 작업 방식
+
+- **코딩 전 계획 수립**: 3개 이상의 파일이나 50줄 이상에 영향을 주는 작업은 먼저 계획을 제시하고 승인을 기다릴 것. 곧바로 코드 작성 시작 금지.
+- **가정은 명시적으로**: 요청이 모호하면 진행하기 전에 가정을 나열할 것. 한 가지 해석으로 조용히 밀고 나가지 말 것.
+- **외과적 변경**: 요청된 부분만 수정할 것. 시키지 않은 인접 코드/주석/포맷을 "개선"하지 말 것.
+- **기존 패턴 따르기**: 새 패턴을 만들기 전에 코드베이스에 비슷한 패턴이 있는지 먼저 확인할 것 (예: `_components/`의 형제 파일들).
+- **섣부른 추상화 금지**: 한 번만 쓰이는 로직은 인라인으로 둘 것. 두세 번째 출현부터 추출할 것.
+- **트레이드오프 드러내기**: 유효한 접근법이 여러 개일 때, 조용히 하나를 고르지 말고 각각을 명명하고 하나를 추천할 것.
 
 ## 명령어
 
 - `pnpm dev` — Next.js 개발 서버 실행
 - `pnpm build` — 프로덕션 빌드 (푸시 전 반드시 통과해야 함)
+- `pnpm start` — 빌드 산출물 실행
 - `pnpm check` — Biome lint + format 자동 적용 (`--write`, 커밋 전 실행)
 - `pnpm lint` / `pnpm format` — lint 또는 format만 실행
 
@@ -38,10 +47,11 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - 루트 레벨의 `components/`, `hooks/`, `lib/`, `types/`는 **여러 라우트 세그먼트에서 재사용되는 코드 전용**. 실제로 공유되는 게 아니면 위로 끌어올리지 말 것.
 - import 경로는 `@/*` absolute path 사용 (`tsconfig.json`에 설정됨).
 - `(auth)`는 인증 페이지용 route group — 괄호는 URL 구조에 영향을 주지 않음.
+- Server Component에서 `params`는 **`Promise`** 로 전달됨 (Next.js 16+). `const { id } = await params;` 패턴으로 접근.
 
 ### 스타일링 시스템
 
-- 글로벌 진입점: `app/styles/globals.css`에서 Tailwind, `colors.css`, `typography.css`를 import. `app/layout.tsx`에서 한 번만 로드됨.
+- 글로벌 진입점: `app/styles/globals.css`에서 Tailwind, `spacing.css`, `colors.css`, `typography.css`를 import. `app/layout.tsx`에서 한 번만 로드됨.
 - `app/styles/colors.css`는 색상 토큰(`--color-ink-*`, `--color-tint-*` 등)과 시맨틱 별칭(`--color-background`, `--color-text`, `--color-primary` 등)을 정의함.
 - `app/styles/typography.css`는 텍스트 토큰(예: `text-noto-body-1`)을 정의하고 클래스별로 `font-family`도 함께 바인딩함. 따라서 `<p className="text-noto-body-1">`만으로 이미 Noto Serif KR이 적용되므로 별도의 `font-*` 유틸리티를 함께 쓰지 말 것.
 - `app/styles/spacing.css`는 반응형 간격 토큰(`--spacing-comp-*`, `--spacing-section-*`, `--spacing-hero`, `--spacing-page-x` 등)을 `clamp()`로 정의함. 간격을 적용할 때:
@@ -63,12 +73,3 @@ This version has breaking changes — APIs, conventions, and file structure may 
 ## Git 워크플로우
 
 브랜치 전략, 커밋 컨벤션, PR 절차는 [CONTRIBUTING.md](./docs/CONTRIBUTING.md)를 참고할 것.
-
-## 작업 방식
-
-- **코딩 전 계획 수립**: 3개 이상의 파일이나 50줄 이상에 영향을 주는 작업은 먼저 계획을 제시하고 승인을 기다릴 것. 곧바로 코드 작성 시작 금지.
-- **가정은 명시적으로**: 요청이 모호하면 진행하기 전에 가정을 나열할 것. 한 가지 해석으로 조용히 밀고 나가지 말 것.
-- **외과적 변경**: 요청된 부분만 수정할 것. 시키지 않은 인접 코드/주석/포맷을 "개선"하지 말 것.
-- **기존 패턴 따르기**: 새 패턴을 만들기 전에 코드베이스에 비슷한 패턴이 있는지 먼저 확인할 것 (예: `_components/`의 형제 파일들).
-- **섣부른 추상화 금지**: 한 번만 쓰이는 로직은 인라인으로 둘 것. 두세 번째 출현부터 추출할 것.
-- **트레이드오프 드러내기**: 유효한 접근법이 여러 개일 때, 조용히 하나를 고르지 말고 각각을 명명하고 하나를 추천할 것.
