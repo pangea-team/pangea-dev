@@ -1,7 +1,7 @@
-import FeedEditPreviewClient from '@/app/feed/upload/_components/FeedUploadPreviewClient';
+import FeedUploadPreviewClient from '@/app/feed/upload/_components/FeedUploadPreviewClient';
 import Header from '@/components/Header';
 
-export default function FeedEditPreviewPage() {
+export default function FeedUploadPreviewPage() {
   return (
     <div className="flex min-h-dvh w-full flex-col">
       <Header />
@@ -14,7 +14,7 @@ export default function FeedEditPreviewPage() {
             </p>
           </div>
           <div className="flex flex-1 flex-col items-stretch pt-section-sm">
-            <FeedEditPreviewClient />
+            <FeedUploadPreviewClient />
           </div>
         </div>
       </main>
