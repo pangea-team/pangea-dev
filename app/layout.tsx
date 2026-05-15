@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Cormorant, Noto_Serif_KR } from 'next/font/google';
 import localFont from 'next/font/local';
+import { QueryProvider } from '@/components/QueryProvider';
 import './styles/globals.css';
 
 const cormorant = Cormorant({
@@ -47,7 +48,9 @@ export default function RootLayout({
       lang="ko"
       className={`${cormorant.variable} ${notoSerifKR.variable} ${pretendard.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-noto">{children}</body>
+      <body className="min-h-full flex flex-col font-noto">
+        <QueryProvider>{children}</QueryProvider>
+      </body>
     </html>
   );
 }

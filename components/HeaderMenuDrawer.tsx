@@ -38,7 +38,7 @@ export default function HeaderMenuDrawer() {
         onClick={() => setOpen(true)}
         aria-label="메뉴 열기"
       >
-        <Icon name="menubar" width={90} height={60} className="text-primary" />
+        <Icon name="menubar" width={20} height={20} />
       </button>
 
       <div
