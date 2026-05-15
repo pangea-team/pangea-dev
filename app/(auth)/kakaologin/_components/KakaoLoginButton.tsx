@@ -1,3 +1,5 @@
+import { createClient } from '@/lib/supabase/client';
+
 function KakaoSpeechBubbleMark({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 28 26" aria-hidden="true">
@@ -12,11 +14,22 @@ function KakaoSpeechBubbleMark({ className }: { className?: string }) {
 }
 
 export default function KakaoLoginButton() {
+  const supabase = createClient();
+
+  const handleLogin = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: 'kakao',
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+  };
   return (
     <button
       type="button"
       aria-label="카카오 로그인"
       className="flex h-[72px] w-full max-w-[400px] cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#FEE500] px-6 text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#251e2e]"
+      onClick={handleLogin}
     >
       <KakaoSpeechBubbleMark className="h-[22px] w-[22px] shrink-0" />
       <span className="font-[family-name:var(--font-pretendard)] text-[20px] leading-[24px] font-medium tracking-[-0.02em]">
