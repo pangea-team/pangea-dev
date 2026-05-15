@@ -1,4 +1,4 @@
-import type { FeedItem } from '@/app/feed/_lib/types';
+import type { FeedItem } from '@/types/feed';
 
 export type ExploreUser = {
   id: string;

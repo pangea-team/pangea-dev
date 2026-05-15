@@ -3,9 +3,6 @@ import { getExplorePageData } from '@/app/explore/_lib/get-explore-page-data';
 import FeedCard from '@/components/FeedCard';
 import Header from '@/components/Header';
 
-/** 연결 행: 카드 600px + 카드 아래 세로선 연장 120px */
-const EXPLORE_FEED_ROW_WITH_CONNECTOR_HEIGHT_CLASS = 'h-[720px]';
-
 export default async function ExplorePage() {
   const items = await getExplorePageData();
 
@@ -20,12 +17,15 @@ export default async function ExplorePage() {
               return (
                 <div key={item.feed.id} className="flex justify-center">
                   <div
-                    className={`relative flex shrink-0 items-start ${showConnector ? EXPLORE_FEED_ROW_WITH_CONNECTOR_HEIGHT_CLASS : 'h-[600px]'}`}
+                    className={`relative flex shrink-0 items-start ${showConnector ? 'h-feed-explore-row-h' : 'h-feed-card-h'}`}
                   >
                     <div className="absolute inset-y-0 right-full flex h-full pr-section-sm">
                       <ExploreProfileColumn user={item.user} showConnector={showConnector} />
                     </div>
-                    <FeedCard feed={item.feed} />
+                    <FeedCard
+                      feed={item.feed}
+                      headerBarBackgroundColor={item.feed.headerBarBackgroundColor}
+                    />
                   </div>
                 </div>
               );

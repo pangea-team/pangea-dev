@@ -21,7 +21,11 @@ export default function FeedPageShell({ profile, feeds, showAddFeedCard }: Props
           >
             {showAddFeedCard ? <AddFeedCard /> : null}
             {feeds.map((feed) => (
-              <FeedCard key={feed.id} feed={feed} />
+              <FeedCard
+                key={feed.id}
+                feed={feed}
+                headerBarBackgroundColor={feed.headerBarBackgroundColor}
+              />
             ))}
           </section>
         </div>

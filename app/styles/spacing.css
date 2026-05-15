@@ -12,4 +12,9 @@
 
   --spacing-content-x: clamp(1.5rem, 12vw, 15.25rem);     /* 컨텐츠 좌우 padding: 24 ~ 244px */
   --spacing-content-y: clamp(2.5rem, 8.5vw, 10.25rem);    /* 컨텐츠 상하 padding: 40 ~ 164px */
+
+  --spacing-feed-card-w: 360px;
+  --spacing-feed-card-h: 600px;
+  --spacing-feed-image-h: 252px;
+  --spacing-feed-explore-row-h: 720px; /* 카드 600px + 연결선 연장 120px */
 }
