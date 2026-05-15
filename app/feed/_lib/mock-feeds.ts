@@ -1,0 +1,17 @@
+import type { FeedItem } from '@/app/feed/_lib/types';
+
+const baseFeed = (id: string): FeedItem => ({
+  id,
+  type: 'WONDER NOTE',
+  images: [
+    { id: `${id}-slide-a`, src: '' },
+    { id: `${id}-slide-b`, src: '' },
+    { id: `${id}-slide-c`, src: '' },
+  ],
+  date: '2026.05.02.',
+  status: '게시',
+  question: `내가 선택한 질문 (${id})`,
+  answer: '답변이 들어갑니다.',
+});
+
+export const MOCK_FEEDS: FeedItem[] = Array.from({ length: 10 }, (_, i) => baseFeed(String(i + 1)));
