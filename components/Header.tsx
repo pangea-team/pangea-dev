@@ -5,7 +5,7 @@ import logo from '@/public/images/logo.webp';
 
 export default function Header() {
   return (
-    <header className="flex h-15 shrink-0 items-center justify-between px-page-x py-2">
+    <header className="flex h-15 shrink-0 items-center justify-between px-page-x py-4">
       <Link href="/" className="flex items-center gap-5">
         <Image src="/icons/logo.png" alt="" width={60} height={60} className="shrink-0" priority />
         <span className="whitespace-nowrap uppercase text-cormorant-logo">PANGEA</span>
@@ -19,7 +19,7 @@ export default function Header() {
           className="flex shrink-0 items-center justify-center"
           aria-label="메뉴 열기"
         >
-          <Icon name="menubar" width={90} height={60} className="text-primary" />
+          <Icon name="menubar" width={20} height={20} />
         </button>
       </div>
     </header>

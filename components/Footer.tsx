@@ -7,7 +7,7 @@ const SOCIAL = {
 
 export default function Footer() {
   return (
-    <footer className="mt-auto shrink-0 px-page-x py-comp-sm">
+    <footer className=" mt-auto shrink-0 px-page-x py-comp-sm">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col">
           <p className="py-2 uppercase text-cormorant-display-2">PANGEA</p>

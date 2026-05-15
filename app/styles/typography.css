@@ -55,69 +55,56 @@
   --text-noto-title-2: 24px;
   --text-noto-title-2--line-height: 32px;
   --text-noto-title-2--font-weight: 600;
-  --text-noto-title-2--letter-spacing: 0.1em;
+  --text-noto-title-2--letter-spacing: 0.05em;
 
   --text-noto-subtitle-1: 18px;
   --text-noto-subtitle-1--line-height: 26px;
   --text-noto-subtitle-1--font-weight: 500;
-  --text-noto-subtitle-1--letter-spacing: 0.1em;
+  --text-noto-subtitle-1--letter-spacing: -0.01em;
 
   --text-noto-subtitle-2: 16px;
   --text-noto-subtitle-2--line-height: 23px;
   --text-noto-subtitle-2--font-weight: 500;
-  --text-noto-subtitle-2--letter-spacing: 0.05em;
+  --text-noto-subtitle-2--letter-spacing: -0.01em;
 
   --text-noto-body-1: 13px;
   --text-noto-body-1--line-height: 20px;
   --text-noto-body-1--font-weight: 400;
-  --text-noto-body-1--letter-spacing: 0;
-
-  --text-noto-body-2: 10px;
-  --text-noto-body-2--line-height: 18px;
-  --text-noto-body-2--font-weight: 400;
-  --text-noto-body-2--letter-spacing: 0;
 
   --text-noto-caption: 10px;
   --text-noto-caption--line-height: 18px;
   --text-noto-caption--font-weight: 400;
-  --text-noto-caption--letter-spacing: 0;
 
   /* ━━━ Pretendard ━━━ */
   --text-pretendard-subtitle-1: 18px;
   --text-pretendard-subtitle-1--line-height: 26px;
   --text-pretendard-subtitle-1--font-weight: 400;
-  --text-pretendard-subtitle-1--letter-spacing: 0.1em;
 
   /* 헤더 Login 등 내비 라벨 */
   --text-pretendard-nav: 20px;
   --text-pretendard-nav--line-height: 24px;
   --text-pretendard-nav--font-weight: 400;
-  --text-pretendard-nav--letter-spacing: 0.1em;
 
   --text-pretendard-footer-meta: 16px;
   --text-pretendard-footer-meta--line-height: 20px;
   --text-pretendard-footer-meta--font-weight: 400;
-  --text-pretendard-footer-meta--letter-spacing: 0.1em;
 
   --text-pretendard-body-1: 16px;
   --text-pretendard-body-1--line-height: 24px;
   --text-pretendard-body-1--font-weight: 400;
-  --text-pretendard-body-1--letter-spacing: 0.1em;
 
   --text-pretendard-body-2: 14px;
   --text-pretendard-body-2--line-height: 20px;
   --text-pretendard-body-2--font-weight: 300;
-  --text-pretendard-body-2--letter-spacing: 0.1em;
 
   --text-pretendard-body-3: 12px;
   --text-pretendard-body-3--line-height: 18px;
   --text-pretendard-body-3--font-weight: 300;
-  --text-pretendard-body-3--letter-spacing: 0.2em;
 
   --text-pretendard-caption: 10px;
   --text-pretendard-caption--line-height: 18px;
   --text-pretendard-caption--font-weight: 300;
-  --text-pretendard-caption--letter-spacing: 0;
+
 }
 
 @theme inline {
