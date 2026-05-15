@@ -21,6 +21,11 @@
   --color-neutral-700: #4a3d5e;
   --color-neutral-800: #4b4752;
   --color-neutral-900: #5a3c5d;
+
+  --color-feed-placeholder: #d9d9d9;
+  --color-destructive: #9b2c2c;
+
+  --shadow-card: 3px 3px 10px rgb(0 0 0 / 0.32);
 }
 
 :root {
@@ -41,5 +46,4 @@
   --color-purple2: var(--purple2);
   --color-purple3: var(--purple3);
   --color-white: var(--white);
-
 }
