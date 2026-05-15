@@ -6,6 +6,7 @@ export const PATH = {
   KAKAO_LOGIN: '/kakaologin',
 
   CART: '/cart',
+  EXPLORE: '/explore',
   REQUESTS: '/requests',
   NOTIFICATIONS: '/notifications',
 
@@ -15,9 +16,6 @@ export const PATH = {
 
   HISTORY_CODE: '/history/code',
   HISTORY_DETAIL: (copyId: string) => `/history/${copyId}`,
-
-  MY_PROFILE: '/my/profile',
-  MY_FEED: '/my/feed',
 
   ORDER: '/order',
   ORDER_COMPLETE: '/order/complete',

@@ -11,7 +11,7 @@ import {
   useState,
 } from 'react';
 
-export type FeedEditDraftImage = {
+export type FeedUploadDraftImage = {
   id: string;
   blob: Blob;
   previewUrl: string;
@@ -24,22 +24,22 @@ function revokeBlobUrl(url: string | null | undefined) {
 }
 
 type DraftContextValue = {
-  images: FeedEditDraftImage[];
+  images: FeedUploadDraftImage[];
   setImages: (
-    next: FeedEditDraftImage[] | ((prev: FeedEditDraftImage[]) => FeedEditDraftImage[]),
+    next: FeedUploadDraftImage[] | ((prev: FeedUploadDraftImage[]) => FeedUploadDraftImage[]),
   ) => void;
   clearDraft: () => void;
 };
 
-const FeedEditDraftContext = createContext<DraftContextValue | null>(null);
+const FeedUploadDraftContext = createContext<DraftContextValue | null>(null);
 
-export function FeedEditDraftProvider({ children }: { children: ReactNode }) {
-  const [images, setImagesState] = useState<FeedEditDraftImage[]>([]);
+export function FeedUploadDraftProvider({ children }: { children: ReactNode }) {
+  const [images, setImagesState] = useState<FeedUploadDraftImage[]>([]);
   const imagesRef = useRef(images);
   imagesRef.current = images;
 
   const setImages = useCallback(
-    (next: FeedEditDraftImage[] | ((prev: FeedEditDraftImage[]) => FeedEditDraftImage[])) => {
+    (next: FeedUploadDraftImage[] | ((prev: FeedUploadDraftImage[]) => FeedUploadDraftImage[])) => {
       setImagesState((prev) => {
         const resolved = typeof next === 'function' ? next(prev) : next;
         const nextIds = new Set(resolved.map((i) => i.id));
@@ -76,13 +76,15 @@ export function FeedEditDraftProvider({ children }: { children: ReactNode }) {
     [images, setImages, clearDraft],
   );
 
-  return <FeedEditDraftContext.Provider value={value}>{children}</FeedEditDraftContext.Provider>;
+  return (
+    <FeedUploadDraftContext.Provider value={value}>{children}</FeedUploadDraftContext.Provider>
+  );
 }
 
-export function useFeedEditDraft(): DraftContextValue {
-  const ctx = useContext(FeedEditDraftContext);
+export function useFeedUploadDraft(): DraftContextValue {
+  const ctx = useContext(FeedUploadDraftContext);
   if (!ctx) {
-    throw new Error('useFeedEditDraft must be used within FeedEditDraftProvider');
+    throw new Error('useFeedUploadDraft must be used within FeedUploadDraftProvider');
   }
   return ctx;
 }

@@ -1,7 +1,7 @@
-import FeedEditClient from '@/app/feed/edit/_components/FeedEditClient';
+import FeedEditClient from '@/app/feed/upload/_components/FeedUploadClient';
 import Header from '@/components/Header';
 
-export default function FeedEditPage() {
+export default function FeedUploadPage() {
   return (
     <div className="flex min-h-dvh w-full flex-col">
       <Header />

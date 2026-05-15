@@ -1,4 +1,4 @@
-import FeedEditPreviewClient from '@/app/feed/edit/_components/FeedEditPreviewClient';
+import FeedEditPreviewClient from '@/app/feed/upload/_components/FeedUploadPreviewClient';
 import Header from '@/components/Header';
 
 export default function FeedEditPreviewPage() {

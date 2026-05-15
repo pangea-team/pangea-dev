@@ -4,16 +4,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { useFeedEditDraft } from '@/app/feed/edit/_lib/feed-edit-draft-context';
+import { useFeedUploadDraft } from '@/app/feed/upload/_lib/feed-upload-draft-context';
 import {
   getMockBookById,
   getMockBooks,
   getMockQuestionsByBookId,
-} from '@/app/feed/edit/_lib/mock-books-questions';
+} from '@/app/feed/upload/_lib/mock-books-questions';
 import {
   FeedImageUploadError,
   uploadFeedImageBlobs,
-} from '@/app/feed/edit/_lib/upload-feed-images';
+} from '@/app/feed/upload/_lib/upload-feed-images';
 import FeedCard from '@/components/FeedCard';
 import type { FeedItem } from '@/types/feed';
 
@@ -25,9 +25,9 @@ function formatPreviewDate(): string {
   return `${y}.${m}.${day}.`;
 }
 
-export default function FeedEditPreviewClient() {
+export default function FeedUploadPreviewClient() {
   const router = useRouter();
-  const { images, clearDraft } = useFeedEditDraft();
+  const { images, clearDraft } = useFeedUploadDraft();
   const books = useMemo(() => getMockBooks(), []);
 
   const [selectedBookId, setSelectedBookId] = useState<string | null>(null);
