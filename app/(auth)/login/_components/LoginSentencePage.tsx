@@ -15,7 +15,7 @@ export default function LoginSentencePage() {
     e.preventDefault();
     if (!isComplete) return;
     // TODO: displayName, oneLineTrace를 API로 저장
-    router.push('/my/profile');
+    router.push('/feed');
   };
 
   return (

@@ -1,58 +1,72 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import type { Area, Point } from 'react-easy-crop';
-import Cropper from 'react-easy-crop';
-import 'react-easy-crop/react-easy-crop.css';
+import { useEffect, useRef, useState } from 'react';
+import ReactCrop, { type Crop, type PixelCrop } from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 import { getCroppedImageBlob } from '@/app/feed/edit/_lib/crop-image';
 
-/** 피드 카드 이미지 영역과 동일 (가로 맞춤 시 세로는 이 값을 넘지 않음) */
-const FEED_CARD_IMAGE_WIDTH_PX = 360;
-const FEED_CARD_IMAGE_HEIGHT_PX = 252;
+/** 피드카드 회색 영역 비율 — 이미지를 360px 폭으로 표시할 때 이 높이를 넘으면 잘림 */
+const FEED_IMG_WIDTH = 360;
+const FEED_IMG_HEIGHT = 252;
+const MAX_HEIGHT_RATIO = FEED_IMG_HEIGHT / FEED_IMG_WIDTH;
+const MAX_IMAGES = 3;
 
-const MIN_CROP_ASPECT = FEED_CARD_IMAGE_WIDTH_PX / FEED_CARD_IMAGE_HEIGHT_PX;
-/** 가로가 더 넓은 크롭(세로 짧음)까지 허용하는 상한 (가로÷세로) */
-const MAX_CROP_ASPECT = 3;
+type SavedImage = {
+  id: string;
+  blob: Blob;
+  previewUrl: string;
+};
 
-const PRESET_MATCH_EPSILON = 0.03;
-
-const ASPECT_PRESETS = [
-  { id: '10:7' as const, label: '10:7', ratio: MIN_CROP_ASPECT },
-  { id: '16:9' as const, label: '16:9', ratio: 16 / 9 },
-  { id: '2:1' as const, label: '2:1', ratio: 2 },
-];
-
-function isNearRatio(value: number, target: number) {
-  return Math.abs(value - target) < PRESET_MATCH_EPSILON;
+function clampCropHeight(c: PixelCrop): PixelCrop {
+  if (c.width > 0 && c.height > c.width * MAX_HEIGHT_RATIO) {
+    return { ...c, height: Math.round(c.width * MAX_HEIGHT_RATIO) };
+  }
+  return c;
 }
 
-const CROP_CONTAINER_CLASSES =
-  'relative h-[252px] w-full max-w-[360px] shrink-0 overflow-hidden bg-[#d9d9d9]';
+function revokeBlobUrl(url: string | null | undefined) {
+  if (url?.startsWith('blob:')) {
+    URL.revokeObjectURL(url);
+  }
+}
 
 export default function FeedEditClient() {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const savedImagesRef = useRef<SavedImage[]>([]);
+  const editingSrcRef = useRef<string | null>(null);
 
-  const [imageSrc, setImageSrc] = useState<string | null>(null);
-  const [crop, setCrop] = useState<Point>({ x: 0, y: 0 });
-  const [zoom, setZoom] = useState(1);
-  const [aspect, setAspect] = useState(MIN_CROP_ASPECT);
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
+  const [editingSrc, setEditingSrc] = useState<string | null>(null);
+  const [savedImages, setSavedImages] = useState<SavedImage[]>([]);
+  const [crop, setCrop] = useState<Crop | undefined>(undefined);
+  const [completedCrop, setCompletedCrop] = useState<PixelCrop | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isAddingImage, setIsAddingImage] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const revokeSrc = useCallback((src: string | null) => {
-    if (src?.startsWith('blob:')) {
-      URL.revokeObjectURL(src);
-    }
-  }, []);
+  savedImagesRef.current = savedImages;
+  editingSrcRef.current = editingSrc;
+
+  const canAddMore = savedImages.length < MAX_IMAGES;
+  const isEditing = editingSrc !== null;
 
   useEffect(() => {
     return () => {
-      revokeSrc(imageSrc);
+      revokeBlobUrl(editingSrcRef.current);
+      for (const image of savedImagesRef.current) {
+        revokeBlobUrl(image.previewUrl);
+      }
     };
-  }, [imageSrc, revokeSrc]);
+  }, []);
+
+  const openFilePicker = () => {
+    if (!canAddMore || isEditing) {
+      return;
+    }
+    fileInputRef.current?.click();
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -60,43 +74,74 @@ export default function FeedEditClient() {
     if (!file?.type.startsWith('image/')) {
       return;
     }
+    revokeBlobUrl(editingSrc);
+    setEditingSrc(URL.createObjectURL(file));
+    setCrop(undefined);
+    setCompletedCrop(null);
     setErrorMessage(null);
-    setImageSrc((prev) => {
-      revokeSrc(prev);
-      return URL.createObjectURL(file);
-    });
-    setCrop({ x: 0, y: 0 });
-    setZoom(1);
-    setAspect(MIN_CROP_ASPECT);
-    setCroppedAreaPixels(null);
   };
 
-  const handleCropComplete = useCallback((_: Area, areaPixels: Area) => {
-    setCroppedAreaPixels(areaPixels);
-  }, []);
+  const handleCancelEditing = () => {
+    revokeBlobUrl(editingSrc);
+    setEditingSrc(null);
+    setCrop(undefined);
+    setCompletedCrop(null);
+  };
 
-  const handlePresetClick = (preset: (typeof ASPECT_PRESETS)[number]) => {
-    setAspect(preset.ratio);
-    setCrop({ x: 0, y: 0 });
+  const handleRemoveSaved = (id: string) => {
+    setSavedImages((prev) => {
+      const target = prev.find((image) => image.id === id);
+      revokeBlobUrl(target?.previewUrl);
+      return prev.filter((image) => image.id !== id);
+    });
+  };
+
+  const handleCropChange = (c: PixelCrop) => {
+    setCrop(clampCropHeight(c));
+  };
+
+  const handleCropComplete = (c: PixelCrop) => {
+    setCompletedCrop(clampCropHeight(c));
+  };
+
+  const handleAddImage = async () => {
+    if (!editingSrc || !completedCrop || !imgRef.current || savedImages.length >= MAX_IMAGES) {
+      return;
+    }
+    setIsAddingImage(true);
+    setErrorMessage(null);
+    try {
+      const blob = await getCroppedImageBlob(imgRef.current, completedCrop);
+      const previewUrl = URL.createObjectURL(blob);
+      setSavedImages((prev) => [...prev, { id: crypto.randomUUID(), blob, previewUrl }]);
+      revokeBlobUrl(editingSrc);
+      setEditingSrc(null);
+      setCrop(undefined);
+      setCompletedCrop(null);
+    } catch {
+      setErrorMessage('이미지를 처리하지 못했습니다. 다시 시도해 주세요.');
+    } finally {
+      setIsAddingImage(false);
+    }
   };
 
   const handleSubmit = async () => {
-    if (!imageSrc || !croppedAreaPixels) {
+    if (savedImages.length === 0 || isEditing) {
       return;
     }
     setIsSubmitting(true);
     setErrorMessage(null);
     try {
-      const blob = await getCroppedImageBlob(imageSrc, croppedAreaPixels);
       const uploadUrl = process.env.NEXT_PUBLIC_FEED_IMAGE_UPLOAD_URL;
-      if (uploadUrl) {
+      if (!uploadUrl) {
+        setErrorMessage('이미지 업로드가 아직 준비되지 않았습니다.');
+        return;
+      }
+      for (const [index, image] of savedImages.entries()) {
         const formData = new FormData();
-        formData.append('image', blob, 'feed-crop.jpg');
-        const response = await fetch(uploadUrl, {
-          method: 'POST',
-          body: formData,
-        });
-        if (!response.ok) {
+        formData.append('image', image.blob, `feed-crop-${index + 1}.jpg`);
+        const res = await fetch(uploadUrl, { method: 'POST', body: formData });
+        if (!res.ok) {
           throw new Error('Upload failed');
         }
       }
@@ -108,8 +153,10 @@ export default function FeedEditClient() {
     }
   };
 
+  const showEmptyPlaceholder = savedImages.length === 0 && !isEditing;
+
   return (
-    <article className="relative flex w-full max-w-[690px] flex-col bg-surface-50 p-6 shadow-card">
+    <article className="flex w-full max-w-[690px] flex-col gap-comp-sm bg-surface-50 p-6 shadow-card">
       <input
         ref={fileInputRef}
         type="file"
@@ -118,113 +165,127 @@ export default function FeedEditClient() {
         onChange={handleFileChange}
       />
 
-      <div className={CROP_CONTAINER_CLASSES}>
-        {imageSrc ? (
-          <Cropper
-            image={imageSrc}
-            crop={crop}
-            zoom={zoom}
-            aspect={aspect}
-            onCropChange={setCrop}
-            onZoomChange={setZoom}
-            onCropComplete={handleCropComplete}
-            restrictPosition
-            zoomWithScroll
-          />
-        ) : (
-          <button
-            type="button"
-            className="flex size-full flex-col items-center justify-center gap-20 px-4 py-6 text-center outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-50"
-            onClick={() => fileInputRef.current?.click()}
-          >
-            <p className="text-pretendard-subtitle-1 text-primary whitespace-pre-line">
-              {'밑줄 또는 메모가 있는\n책의 일부만 업로드할 수 있습니다.'}
-            </p>
-            <p className="text-pretendard-body-2 text-primary whitespace-pre-line">
-              {'최대 3장까지 업로드 가능합니다.\n개인 정보가 포함된 이미지는 허용되지 않습니다.'}
-            </p>
-          </button>
-        )}
-      </div>
-
-      {imageSrc ? (
-        <div className="mt-comp-sm flex flex-col gap-3">
-          <label className="flex max-w-[360px] flex-col gap-1">
-            <span className="text-pretendard-label text-primary">
-              비율 (가로÷세로) — 슬라이더로 조절
-            </span>
-            <input
-              type="range"
-              min={MIN_CROP_ASPECT}
-              max={MAX_CROP_ASPECT}
-              step={0.005}
-              value={aspect}
-              onChange={(e) => setAspect(Number(e.target.value))}
-              className="w-full"
-            />
-            <span className="text-pretendard-caption text-primary/80" aria-live="polite">
-              현재 {aspect.toFixed(2)} — 피드에는 가로 360px에 맞추고 세로는 비율대로 표시됩니다.
-            </span>
-          </label>
-          <fieldset className="m-0 flex flex-wrap gap-2 border-0 p-0">
-            <legend className="sr-only">크롭 비율 빠른 선택</legend>
-            {ASPECT_PRESETS.map((preset) => (
+      {savedImages.length > 0 ? (
+        <ul className="flex flex-wrap gap-3">
+          {savedImages.map((image, index) => (
+            <li
+              key={image.id}
+              className="relative h-[126px] w-[180px] shrink-0 overflow-hidden bg-feed-placeholder"
+            >
+              {/* biome-ignore lint/performance/noImgElement: blob 미리보기 */}
+              <img
+                src={image.previewUrl}
+                alt={`선택한 이미지 ${index + 1}`}
+                className="size-full object-cover"
+              />
               <button
-                key={preset.id}
                 type="button"
-                className={
-                  isNearRatio(aspect, preset.ratio)
-                    ? 'border border-primary px-3 py-1.5 text-pretendard-body-2 text-primary'
-                    : 'border border-primary/25 px-3 py-1.5 text-pretendard-body-2 text-primary/80'
-                }
-                onClick={() => handlePresetClick(preset)}
+                className="absolute top-1 right-1 flex size-6 items-center justify-center bg-primary/80 text-pretendard-caption text-surface-50"
+                aria-label={`이미지 ${index + 1} 삭제`}
+                onClick={() => handleRemoveSaved(image.id)}
               >
-                {preset.label}
+                ×
               </button>
-            ))}
-          </fieldset>
-          <label className="flex flex-col gap-1">
-            <span className="text-pretendard-label text-primary">
-              확대 (슬라이더 또는 회색 영역에서 휠)
-            </span>
-            <input
-              type="range"
-              min={1}
-              max={3}
-              step={0.01}
-              value={zoom}
-              onChange={(e) => setZoom(Number(e.target.value))}
-              className="w-full max-w-[360px]"
-            />
-          </label>
-          <button
-            type="button"
-            className="text-pretendard-body-2 w-fit text-primary underline"
-            onClick={() => fileInputRef.current?.click()}
-          >
-            다른 이미지 선택
-          </button>
-        </div>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
+      {isEditing ? (
+        <>
+          <div className="w-full">
+            <ReactCrop
+              crop={crop}
+              onChange={handleCropChange}
+              onComplete={handleCropComplete}
+              keepSelection
+              ruleOfThirds
+            >
+              {/* biome-ignore lint/performance/noImgElement: react-image-crop은 imgRef.width/naturalWidth 비율로 좌표를 계산하므로 Next/Image의 래핑 구조와 호환 불가 */}
+              <img ref={imgRef} src={editingSrc} alt="" className="block max-h-[70vh] max-w-full" />
+            </ReactCrop>
+          </div>
+          <p className="text-pretendard-caption text-primary/60">
+            이미지를 드래그해 선택 영역을 그리고, 핸들로 크기를 조절하세요. 세로 비율은 피드카드
+            높이(252px)에 맞게 자동 제한됩니다.
+          </p>
+          <p className="text-pretendard-caption text-primary/60">
+            {savedImages.length + 1}/{MAX_IMAGES}장
+          </p>
+          <div className="mt-3 flex flex-wrap gap-3">
+            <button
+              type="button"
+              disabled={!completedCrop || isAddingImage}
+              className={
+                completedCrop && !isAddingImage
+                  ? 'bg-purple2 px-4 py-3 text-pretendard-body-2 text-surface-50 hover:bg-primary'
+                  : 'cursor-not-allowed bg-purple3/40 px-4 py-3 text-pretendard-body-2 text-surface-50'
+              }
+              onClick={handleAddImage}
+            >
+              {isAddingImage ? '처리 중…' : '이 이미지 추가'}
+            </button>
+            <button
+              type="button"
+              className="text-pretendard-body-2 text-primary underline"
+              onClick={handleCancelEditing}
+            >
+              취소
+            </button>
+            <button
+              type="button"
+              className="text-pretendard-body-2 text-primary underline"
+              onClick={() => fileInputRef.current?.click()}
+            >
+              다른 파일 선택
+            </button>
+          </div>
+        </>
+      ) : showEmptyPlaceholder ? (
+        <button
+          type="button"
+          className="flex h-[252px] w-full flex-col items-center justify-center gap-section-sm bg-feed-placeholder px-4 py-6 text-center outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-50"
+          onClick={openFilePicker}
+        >
+          <p className="text-pretendard-subtitle-1 whitespace-pre-line">
+            {'밑줄 또는 메모가 있는\n책의 일부만 업로드할 수 있습니다.'}
+          </p>
+          <p className="text-pretendard-body-2 whitespace-pre-line">
+            {
+              '1~3장까지 원하는 만큼 업로드할 수 있습니다.\n개인 정보가 포함된 이미지는 허용되지 않습니다.'
+            }
+          </p>
+        </button>
+      ) : canAddMore ? (
+        <button
+          type="button"
+          className="flex h-[120px] w-full flex-col items-center justify-center gap-2 border border-dashed border-primary/30 bg-feed-placeholder/50 text-center outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-50"
+          onClick={openFilePicker}
+        >
+          <p className="text-pretendard-body-2">
+            이미지 추가 ({savedImages.length}/{MAX_IMAGES})
+          </p>
+        </button>
       ) : null}
 
       {errorMessage ? (
-        <p className="text-pretendard-body-2 mt-comp-sm text-red-600" role="alert">
+        <p className="text-pretendard-body-2 text-destructive" role="alert">
           {errorMessage}
         </p>
       ) : null}
 
-      <div className="mt-comp-sm flex justify-end">
+      <div className="flex justify-end">
         <button
           type="button"
-          disabled={!imageSrc || !croppedAreaPixels || isSubmitting}
+          disabled={savedImages.length === 0 || isEditing || isSubmitting}
           className={
-            imageSrc && croppedAreaPixels && !isSubmitting
-              ? 'bg-[#d9d9d9] px-4 py-3 text-pretendard-body-2 text-surface-50'
+            savedImages.length > 0 && !isEditing && !isSubmitting
+              ? 'bg-purple2 px-4 py-3 text-pretendard-body-2 text-surface-50 hover:bg-primary'
               : 'cursor-not-allowed bg-purple3/40 px-4 py-3 text-pretendard-body-2 text-surface-50'
           }
           onClick={handleSubmit}
         >
-          {isSubmitting ? '업로드 중…' : '선택 완료'}
+          {isSubmitting ? '업로드 중…' : `선택 완료 (${savedImages.length}장)`}
         </button>
       </div>
     </article>

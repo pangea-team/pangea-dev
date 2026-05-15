@@ -1,8 +1,8 @@
-import type { MyFeedPageData } from '@/app/feed/_lib/types';
 import {
   MOCK_YOUR_FEED_ITEMS_JAY,
   MOCK_YOUR_FEED_PROFILE_JAY,
-} from '@/app/feed/[userId]/_lib/mock-your-feed-data';
+} from '@/app/feed/_lib/mock-your-feed-data';
+import type { MyFeedPageData } from '@/app/feed/_lib/types';
 
 /**
  * 다른 사람 피드 페이지 데이터. 지금은 mock; API 연동 시 fetch + 매핑만 이 안에서 교체.

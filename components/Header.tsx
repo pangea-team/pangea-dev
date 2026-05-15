@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import Icon from '@/components/Icon';
+import HeaderMenuDrawer from '@/components/HeaderMenuDrawer';
 
 export default function Header() {
   return (
@@ -13,13 +13,7 @@ export default function Header() {
         <Link href="/kakaologin" className="whitespace-nowrap px-3 py-2 text-pretendard-nav">
           Login
         </Link>
-        <button
-          type="button"
-          className="flex shrink-0 items-center justify-center"
-          aria-label="메뉴 열기"
-        >
-          <Icon name="menubar" width={90} height={60} className="text-primary" />
-        </button>
+        <HeaderMenuDrawer />
       </div>
     </header>
   );

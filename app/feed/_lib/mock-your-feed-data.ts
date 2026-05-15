@@ -14,7 +14,7 @@ const baseFeed = (id: string): FeedItem => ({
   answer: '답변이 들어갑니다.',
 });
 
-/** Jay 프로필 — `/feed/jay` 등 모의 사용자 피드용 */
+/** 타인 피드 목업 — `/feed/jay` 등 */
 export const MOCK_YOUR_FEED_PROFILE_JAY: MyFeedProfile = {
   nickname: 'Jay',
   profileRingSrc: '/icons/profile-ring.svg',

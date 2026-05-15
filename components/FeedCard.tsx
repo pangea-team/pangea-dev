@@ -26,7 +26,7 @@ export default function FeedCard({ feed }: Props) {
         <p className="text-noto-subtitle-2 text-primary">{feed.type}</p>
       </div>
 
-      <div className="relative h-[252px] w-full shrink-0 overflow-hidden bg-[#d9d9d9]">
+      <div className="relative h-[252px] w-full shrink-0 overflow-hidden bg-feed-placeholder">
         <div className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2">
           {src ? (
             <Image

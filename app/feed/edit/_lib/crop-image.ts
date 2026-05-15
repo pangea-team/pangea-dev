@@ -1,39 +1,34 @@
-import type { Area } from 'react-easy-crop';
+import type { PixelCrop } from 'react-image-crop';
 
-function loadImageElement(url: string): Promise<HTMLImageElement> {
-  return new Promise((resolve, reject) => {
-    const img = document.createElement('img');
-    img.addEventListener('load', () => resolve(img));
-    img.addEventListener('error', reject);
-    if (!url.startsWith('blob:')) {
-      img.crossOrigin = 'anonymous';
-    }
-    img.src = url;
-  });
-}
+const JPEG_QUALITY = 0.92;
 
-/** Canvas에서 원본 이미지와 픽셀 크롭 영역으로 이미지 Blob을 만든다. */
-export async function getCroppedImageBlob(imageSrc: string, pixelCrop: Area): Promise<Blob> {
-  const image = await loadImageElement(imageSrc);
+/** 표시 크기 → 원본 해상도 스케일을 적용해 Blob을 만든다. */
+export async function getCroppedImageBlob(
+  imgElement: HTMLImageElement,
+  pixelCrop: PixelCrop,
+): Promise<Blob> {
+  const scaleX = imgElement.naturalWidth / imgElement.width;
+  const scaleY = imgElement.naturalHeight / imgElement.height;
+
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   if (!ctx) {
     throw new Error('Could not get canvas context');
   }
 
-  canvas.width = Math.round(pixelCrop.width);
-  canvas.height = Math.round(pixelCrop.height);
+  canvas.width = Math.round(pixelCrop.width * scaleX);
+  canvas.height = Math.round(pixelCrop.height * scaleY);
 
   ctx.drawImage(
-    image,
-    pixelCrop.x,
-    pixelCrop.y,
-    pixelCrop.width,
-    pixelCrop.height,
+    imgElement,
+    pixelCrop.x * scaleX,
+    pixelCrop.y * scaleY,
+    pixelCrop.width * scaleX,
+    pixelCrop.height * scaleY,
     0,
     0,
-    pixelCrop.width,
-    pixelCrop.height,
+    canvas.width,
+    canvas.height,
   );
 
   return new Promise((resolve, reject) => {
@@ -46,7 +41,7 @@ export async function getCroppedImageBlob(imageSrc: string, pixelCrop: Area): Pr
         }
       },
       'image/jpeg',
-      0.92,
+      JPEG_QUALITY,
     );
   });
 }
