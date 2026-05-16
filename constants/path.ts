@@ -4,6 +4,7 @@ export const PATH = {
   START: '/start',
   LOGIN: '/login',
   KAKAO_LOGIN: '/kakaologin',
+  ONBOARDING: '/onboarding',
 
   CART: '/cart',
   EXPLORE: '/explore',

@@ -26,6 +26,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - `pnpm start` — 빌드 산출물 실행
 - `pnpm check` — Biome lint + format 자동 적용 (`--write`, 커밋 전 실행)
 - `pnpm lint` / `pnpm format` — lint 또는 format만 실행
+- `pnpm db:types` — Supabase 스키마로부터 `lib/supabase/database.types.ts` 재생성 (DB 스키마 변경 시 실행 후 커밋)
 
 테스트 러너는 설정되어 있지 않습니다.
 
