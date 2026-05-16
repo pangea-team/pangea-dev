@@ -8,7 +8,7 @@
 
   --color-tint-blue: #3c415d;
   --color-tint-indigo: #413c5d;
-  --color-tint-violet: #493c5d;
+  --color-tint-violet: var(--color-ink-100);
   --color-tint-plum: #523c5d;
   --color-tint-rose: #5a3c5d;
 
@@ -20,7 +20,7 @@
 
   --color-neutral-700: #4a3d5e;
   --color-neutral-800: #4b4752;
-  --color-neutral-900: #5a3c5d;
+  --color-neutral-900: var(--color-tint-rose);
 
   --color-feed-placeholder: #d9d9d9;
   --color-destructive: #9b2c2c;

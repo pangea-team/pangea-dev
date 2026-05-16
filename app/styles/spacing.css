@@ -1,9 +1,10 @@
 @theme {
   /* ── 유동 간격 (clamp) ── */
   --spacing-comp-sm: clamp(1.25rem, 1rem + 1vw, 2.5rem); /* 컴포넌트: 20 ~ 40px */
-  --spacing-comp-md: clamp(3rem, 2rem + 2vw, 5rem); /* 컴포넌트(넓음): 48 ~ 80px */
 
-  --spacing-section-sm: clamp(3rem, 2rem + 3vw, 5rem); /* 섹션(작음): 48 ~ 80px */
+  /* 48 ~ 80px — 섹션 리듬·넓은 컴포넌트 열 간격 공통 스케일 */
+  --spacing-section-sm: clamp(3rem, 2rem + 3vw, 5rem);
+  --spacing-comp-md: var(--spacing-section-sm); /* 컴포넌트 블록(책 카드 등). 값은 section-sm과 동일 */
   --spacing-section-md: clamp(4rem, 2.5rem + 5vw, 8rem); /* 섹션(중간): 64 ~ 128px */
   --spacing-section-lg: clamp(5rem, 3rem + 7vw, 10rem); /* 섹션(큼): 80 ~ 160px */
 
