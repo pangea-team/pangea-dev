@@ -1,5 +1,6 @@
 'use client';
 import { createClient } from '@/lib/supabase/client';
+import { getURL } from '@/lib/utils';
 
 function KakaoSpeechBubbleMark({ className }: { className?: string }) {
   return (
@@ -20,7 +21,7 @@ export default function KakaoLoginButton() {
     await supabase.auth.signInWithOAuth({
       provider: 'kakao',
       options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
+        redirectTo: `${getURL()}auth/callback`,
       },
     });
   };
