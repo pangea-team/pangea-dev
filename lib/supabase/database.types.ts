@@ -134,6 +134,7 @@ export type Database = {
       }
       saved_sentences: {
         Row: {
+          content_index: number
           created_at: string
           id: string
           note: string
@@ -141,6 +142,7 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          content_index: number
           created_at?: string
           id: string
           note: string
@@ -148,6 +150,7 @@ export type Database = {
           user_id: string
         }
         Update: {
+          content_index?: number
           created_at?: string
           id?: string
           note?: string
