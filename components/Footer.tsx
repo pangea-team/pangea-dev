@@ -8,7 +8,7 @@ const SOCIAL = {
 export default function Footer() {
   return (
     <footer className=" mt-auto shrink-0 px-page-x py-comp-sm">
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+      <div className="flex flex-col gap-comp-sm sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col">
           <p className="py-2 uppercase text-cormorant-display-2">PANGEA</p>
           <p className="text-cormorant-footer-tagline">Someone is reading you.</p>
@@ -35,7 +35,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-purple3 mt-comp-sm flex flex-col gap-6 border-t pt-comp-sm sm:flex-row sm:items-start sm:justify-between">
+      <div className="border-purple3 mt-comp-sm flex flex-col gap-comp-sm border-t pt-comp-sm sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col gap-2">
           <p className="text-pretendard-footer-meta">판게아&nbsp;&nbsp;|&nbsp;&nbsp;권 하 경</p>
           <a href="mailto:khkbt3731@gmail.com" className="text-cormorant-footer-meta">

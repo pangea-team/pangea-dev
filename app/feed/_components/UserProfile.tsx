@@ -15,10 +15,10 @@ function isSvgSrc(src: string): boolean {
 
 export default function UserProfile({ nickname, profileRingSrc, avatarSrc, children }: Props) {
   return (
-    <section className="bg-background w-full shrink-0">
-      <div className="flex w-full min-w-0 items-end gap-comp-sm py-section-sm">
+    <section className="bg-background w-full shrink-0 px-page-x">
+      <div className="flex w-full min-w-0 flex-col gap-comp-sm py-section-sm md:flex-row md:items-end">
         <div className="flex min-w-0 flex-1 items-center gap-comp-sm">
-          <div className="relative size-30 shrink-0">
+          <div className="relative size-avatar-feed-sm shrink-0 md:size-avatar-feed-lg">
             {isSvgSrc(profileRingSrc) ? (
               // biome-ignore lint/performance/noImgElement: 목업 프로필 SVG — next/image는 SVG 기본 비허용
               <img
@@ -26,7 +26,7 @@ export default function UserProfile({ nickname, profileRingSrc, avatarSrc, child
                 alt=""
                 width={PROFILE_RING_PX}
                 height={PROFILE_RING_PX}
-                className="size-30"
+                className="size-full"
               />
             ) : (
               <Image
@@ -34,7 +34,7 @@ export default function UserProfile({ nickname, profileRingSrc, avatarSrc, child
                 alt=""
                 width={PROFILE_RING_PX}
                 height={PROFILE_RING_PX}
-                className="size-30"
+                className="size-full"
                 priority
               />
             )}
@@ -60,10 +60,12 @@ export default function UserProfile({ nickname, profileRingSrc, avatarSrc, child
             </div>
           </div>
           <div className="min-w-0 flex-1 text-left">
-            <p className="text-noto-heading-1 wrap-break-word">{nickname}</p>
+            <p className="text-noto-profile-name">{nickname}</p>
           </div>
         </div>
-        <div className="flex min-h-0 min-w-0 flex-1 items-center self-stretch">{children}</div>
+        {children ? (
+          <div className="flex min-h-0 min-w-0 flex-1 items-center self-stretch">{children}</div>
+        ) : null}
       </div>
     </section>
   );

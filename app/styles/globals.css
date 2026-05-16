@@ -2,8 +2,45 @@
 @import "./spacing.css";
 @import "./colors.css";
 @import "./typography.css";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
 
 body {
   background: var(--color-background);
   color: var(--color-text);
+}
+
+/* 한글: 음절 단위 줄바꿈 방지(답|변 → 답변), 공백·구두점에서만 줄바꿈 */
+html[lang="ko"] {
+  word-break: keep-all;
+  line-break: strict;
+}
+
+/* shadcn/ui — 기존 @theme 토큰에 직접 연결 (colors.css :root 별칭 추가 없음) */
+@theme inline {
+  --color-ring: var(--color-lilac-300);
+  --color-input: var(--color-lilac-300);
+  --color-border: var(--color-lilac-300);
+  --color-accent-foreground: var(--color-ink-400);
+  --color-accent: var(--color-surface-100);
+  --color-muted-foreground: var(--color-ink-100);
+  --color-muted: var(--color-surface-100);
+  --color-secondary-foreground: var(--color-ink-400);
+  --color-secondary: var(--color-surface-100);
+  --color-primary-foreground: var(--color-surface-0);
+  --color-popover-foreground: var(--color-ink-400);
+  --color-popover: var(--color-surface-0);
+  --color-card-foreground: var(--color-ink-400);
+  --color-card: var(--color-surface-50);
+  --color-foreground: var(--color-ink-400);
+  --radius: 0.625rem;
+  --radius-sm: calc(0.625rem * 0.6);
+  --radius-md: calc(0.625rem * 0.8);
+  --radius-lg: 0.625rem;
+  --radius-xl: calc(0.625rem * 1.4);
+  --radius-2xl: calc(0.625rem * 1.8);
+  --radius-3xl: calc(0.625rem * 2.2);
+  --radius-4xl: calc(0.625rem * 2.6);
 }

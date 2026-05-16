@@ -11,7 +11,6 @@ const baseFeed = (
   colorIndex: number,
 ): FeedItem => ({
   id,
-  type: 'WONDER NOTE',
   images: mockFeedImages(id, imageCount),
   date: '2026.05.02.',
   status: '게시',

@@ -103,7 +103,8 @@ export default function Button({ title, onClick }: Props) {
 ## Styling (Tailwind CSS)
 
 - 클래스 순서는 Biome가 자동 정렬
-- 디자인 토큰을 우선 사용 — 색/간격/폰트는 `app/styles/colors.css`, `typography.css`에 정의된 토큰을 사용
+- 디자인 토큰을 우선 사용 — 색/간격/폰트는 `app/styles/colors.css`, `spacing.css`, `typography.css`에 정의된 토큰을 사용
+- 반응형 규칙(유동 토큰 vs 브레이크포인트, `page-x`/`content-x`, `sm`/`md`/`xl` 역할)은 [AGENTS.md](../AGENTS.md) 스타일링 섹션 참고
 - 토큰에 없는 값만 임의값(`w-[327px]`) 사용
 - 인라인 스타일(`style={{}}`) 사용 지양
 - **`cn()` 은 다음 두 경우에만 사용**:

@@ -8,7 +8,6 @@ export type FeedImageSlide = {
 
 export type FeedItem = {
   id: string;
-  type: string;
   images: FeedImageSlide[];
   date: string;
   status: string;

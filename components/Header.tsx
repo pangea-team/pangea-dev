@@ -11,11 +11,11 @@ export default async function Header() {
 
   return (
     <header className="flex h-15 shrink-0 items-center justify-between px-page-x py-4">
-      <Link href={PATH.HOME} className="flex items-center gap-5">
+      <Link href={PATH.HOME} className="flex min-w-0 items-center gap-2 sm:gap-5">
         <Image src={logo} alt="" width={60} height={60} className="shrink-0" priority />
-        <span className="whitespace-nowrap uppercase text-cormorant-logo">PANGEA</span>
+        <span className="shrink-0 uppercase text-cormorant-logo">PANGEA</span>
       </Link>
-      <div className="flex items-center gap-6">
+      <div className="flex shrink-0 items-center gap-3 sm:gap-6">
         {user ? (
           <LogoutButton />
         ) : (

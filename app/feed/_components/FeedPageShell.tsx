@@ -13,10 +13,10 @@ export default function FeedPageShell({ profile, feeds, showAddFeedCard }: Props
     <div className="flex min-h-dvh w-full flex-col">
       <Header />
       <main className="flex min-h-0 flex-1 flex-col">
-        <div className="mx-auto flex min-h-0 w-full max-w-[1320px] flex-1 flex-col">
+        <div className="mx-auto flex min-h-0 w-full max-w-layout-feed flex-1 flex-col">
           <UserProfile {...profile} />
           <section
-            className="grid flex-1 grid-cols-3 justify-items-start gap-x-section-sm gap-y-comp-sm px-page-x pb-section-md"
+            className="grid flex-1 grid-cols-1 justify-items-center gap-x-comp-sm gap-y-comp-sm px-page-x pb-section-md md:grid-cols-2 md:justify-items-start md:gap-x-section-sm xl:grid-cols-3"
             aria-label="피드"
           >
             {showAddFeedCard ? <AddFeedCard /> : null}

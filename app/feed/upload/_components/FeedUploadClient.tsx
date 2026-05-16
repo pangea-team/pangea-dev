@@ -123,7 +123,7 @@ export default function FeedUploadClient() {
   const showEmptyPlaceholder = savedImages.length === 0 && !isEditing;
 
   return (
-    <article className="flex w-full max-w-[690px] flex-col gap-comp-sm bg-surface-50 p-6 shadow-card">
+    <article className="flex w-full max-w-layout-upload flex-col gap-comp-sm bg-surface-50 p-6 shadow-card">
       <input
         ref={fileInputRef}
         type="file"
@@ -210,7 +210,7 @@ export default function FeedUploadClient() {
       ) : showEmptyPlaceholder ? (
         <button
           type="button"
-          className="flex h-feed-image-h w-full flex-col items-center justify-center gap-section-sm bg-feed-placeholder px-4 py-6 text-center outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-50"
+          className="flex aspect-[360/252] w-full flex-col items-center justify-center gap-section-sm bg-feed-placeholder px-4 py-6 text-center outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-50"
           onClick={openFilePicker}
         >
           <p className="text-pretendard-subtitle-1 whitespace-pre-line">

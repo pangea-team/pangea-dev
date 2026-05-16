@@ -10,8 +10,8 @@ interface BookCardProps {
 
 export default function BookCard({ image, book_no, mood, keyword, type }: BookCardProps) {
   return (
-    <div className="relative mt-10 flex w-full max-w-4xl  gap-20 px-content-x">
-      <div className="relative w-full max-w-87.5 shrink-0">
+    <div className="relative mt-10 flex w-full max-w-4xl flex-col gap-comp-sm px-content-x md:flex-row md:gap-comp-md">
+      <div className="relative w-full max-w-87.5 shrink-0 self-center md:self-auto">
         <Image
           src={image}
           alt="Book Cover"
@@ -21,7 +21,7 @@ export default function BookCard({ image, book_no, mood, keyword, type }: BookCa
       </div>
       <div className="relative flex flex-col">
         <span className="text-noto-subtitle-2 py-2 px-1">No.{book_no}</span>
-        <div className="flex flex-col flex-wrap gap-12 pt-15">
+        <div className="flex flex-col flex-wrap gap-comp-md pt-comp-sm md:pt-comp-md">
           <div className="flex flex-col gap-2">
             <span>MOOD</span>
             <p>{mood}</p>

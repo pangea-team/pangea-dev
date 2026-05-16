@@ -37,25 +37,26 @@
 
 
   /* ━━━ Noto Serif KR ━━━ */
-  --text-noto-display: 40px;
-  --text-noto-display--line-height: 60px;
+  --text-noto-display: clamp(28px, 3.2vw + 14px, 40px);
+  --text-noto-display--line-height: clamp(40px, 4vw + 28px, 60px);
   --text-noto-display--font-weight: 600;
-  --text-noto-display--letter-spacing: 0.1em;
-
   --text-noto-heading-1: 30px;
   --text-noto-heading-1--line-height: 40px;
   --text-noto-heading-1--font-weight: 600;
-  --text-noto-heading-1--letter-spacing: 0.1em;
 
   --text-noto-title-1: 30px;
   --text-noto-title-1--line-height: 40px;
   --text-noto-title-1--font-weight: 500;
-  --text-noto-title-1--letter-spacing: 0.05em;
 
   --text-noto-title-2: 24px;
   --text-noto-title-2--line-height: 32px;
   --text-noto-title-2--font-weight: 600;
-  --text-noto-title-2--letter-spacing: 0.05em;
+
+  /* 피드 프로필 닉네임 등 — title-2(24) ↔ heading-1(30) 유동 */
+  --text-noto-profile-name: clamp(24px, 1.5vw + 20px, 30px);
+  --text-noto-profile-name--line-height: clamp(32px, 2vw + 26px, 40px);
+  --text-noto-profile-name--font-weight: 600;
+  --text-noto-profile-name--letter-spacing: 0.05em;
 
   --text-noto-subtitle-1: 18px;
   --text-noto-subtitle-1--line-height: 26px;
@@ -76,8 +77,9 @@
   --text-noto-caption--font-weight: 400;
 
   /* ━━━ Pretendard ━━━ */
-  --text-pretendard-subtitle-1: 18px;
-  --text-pretendard-subtitle-1--line-height: 26px;
+  /* subtitle-1 — 18px ↔ body-2(14px) 유동 */
+  --text-pretendard-subtitle-1: clamp(14px, 0.6vw + 12px, 18px);
+  --text-pretendard-subtitle-1--line-height: clamp(20px, 0.8vw + 17px, 26px);
   --text-pretendard-subtitle-1--font-weight: 400;
 
   /* 헤더 Login 등 내비 라벨 */
@@ -133,6 +135,7 @@
 .text-noto-heading-1,
 .text-noto-title-1,
 .text-noto-title-2,
+.text-noto-profile-name,
 .text-noto-subtitle-1,
 .text-noto-subtitle-2,
 .text-noto-body-1,
@@ -149,4 +152,31 @@
 .text-pretendard-body-3,
 .text-pretendard-caption {
   font-family: var(--font-pretendard);
+}
+
+/* 한글 타이포: 음절 단위 줄바꿈 방지 */
+@layer utilities {
+  .text-noto-display,
+  .text-noto-heading-1,
+  .text-noto-title-1,
+  .text-noto-title-2,
+  .text-noto-profile-name {
+    word-break: keep-all;
+    line-break: strict;
+  }
+
+  .text-noto-subtitle-1,
+  .text-noto-subtitle-2,
+  .text-noto-body-1,
+  .text-noto-caption,
+  .text-pretendard-subtitle-1,
+  .text-pretendard-nav,
+  .text-pretendard-footer-meta,
+  .text-pretendard-body-1,
+  .text-pretendard-body-2,
+  .text-pretendard-body-3,
+  .text-pretendard-caption {
+    word-break: keep-all;
+    line-break: strict;
+  }
 }

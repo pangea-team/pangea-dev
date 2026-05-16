@@ -1,20 +1,32 @@
 @theme {
+  /* ── 유동 간격 (clamp) ── */
+  --spacing-comp-sm: clamp(1.25rem, 1rem + 1vw, 2.5rem); /* 컴포넌트: 20 ~ 40px */
+  --spacing-comp-md: clamp(3rem, 2rem + 2vw, 5rem); /* 컴포넌트(넓음): 48 ~ 80px */
 
-  --spacing-comp-sm: clamp(1.25rem, 1rem + 1vw, 2.5rem);   /* 작은 컴포넌트 간격: 20 ~ 40px */
+  --spacing-section-sm: clamp(3rem, 2rem + 3vw, 5rem); /* 섹션(작음): 48 ~ 80px */
+  --spacing-section-md: clamp(4rem, 2.5rem + 5vw, 8rem); /* 섹션(중간): 64 ~ 128px */
+  --spacing-section-lg: clamp(5rem, 3rem + 7vw, 10rem); /* 섹션(큼): 80 ~ 160px */
 
-  --spacing-section-sm: clamp(3rem, 2rem + 3vw, 5rem);    /* 작은 섹션 간격: 48 ~ 80px */
-  --spacing-section-md: clamp(4rem, 2.5rem + 5vw, 8rem);    /* 중간 섹션 간격: 64 ~ 128px */
-  --spacing-section-lg: clamp(5rem, 3rem + 7vw, 10rem);   /* 큰 섹션 간격: 80 ~ 160px */
+  --spacing-hero: clamp(6rem, 20vw, 15.75rem); /* Hero: 96 ~ 252px */
 
-  --spacing-hero: clamp(6rem, 20vw, 15.75rem);   /* Hero 간격: 96 ~ 252px */
+  --spacing-page-x: clamp(1.5rem, 0.5rem + 3vw, 5rem); /* 페이지 좌우: 24 ~ 80px */
+  --spacing-content-x: clamp(1.5rem, 12vw, 15.25rem); /* 에디토리얼 좌우: 24 ~ 244px */
+  --spacing-content-y: clamp(2.5rem, 8.5vw, 10.25rem); /* 에디토리얼 상하: 40 ~ 164px */
 
-  --spacing-page-x: clamp(1.5rem, 0.5rem + 3vw, 5rem);    /* 페이지 좌우 padding: 24 ~ 80px */
+  /* ── 레이아웃 최대 너비 (고정) ── */
+  --spacing-layout-feed: 1320px;
+  --spacing-layout-explore: 1024px;
+  --spacing-layout-content: 60rem;
+  --spacing-layout-form: 42rem; /* Tailwind max-w-2xl */
+  --spacing-layout-upload: 690px;
 
-  --spacing-content-x: clamp(1.5rem, 12vw, 15.25rem);     /* 컨텐츠 좌우 padding: 24 ~ 244px */
-  --spacing-content-y: clamp(2.5rem, 8.5vw, 10.25rem);    /* 컨텐츠 상하 padding: 40 ~ 164px */
-
+  /* ── 피드 카드 (고정, lib/feed-card-layout.ts와 동기화) ── */
   --spacing-feed-card-w: 360px;
-  --spacing-feed-card-h: 600px;
-  --spacing-feed-image-h: 252px;
-  --spacing-feed-explore-row-h: 720px; /* 카드 600px + 연결선 연장 120px */
+
+  /* ── 프로필 아바타 링 (고정) ── */
+  --spacing-avatar-explore: 4.5rem; /* 72px — explore 사이드 */
+  --spacing-avatar-card-header: 2.75rem; /* 44px — 피드 카드 헤더 인라인 (안쪽 비율은 ProfileRingAvatar와 동기) */
+  --spacing-avatar-feed-sm: 5rem; /* 80px */
+  --spacing-avatar-feed-md: 6rem; /* 96px */
+  --spacing-avatar-feed-lg: 7.5rem; /* 120px — next/image intrinsic 상한 */
 }
