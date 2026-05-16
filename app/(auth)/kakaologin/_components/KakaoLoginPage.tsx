@@ -1,4 +1,3 @@
-'use client';
 import KakaoLoginButton from './KakaoLoginButton';
 
 export default function KakaoLoginPage() {
