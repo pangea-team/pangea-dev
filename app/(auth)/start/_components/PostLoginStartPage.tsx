@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { PATH } from '@/constants/path';
 
 export default function PostLoginStartPage() {
   return (
@@ -9,7 +10,7 @@ export default function PostLoginStartPage() {
         <h1 className="text-noto-display mt-comp-sm">이제 시작합니다.</h1>
         <Link
           className="border-primary mt-section-md inline-flex w-60 max-w-full items-center gap-2.5 border-b pb-1.5"
-          href="/login"
+          href={PATH.LOGIN}
         >
           <span className="text-noto-title-2 whitespace-nowrap">프로필 작성하기</span>
           <span aria-hidden className="text-noto-title-2">

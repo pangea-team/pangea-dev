@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import ReactCrop, { type Crop, type PixelCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import { getCroppedImageBlob } from '@/app/feed/upload/_lib/crop-image';
+import { PATH } from '@/constants/path';
 
 import {
   FEED_IMAGE_HEIGHT,
@@ -116,7 +117,7 @@ export default function FeedUploadClient() {
     if (savedImages.length === 0 || isEditing) {
       return;
     }
-    router.push('/feed/edit/preview');
+    router.push(PATH.FEED_UPLOAD_PREVIEW);
   };
 
   const showEmptyPlaceholder = savedImages.length === 0 && !isEditing;

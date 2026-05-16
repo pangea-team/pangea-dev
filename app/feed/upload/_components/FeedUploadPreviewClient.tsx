@@ -15,6 +15,7 @@ import {
   uploadFeedImageBlobs,
 } from '@/app/feed/upload/_lib/upload-feed-images';
 import FeedCard from '@/components/FeedCard';
+import { PATH } from '@/constants/path';
 import type { FeedItem } from '@/types/feed';
 
 function formatPreviewDate(): string {
@@ -44,7 +45,7 @@ export default function FeedUploadPreviewClient() {
 
   useEffect(() => {
     if (images.length === 0) {
-      router.replace('/feed/edit');
+      router.replace(PATH.FEED_UPLOAD);
     }
   }, [images.length, router]);
 
@@ -93,7 +94,7 @@ export default function FeedUploadPreviewClient() {
       await uploadFeedImageBlobs(images.map((i) => i.blob));
       // TODO: POST /feeds { bookId: selectedBookId, questionId: selectedQuestionId, answer, imageUrls[] }
       clearDraft();
-      router.push('/feed');
+      router.push(PATH.FEED);
     } catch (e) {
       if (e instanceof FeedImageUploadError && e.code === 'MISSING_UPLOAD_URL') {
         setErrorMessage('이미지 업로드가 아직 준비되지 않았습니다.');
@@ -112,7 +113,10 @@ export default function FeedUploadPreviewClient() {
   return (
     <div className="flex w-full flex-col gap-section-md lg:flex-row lg:items-start lg:justify-between">
       <div className="flex min-w-0 flex-1 flex-col gap-section-sm">
-        <Link href="/feed/edit" className="text-pretendard-body-2 text-primary underline w-fit">
+        <Link
+          href={PATH.FEED_UPLOAD}
+          className="text-pretendard-body-2 text-primary underline w-fit"
+        >
           ← 이미지 수정
         </Link>
 

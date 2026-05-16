@@ -3,11 +3,12 @@
 import Link from 'next/link';
 import { useEffect, useId, useState } from 'react';
 import Icon from '@/components/Icon';
+import { PATH } from '@/constants/path';
 
 const MENU_ITEMS = [
-  { href: '/cart', label: '담아둔 것들' },
-  { href: '/feed', label: '나의 대륙' },
-  { href: '/explore', label: '탐험' },
+  { href: PATH.CART, label: '담아둔 것들' },
+  { href: PATH.FEED, label: '나의 대륙' },
+  { href: PATH.EXPLORE, label: '탐험' },
 ] as const;
 
 export default function HeaderMenuDrawer() {

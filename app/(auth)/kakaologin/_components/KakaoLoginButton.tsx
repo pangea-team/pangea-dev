@@ -1,3 +1,4 @@
+'use client';
 import { createClient } from '@/lib/supabase/client';
 
 function KakaoSpeechBubbleMark({ className }: { className?: string }) {
