@@ -32,7 +32,7 @@ export default function HeaderMenuDrawer() {
     <>
       <button
         type="button"
-        className="flex shrink-0 items-center justify-center"
+        className="flex shrink-0 items-center justify-center pr-2"
         aria-expanded={open}
         aria-controls={panelId}
         aria-haspopup="dialog"
