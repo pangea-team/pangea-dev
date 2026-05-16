@@ -10,7 +10,7 @@ type Props = {
   savedSentenceId: string;
 };
 
-const PHONE_REGEX = /^(010-?\d{4}-?\d{4}|01[16789]-?\d{3,4}-?\d{4})$/;
+const PHONE_REGEX = /^(010\d{8}|01[16789]\d{7,8})$/;
 const POSTCODE_SCRIPT_SRC = 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
 
 export default function OrderForm({ savedSentenceId }: Props) {
@@ -53,7 +53,7 @@ export default function OrderForm({ savedSentenceId }: Props) {
     if (!recipientName.trim()) return setError('이름을 입력해주세요.');
     if (!recipientPhone.trim()) return setError('연락처를 입력해주세요.');
     if (!PHONE_REGEX.test(recipientPhone.trim()))
-      return setError('연락처 형식이 올바르지 않습니다. (예: 010-1234-5678)');
+      return setError('연락처 형식이 올바르지 않습니다. (예: 01012345678)');
     if (!postalCode.trim()) return setError('우편번호를 입력해주세요.');
     if (!address.trim()) return setError('주소를 입력해주세요.');
     if (!addressDetail.trim()) return setError('상세 주소를 입력해주세요.');
@@ -103,10 +103,11 @@ export default function OrderForm({ savedSentenceId }: Props) {
           <Field label="연락처">
             <input
               type="tel"
-              maxLength={20}
-              placeholder="010-0000-0000"
+              inputMode="numeric"
+              maxLength={11}
+              placeholder="01000000000"
               value={recipientPhone}
-              onChange={(e) => setRecipientPhone(e.target.value)}
+              onChange={(e) => setRecipientPhone(e.target.value.replace(/\D/g, ''))}
               required
               className="w-full border-b border-purple3 bg-transparent py-2 text-pretendard-body-1 outline-none focus:border-primary"
             />

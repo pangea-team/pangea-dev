@@ -49,3 +49,6 @@ next-env.d.ts
 # supabase CLI artifacts (database.types.ts는 커밋 대상)
 supabase/.branches
 supabase/.temp
+
+# Sentry Config File
+.env.sentry-build-plugin
