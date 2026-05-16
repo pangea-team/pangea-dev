@@ -12,6 +12,8 @@ export const PATH = {
 
   FEED: '/feed',
   FEED_UPLOAD: '/feed/upload',
+  FEED_UPLOAD_PREVIEW: '/feed/upload/preview',
+
   FEED_USER: (userId: string) => `/feed/user/${userId}`,
 
   HISTORY_CODE: '/history/code',
