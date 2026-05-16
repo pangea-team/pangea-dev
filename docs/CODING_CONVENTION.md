@@ -88,6 +88,7 @@ export default function Button({ title, onClick }: Props) {
   // ...
 }
 ​```
+- **DB 관련 타입은 `lib/supabase/database.types.ts`의 자동 생성 타입에서 파생** — 손으로 row 타입 작성 금지. `Tables<'테이블명'>` 헬퍼 또는 `Awaited<ReturnType<typeof 쿼리함수>>[number]` 패턴 사용. 스키마 변경 시 `pnpm db:types` 실행.
 
 ## React / Next.js
 

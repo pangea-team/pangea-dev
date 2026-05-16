@@ -19,7 +19,7 @@ export default async function Header() {
         {user ? (
           <LogoutButton />
         ) : (
-          <Link href={PATH.KAKAO_LOGIN} className="whitespace-nowrap px-3 py-2 text-pretendard-nav">
+          <Link href={PATH.ONBOARDING} className="whitespace-nowrap px-3 py-2 text-pretendard-nav">
             Login
           </Link>
         )}
