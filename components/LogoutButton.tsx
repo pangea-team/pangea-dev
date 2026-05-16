@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from 'react';
 import { signOut } from '@/app/auth/actions';
-import ConfirmModal from '@/components/ConfirmModal';
+import Modal from '@/components/Modal';
 
 export default function LogoutButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +24,7 @@ export default function LogoutButton() {
       >
         Logout
       </button>
-      <ConfirmModal
+      <Modal
         isOpen={isOpen}
         title="로그아웃하시겠어요?"
         description="언제든 다시 로그인할 수 있어요."

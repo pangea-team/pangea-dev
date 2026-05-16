@@ -13,7 +13,7 @@ type Props = {
   onConfirm: () => void;
 };
 
-export default function ConfirmModal({
+export default function Modal({
   isOpen,
   title,
   description,
