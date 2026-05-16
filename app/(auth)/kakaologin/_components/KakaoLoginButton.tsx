@@ -15,9 +15,8 @@ function KakaoSpeechBubbleMark({ className }: { className?: string }) {
 }
 
 export default function KakaoLoginButton() {
-  const supabase = createClient();
-
   const handleLogin = async () => {
+    const supabase = createClient();
     await supabase.auth.signInWithOAuth({
       provider: 'kakao',
       options: {
