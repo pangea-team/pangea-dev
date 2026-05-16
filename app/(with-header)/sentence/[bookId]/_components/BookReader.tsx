@@ -7,9 +7,11 @@ import SentenceContent from './SentenceContent';
 
 type Props = {
   book: BookWithSentences;
+  isLoggedIn: boolean;
+  hasAnsweredSurvey: boolean;
 };
 
-export default function BookReader({ book }: Props) {
+export default function BookReader({ book, isLoggedIn, hasAnsweredSurvey }: Props) {
   const [pageIndex, setPageIndex] = useState(0);
   const [selectedContentIndex, setSelectedContentIndex] = useState<number | null>(null);
 
@@ -32,7 +34,7 @@ export default function BookReader({ book }: Props) {
   };
 
   return (
-    <div className="px-content-x py-content-y">
+    <div className="px-content-x py-content-y mb-section-sm">
       <div className="mb-section-sm flex items-center justify-between">
         <span className="text-noto-body-1 text-purple3">
           {pageIndex + 1} / {total}
@@ -61,6 +63,7 @@ export default function BookReader({ book }: Props) {
         <div className="flex flex-col gap-section-sm lg:flex-row lg:gap-20">
           <div className="flex-1">
             <SentenceContent
+              bookId={book.id}
               content={currentSentence.content}
               selectedIndex={selectedContentIndex}
               onSelect={handleSelect}
@@ -71,6 +74,8 @@ export default function BookReader({ book }: Props) {
               key={`${currentSentence.id}-${selectedContentIndex}`}
               selectedSentenceId={selectedContentIndex !== null ? currentSentence.id : null}
               selectedContentIndex={selectedContentIndex}
+              isLoggedIn={isLoggedIn}
+              hasAnsweredSurvey={hasAnsweredSurvey}
             />
           </div>
         </div>

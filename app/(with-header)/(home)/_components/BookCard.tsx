@@ -9,7 +9,7 @@ type Props = {
 export default function BookCard({ book }: Props) {
   return (
     <Link href={`/sentence/${book.id}`} className="block">
-      <div className="relative mt-10 flex w-full max-w-4xl flex-col gap-comp-sm px-content-x md:flex-row md:gap-20">
+      <div className="relative mt-10 flex w-full max-w-4xl flex-col gap-comp-sm px-content-x py-content-y md:flex-row md:gap-20">
         <div className="relative h-70 w-50 shrink-0 md:h-122.5 md:w-87.5">
           <Image
             src={book.cover_image}
@@ -20,7 +20,7 @@ export default function BookCard({ book }: Props) {
             className="h-full w-full object-cover shadow-[-3px_6px_12px_0_rgba(0,0,0,0.25)]"
           />
         </div>
-        <div className="relative flex flex-col">
+        <div className="relative flex flex-col  ">
           <span className="text-noto-subtitle-2 px-1 py-2">No.{book.book_no}</span>
           <div className="flex flex-col flex-wrap gap-section-sm pt-section-sm md:gap-12 md:pt-15">
             <div className="flex flex-col gap-2">

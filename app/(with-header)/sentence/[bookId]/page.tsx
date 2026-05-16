@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { createClient } from '@/lib/supabase/server';
 import BookReader from './_components/BookReader';
 import { getBookWithSentences } from './_lib/get-book-with-sentences';
 
@@ -12,9 +13,27 @@ export default async function SentencePage({ params }: Props) {
 
   if (!book) notFound();
 
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  let isLoggedIn = false;
+  let hasAnsweredSurvey = false;
+
+  if (user) {
+    isLoggedIn = true;
+    const { data } = await supabase
+      .from('users')
+      .select('survey_answered_at')
+      .eq('id', user.id)
+      .single();
+    hasAnsweredSurvey = !!data?.survey_answered_at;
+  }
+
   return (
     <main>
-      <BookReader book={book} />
+      <BookReader book={book} isLoggedIn={isLoggedIn} hasAnsweredSurvey={hasAnsweredSurvey} />
     </main>
   );
 }
