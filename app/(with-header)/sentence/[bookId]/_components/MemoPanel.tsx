@@ -41,7 +41,7 @@ export default function MemoPanel({
 
   const handleSubmit = () => {
     if (!isLoggedIn) {
-      router.push(PATH.LOGIN);
+      router.push(PATH.KAKAO_LOGIN);
       return;
     }
     if (selectedSentenceId === null || selectedContentIndex === null) return;
@@ -55,7 +55,7 @@ export default function MemoPanel({
 
       if ('error' in result) {
         if (result.error === '로그인이 필요합니다.') {
-          router.push(PATH.LOGIN);
+          router.push(PATH.KAKAO_LOGIN);
           return;
         }
         setError(result.error);
@@ -133,7 +133,7 @@ export default function MemoPanel({
         disabled={isActive && (isPending || note.trim().length === 0)}
         className="self-start border border-primary px-6 py-2 text-pretendard-body-2 text-primary transition-colors hover:bg-primary hover:text-white disabled:opacity-30"
       >
-        {isPending ? '저장 중...' : '마침표 찍기'}
+        {isPending ? '저장 중...' : '마침표 .'}
       </button>
 
       <Modal

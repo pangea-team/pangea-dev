@@ -6,7 +6,7 @@ import { getSavedSentences } from './_lib/get-saved-sentences';
 
 export default async function CartPage() {
   const claims = await getUser();
-  if (!claims) redirect(PATH.LOGIN);
+  if (!claims) redirect(PATH.KAKAO_LOGIN);
 
   const rows = await getSavedSentences(claims.sub);
 

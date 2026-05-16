@@ -12,7 +12,7 @@ type Props = {
 
 export default async function OrderPage({ searchParams }: Props) {
   const claims = await getUser();
-  if (!claims) redirect(PATH.LOGIN);
+  if (!claims) redirect(PATH.KAKAO_LOGIN);
 
   const { savedSentenceId } = await searchParams;
   if (!savedSentenceId) redirect(PATH.CART);

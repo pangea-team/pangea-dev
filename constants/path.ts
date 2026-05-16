@@ -2,7 +2,6 @@ export const PATH = {
   HOME: '/',
 
   START: '/start',
-  LOGIN: '/login',
   KAKAO_LOGIN: '/kakaologin',
   ONBOARDING: '/onboarding',
 
