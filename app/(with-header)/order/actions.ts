@@ -15,7 +15,7 @@ type CreateOrderInput = {
 
 type CreateOrderResult = { error: string } | { success: true; orderNumber: string };
 
-const PHONE_REGEX = /^(010-?\d{4}-?\d{4}|01[16789]-?\d{3,4}-?\d{4})$/;
+const PHONE_REGEX = /^(010\d{8}|01[16789]\d{7,8})$/;
 
 function generateOrderNumber(): string {
   const now = new Date();
@@ -44,7 +44,7 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
   if (!recipientName) return { error: '이름을 입력해주세요.' };
   if (recipientName.length > 60) return { error: '이름은 60자 이하로 입력해주세요.' };
   if (!recipientPhone) return { error: '연락처를 입력해주세요.' };
-  if (recipientPhone.length > 20 || !PHONE_REGEX.test(recipientPhone)) {
+  if (recipientPhone.length > 11 || !PHONE_REGEX.test(recipientPhone)) {
     return { error: '연락처 형식이 올바르지 않습니다.' };
   }
   if (!postalCode || postalCode.length > 10) return { error: '우편번호를 확인해주세요.' };
