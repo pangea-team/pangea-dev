@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { type FormEvent, useState } from 'react';
 import { PATH } from '@/constants/path';
 
-export default function LoginSentencePage() {
+export default function OnboardingPage() {
   const router = useRouter();
   const [displayName, setDisplayName] = useState('');
   const [oneLineTrace, setOneLineTrace] = useState('');
