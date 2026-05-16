@@ -20,7 +20,7 @@ export default function LogoutButton() {
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="cursor-pointer whitespace-nowrap px-3 py-2 text-pretendard-nav"
+        className="cursor-pointer whitespace-nowrap text-noto-subtitle-2 items-center px-3 py-2 text-center"
       >
         Logout
       </button>
