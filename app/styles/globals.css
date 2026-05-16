@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@import "./spacing.css";
+@import "./colors.css";
+@import "./typography.css";
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+}
