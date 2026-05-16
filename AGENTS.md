@@ -55,9 +55,18 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - 글로벌 진입점: `app/styles/globals.css`에서 Tailwind, `spacing.css`, `colors.css`, `typography.css`를 import. `app/layout.tsx`에서 한 번만 로드됨.
 - `app/styles/colors.css`는 색상 토큰(`--color-ink-*`, `--color-tint-*` 등)과 시맨틱 별칭(`--color-background`, `--color-text`, `--color-primary` 등)을 정의함.
 - `app/styles/typography.css`는 텍스트 토큰(예: `text-noto-body-1`)을 정의하고 클래스별로 `font-family`도 함께 바인딩함. 따라서 `<p className="text-noto-body-1">`만으로 이미 Noto Serif KR이 적용되므로 별도의 `font-*` 유틸리티를 함께 쓰지 말 것.
-- `app/styles/spacing.css`는 반응형 간격 토큰(`--spacing-comp-*`, `--spacing-section-*`, `--spacing-hero`, `--spacing-page-x` 등)을 `clamp()`로 정의함. 간격을 적용할 때:
-  - **작은 값(4~24px)**: Tailwind 기본 scale(`p-1` ~ `p-6`, `gap-1` ~ `gap-6` 등) 그대로 사용 — 화면 크기에 따라 변하지 않아도 되는 자잘한 간격.
-  - **중간(컴포넌트 간) / 큰(섹션 간) 값**: `spacing.css`의 반응형 토큰 사용 (`p-section-md`, `gap-comp-sm` 등). 직접 `clamp()`나 임의값(`py-[80px]`)을 쓰지 말 것
+- `app/styles/spacing.css`에 간격·레이아웃·아바타 토큰이 정의되어 있음 (`app/styles/spacing.css` 주석 참고). 적용 규칙:
+  - **작은 값(4~24px)**: Tailwind 기본 scale(`gap-2`, `p-4` 등) — 아이콘·라벨·폼 필드 내부만.
+  - **중간~큰 간격**: `gap-comp-sm`, `gap-section-md`, `px-page-x` 등 **토큰 유틸만** 사용. 컴포넌트에 `clamp()`·`py-[80px]` 금지.
+  - **레이아웃 max-width**: `max-w-layout-feed`, `max-w-layout-explore`, `max-w-layout-content`, `max-w-layout-form` 등 토큰 사용.
+  - **가로 패딩**: 일반 페이지 `px-page-x`, 홈·에디토리얼 블록 `px-content-x` / `py-content-y` — 한 래퍼에만 적용(이중 패딩 금지).
+- **반응형 2계층** (혼용 규칙):
+  1. **유동 토큰** — `spacing.css`·`typography.css`의 `clamp()`가 뷰포트에 따라 스케일 (`gap-comp-sm`, `text-noto-display`, `text-noto-profile-name`).
+  2. **브레이크포인트** — **레이아웃 구조만** (`flex-col`→`md:flex-row`, `grid-cols-1`→`md:grid-cols-2`, `hidden`/`sticky`). 같은 축의 `gap`을 브레이크포인트로 바꿀 때는 **열 수·방향이 바뀔 때만** (예: 피드 1열→2열 시 `md:gap-x-section-sm`).
+- **브레이크포인트 역할** (Tailwind 기본):
+  - `sm` (640px): 헤더·푸터·드로어 등 **크롬 UI**만.
+  - `md` (768px): 본문 **2열·가로 배치** 전환의 기본.
+  - `xl` (1280px): 피드 **3열 그리드** 등 넓은 데스크톱 전용.
 - body에는 암묵적으로 `background: var(--color-background)`와 `color: var(--color-text)`가 적용되어 있음. 즉 `bg-background`, `text-primary`(기본 텍스트 색)는 이미 상속되므로 다시 붙이지 말 것 — 의도적으로 기본값과 다르게 할 때만 오버라이드.
 
 ### 폰트 (3가지, `app/layout.tsx`에 연결됨)

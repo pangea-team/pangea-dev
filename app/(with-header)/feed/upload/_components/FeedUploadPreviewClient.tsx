@@ -66,7 +66,6 @@ export default function FeedUploadPreviewClient() {
   const previewFeed: FeedItem = useMemo(() => {
     return {
       id: 'draft-preview',
-      type: selectedBook?.feedTypeLabel ?? 'WONDER NOTE',
       images: images.map((img) => ({ id: img.id, src: '' })),
       date: formatPreviewDate(),
       status: '미리보기',
@@ -74,7 +73,7 @@ export default function FeedUploadPreviewClient() {
       answer: answer,
       orderPurchasable: selectedBook?.orderPurchasable ?? false,
     };
-  }, [images, selectedBook?.feedTypeLabel, selectedBook?.orderPurchasable, questionText, answer]);
+  }, [images, selectedBook?.orderPurchasable, questionText, answer]);
 
   const previewImageSrcs = useMemo(() => images.map((i) => i.previewUrl), [images]);
 
@@ -111,7 +110,7 @@ export default function FeedUploadPreviewClient() {
   }
 
   return (
-    <div className="flex w-full flex-col gap-section-md lg:flex-row lg:items-start lg:justify-between">
+    <div className="flex w-full flex-col gap-section-md md:flex-row md:items-start md:justify-between">
       <div className="flex min-w-0 flex-1 flex-col gap-section-sm">
         <Link
           href={PATH.FEED_UPLOAD}
@@ -122,7 +121,7 @@ export default function FeedUploadPreviewClient() {
 
         <section className="flex flex-col gap-comp-sm">
           <h2 className="text-noto-subtitle-2">책 선택</h2>
-          <div className="grid grid-cols-2 gap-comp-sm sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-comp-sm md:grid-cols-4">
             {books.map((book) => {
               const selected = selectedBookId === book.id;
               return (
@@ -145,7 +144,7 @@ export default function FeedUploadPreviewClient() {
                       alt=""
                       fill
                       className="object-cover"
-                      sizes="(max-width: 640px) 45vw, 180px"
+                      sizes="(max-width: 767px) 45vw, 180px"
                     />
                   </div>
                   <span className="text-pretendard-caption text-ink-100">
@@ -227,8 +226,8 @@ export default function FeedUploadPreviewClient() {
         </button>
       </div>
 
-      <div className="flex shrink-0 flex-col gap-comp-sm lg:sticky lg:top-section-sm">
-        <h2 className="text-noto-subtitle-2 hidden lg:block">미리보기</h2>
+      <div className="flex w-full max-w-feed-card-w shrink-0 flex-col gap-comp-sm md:sticky md:top-section-sm">
+        <h2 className="text-noto-subtitle-2 hidden md:block">미리보기</h2>
         <FeedCard
           feed={previewFeed}
           previewImageSrcs={previewImageSrcs}

@@ -9,8 +9,6 @@ export type FeedBook = {
   coverSrc: string;
   mood: string;
   type: string;
-  /** FeedCard 상단 type 영역에 표시 */
-  feedTypeLabel: string;
   orderPurchasable: boolean;
   /**
    * 피드 카드 상단 바 배경 — 표지 webp 상단 영역을 샘플링한 hex (파일 교체 시 동일 방식으로 갱신)
@@ -31,7 +29,6 @@ const MOOD_BOOKS: FeedBook[] = [
     coverSrc: '/images/book_covers/book_cover_1.webp',
     mood: '다정한',
     type: 'epistolary novel',
-    feedTypeLabel: 'WONDER NOTE',
     orderPurchasable: true,
     headerBarBg: MOCK_HEADER_BAR_BACKGROUNDS[0],
   },
@@ -41,7 +38,6 @@ const MOOD_BOOKS: FeedBook[] = [
     coverSrc: '/images/book_covers/book_cover_2.webp',
     mood: '감동적인',
     type: 'contemporary fiction',
-    feedTypeLabel: 'WONDER NOTE',
     orderPurchasable: true,
     headerBarBg: MOCK_HEADER_BAR_BACKGROUNDS[1],
   },
@@ -51,7 +47,6 @@ const MOOD_BOOKS: FeedBook[] = [
     coverSrc: '/images/book_covers/book_cover_3.webp',
     mood: '로맨틱한',
     type: 'romance',
-    feedTypeLabel: 'WONDER NOTE',
     orderPurchasable: false,
     headerBarBg: MOCK_HEADER_BAR_BACKGROUNDS[2],
   },
@@ -61,7 +56,6 @@ const MOOD_BOOKS: FeedBook[] = [
     coverSrc: '/images/book_covers/book_cover_4.webp',
     mood: '심리적인',
     type: 'psychological novel',
-    feedTypeLabel: 'WONDER NOTE',
     orderPurchasable: true,
     headerBarBg: MOCK_HEADER_BAR_BACKGROUNDS[3],
   },

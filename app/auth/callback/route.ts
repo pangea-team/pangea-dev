@@ -9,7 +9,7 @@ export async function GET(request: Request) {
   // 로그인 후 돌아갈 페이지 (없으면 홈)
   let next = searchParams.get('next') ?? PATH.HOME;
   if (!next.startsWith('/')) {
-    next = PATH.LOGIN;
+    next = PATH.HOME;
   }
 
   if (code) {

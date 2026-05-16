@@ -7,22 +7,29 @@ export default async function ExplorePage() {
 
   return (
     <main className="flex min-h-0 flex-1 flex-col">
-      <div className="mx-auto flex w-full max-w-[1024px] flex-1 flex-col px-page-x pb-section-md pt-section-sm">
-        <section className="flex flex-col gap-y-12" aria-label="피드 탐색">
+      <div className="mx-auto flex w-full max-w-layout-explore flex-1 flex-col px-page-x pb-section-md pt-section-sm">
+        <section className="flex flex-col gap-section-sm" aria-label="피드 탐색">
           {items.map((item, index) => {
             const showConnector = index < items.length - 1;
             return (
-              <div key={item.feed.id} className="flex justify-center">
-                <div
-                  className={`relative flex shrink-0 items-start ${showConnector ? 'h-feed-explore-row-h' : 'h-feed-card-h'}`}
-                >
-                  <div className="absolute inset-y-0 right-full flex h-full pr-section-sm">
+              <div key={item.feed.id} className="flex w-full justify-center">
+                <div className="flex w-full flex-col items-center md:flex-row md:items-stretch md:justify-center md:gap-x-section-sm">
+                  <div className="hidden justify-center md:flex md:h-full md:shrink-0 md:self-stretch">
                     <ExploreProfileColumn user={item.user} showConnector={showConnector} />
                   </div>
-                  <FeedCard
-                    feed={item.feed}
-                    headerBarBackgroundColor={item.feed.headerBarBackgroundColor}
-                  />
+                  <div
+                    className={`w-full max-w-feed-card-w shrink-0${showConnector ? ' md:pb-section-sm' : ''}`}
+                  >
+                    <FeedCard
+                      feed={item.feed}
+                      headerBarBackgroundColor={item.feed.headerBarBackgroundColor}
+                      headerAvatar={{
+                        profileRingSrc: item.user.profileRingSrc,
+                        avatarSrc: item.user.avatarSrc,
+                        nickname: item.user.nickname,
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
             );

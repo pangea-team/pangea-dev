@@ -13,7 +13,7 @@ export default async function SentencePage({ params }: Props) {
   if (!book) notFound();
 
   return (
-    <main>
+    <main className="flex min-h-0 flex-1 flex-col">
       <BookReader book={book} />
     </main>
   );

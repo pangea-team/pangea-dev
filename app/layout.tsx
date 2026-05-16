@@ -46,7 +46,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${cormorant.variable} ${notoSerifKR.variable} ${pretendard.variable} h-full antialiased`}
+      className={`h-full antialiased ${cormorant.variable} ${notoSerifKR.variable} ${pretendard.variable}`}
     >
       <body className="min-h-full flex flex-col font-noto">
         <QueryProvider>{children}</QueryProvider>
