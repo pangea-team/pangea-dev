@@ -4,17 +4,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { useFeedEditDraft } from '@/app/feed/edit/_lib/feed-edit-draft-context';
+import { useFeedUploadDraft } from '@/app/feed/upload/_lib/feed-upload-draft-context';
 import {
   getMockBookById,
   getMockBooks,
   getMockQuestionsByBookId,
-} from '@/app/feed/edit/_lib/mock-books-questions';
+} from '@/app/feed/upload/_lib/mock-books-questions';
 import {
   FeedImageUploadError,
   uploadFeedImageBlobs,
-} from '@/app/feed/edit/_lib/upload-feed-images';
+} from '@/app/feed/upload/_lib/upload-feed-images';
 import FeedCard from '@/components/FeedCard';
+import { PATH } from '@/constants/path';
 import type { FeedItem } from '@/types/feed';
 
 function formatPreviewDate(): string {
@@ -25,9 +26,9 @@ function formatPreviewDate(): string {
   return `${y}.${m}.${day}.`;
 }
 
-export default function FeedEditPreviewClient() {
+export default function FeedUploadPreviewClient() {
   const router = useRouter();
-  const { images, clearDraft } = useFeedEditDraft();
+  const { images, clearDraft } = useFeedUploadDraft();
   const books = useMemo(() => getMockBooks(), []);
 
   const [selectedBookId, setSelectedBookId] = useState<string | null>(null);
@@ -44,7 +45,7 @@ export default function FeedEditPreviewClient() {
 
   useEffect(() => {
     if (images.length === 0) {
-      router.replace('/feed/edit');
+      router.replace(PATH.FEED_UPLOAD);
     }
   }, [images.length, router]);
 
@@ -93,7 +94,7 @@ export default function FeedEditPreviewClient() {
       await uploadFeedImageBlobs(images.map((i) => i.blob));
       // TODO: POST /feeds { bookId: selectedBookId, questionId: selectedQuestionId, answer, imageUrls[] }
       clearDraft();
-      router.push('/feed');
+      router.push(PATH.FEED);
     } catch (e) {
       if (e instanceof FeedImageUploadError && e.code === 'MISSING_UPLOAD_URL') {
         setErrorMessage('이미지 업로드가 아직 준비되지 않았습니다.');
@@ -112,7 +113,10 @@ export default function FeedEditPreviewClient() {
   return (
     <div className="flex w-full flex-col gap-section-md lg:flex-row lg:items-start lg:justify-between">
       <div className="flex min-w-0 flex-1 flex-col gap-section-sm">
-        <Link href="/feed/edit" className="text-pretendard-body-2 text-primary underline w-fit">
+        <Link
+          href={PATH.FEED_UPLOAD}
+          className="text-pretendard-body-2 text-primary underline w-fit"
+        >
           ← 이미지 수정
         </Link>
 

@@ -1,10 +1,11 @@
-import type { Metadata } from 'next';
+import Header from '@/components/Header';
 import LoginSentencePage from './_components/LoginSentencePage';
 
-export const metadata: Metadata = {
-  title: '로그인 | Pangea',
-};
-
-export default function Login() {
-  return <LoginSentencePage />;
+export default function Page() {
+  return (
+    <div className="flex min-h-dvh w-full flex-col">
+      <Header />
+      <LoginSentencePage />
+    </div>
+  );
 }

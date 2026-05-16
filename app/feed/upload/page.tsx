@@ -1,7 +1,7 @@
-import FeedEditClient from '@/app/feed/edit/_components/FeedEditClient';
+import FeedUploadClient from '@/app/feed/upload/_components/FeedUploadClient';
 import Header from '@/components/Header';
 
-export default function FeedEditPage() {
+export default function FeedUploadPage() {
   return (
     <div className="flex min-h-dvh w-full flex-col">
       <Header />
@@ -12,7 +12,7 @@ export default function FeedEditPage() {
             <p className="text-noto-subtitle-2">누군가 이 흔적을 읽고, 당신을 선택합니다.</p>
           </div>
           <div className="flex flex-1 flex-col items-center pt-section-sm">
-            <FeedEditClient />
+            <FeedUploadClient />
           </div>
         </div>
       </main>

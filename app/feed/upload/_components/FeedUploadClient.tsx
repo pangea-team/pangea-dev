@@ -4,13 +4,15 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import ReactCrop, { type Crop, type PixelCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
-import { getCroppedImageBlob } from '@/app/feed/edit/_lib/crop-image';
-import { useFeedEditDraft } from '@/app/feed/edit/_lib/feed-edit-draft-context';
+import { getCroppedImageBlob } from '@/app/feed/upload/_lib/crop-image';
+import { PATH } from '@/constants/path';
+
 import {
   FEED_IMAGE_HEIGHT,
   FEED_IMAGE_MAX_HEIGHT_RATIO,
   MAX_FEED_IMAGES,
 } from '@/lib/feed-card-layout';
+import { useFeedUploadDraft } from '../_lib/feed-upload-draft-context';
 
 const MAX_HEIGHT_RATIO = FEED_IMAGE_MAX_HEIGHT_RATIO;
 
@@ -27,9 +29,9 @@ function revokeBlobUrl(url: string | null | undefined) {
   }
 }
 
-export default function FeedEditClient() {
+export default function FeedUploadClient() {
   const router = useRouter();
-  const { images: savedImages, setImages } = useFeedEditDraft();
+  const { images: savedImages, setImages } = useFeedUploadDraft();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const editingSrcRef = useRef<string | null>(null);
@@ -115,7 +117,7 @@ export default function FeedEditClient() {
     if (savedImages.length === 0 || isEditing) {
       return;
     }
-    router.push('/feed/edit/preview');
+    router.push(PATH.FEED_UPLOAD_PREVIEW);
   };
 
   const showEmptyPlaceholder = savedImages.length === 0 && !isEditing;
