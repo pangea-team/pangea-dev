@@ -15,8 +15,12 @@ const DOTS = Array.from({ length: DOT_COUNT }, (_, index) => ({
 
 export default function BackgroundPath() {
   return (
-    <div className="absolute inset-0 -z-10 ">
-      <div className="absolute left-1/2 -translate-x-1/2 top-148.5 w-full max-w-355.5 aspect-1462/2519">
+    <div className="absolute inset-0 -z-10 overflow-hidden ">
+      <div
+        className="absolute left-1/2 -translate-x-1/2 top-148.5 
+                w-[200vw] md:w-full md:max-w-355.5 
+                aspect-1462/2519"
+      >
         <svg
           viewBox="-20 -20 1462 2519"
           fill="none"
