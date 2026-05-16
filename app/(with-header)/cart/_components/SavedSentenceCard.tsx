@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState, useTransition } from 'react';
 import Modal from '@/components/Modal';
 import { PATH } from '@/constants/path';
@@ -10,6 +11,7 @@ import { deleteSavedSentence } from '../actions';
 type Props = { row: SavedSentenceRow };
 
 export default function SavedSentenceCard({ row }: Props) {
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
 
@@ -61,9 +63,7 @@ export default function SavedSentenceCard({ row }: Props) {
         <div className="flex items-center gap-3">
           <button
             type="button"
-            onClick={() => {
-              // TODO: 결제 흐름 연결
-            }}
+            onClick={() => router.push(`${PATH.ORDER}?savedSentenceId=${row.id}`)}
             className="bg-purple2 px-4 py-2 text-pretendard-body-2 text-white transition-opacity hover:opacity-80 rounded-md"
           >
             주문하기
