@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { PATH } from '@/constants/path';
 import { createClient } from '@/lib/supabase/server';
 
 export async function GET(request: Request) {
@@ -6,9 +7,9 @@ export async function GET(request: Request) {
   const code = searchParams.get('code');
 
   // 로그인 후 돌아갈 페이지 (없으면 홈)
-  let next = searchParams.get('next') ?? '/';
+  let next = searchParams.get('next') ?? PATH.LOGIN;
   if (!next.startsWith('/')) {
-    next = '/';
+    next = PATH.LOGIN;
   }
 
   if (code) {
