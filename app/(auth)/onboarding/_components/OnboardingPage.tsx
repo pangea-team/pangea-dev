@@ -1,21 +1,26 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { type FormEvent, useState } from 'react';
-import { PATH } from '@/constants/path';
+import { type FormEvent, useState, useTransition } from 'react';
+import { completeOnboarding } from '../actions';
 
 export default function OnboardingPage() {
-  const router = useRouter();
   const [displayName, setDisplayName] = useState('');
   const [oneLineTrace, setOneLineTrace] = useState('');
+  const [error, setError] = useState<string | null>(null);
+  const [isPending, startTransition] = useTransition();
 
   const isComplete = displayName.trim().length > 0 && oneLineTrace.trim().length > 0;
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!isComplete) return;
-    // TODO: displayName, oneLineTrace를 API로 저장
-    router.push(PATH.FEED);
+    if (!isComplete || isPending) return;
+    setError(null);
+    startTransition(async () => {
+      const result = await completeOnboarding({ name: displayName, trace: oneLineTrace });
+      if (result?.error) {
+        setError(result.error);
+      }
+    });
   };
 
   return (
@@ -71,10 +76,12 @@ export default function OnboardingPage() {
 
           <button
             type="submit"
-            className={`text-pretendard-subtitle-1 mt-comp-sm inline-flex w-full items-center justify-center py-6 text-surface-50 transition-colors ${isComplete ? 'bg-purple2 hover:bg-primary' : 'bg-purple3 hover:bg-purple3/95'}`}
+            disabled={isPending}
+            className={`text-pretendard-subtitle-1 mt-comp-sm inline-flex w-full items-center justify-center py-6 text-surface-50 transition-colors disabled:cursor-not-allowed ${isComplete && !isPending ? 'bg-purple2 hover:bg-primary' : 'bg-purple3 hover:bg-purple3/95'}`}
           >
-            시작하기
+            {isPending ? '저장 중...' : '시작하기'}
           </button>
+          {error && <p className="text-pretendard-body-2 text-destructive">{error}</p>}
         </form>
       </div>
     </main>

@@ -7,7 +7,7 @@ export async function GET(request: Request) {
   const code = searchParams.get('code');
 
   // 로그인 후 돌아갈 페이지 (없으면 홈)
-  let next = searchParams.get('next') ?? PATH.LOGIN;
+  let next = searchParams.get('next') ?? PATH.HOME;
   if (!next.startsWith('/')) {
     next = PATH.LOGIN;
   }
