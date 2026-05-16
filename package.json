@@ -10,7 +10,8 @@
     "lint": "biome lint .",
     "format": "biome format --write .",
     "check": "biome check --write .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "db:types": "supabase gen types typescript --linked --schema public > lib/supabase/database.types.ts"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json}": [
@@ -29,6 +30,11 @@
     "react-image-crop": "^11.0.10",
     "tailwind-merge": "^3.5.0"
   },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "supabase"
+    ]
+  },
   "devDependencies": {
     "@biomejs/biome": "2.4.13",
     "@commitlint/cli": "^20.5.0",
@@ -42,6 +48,7 @@
     "@types/react-dom": "^19",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
+    "supabase": "^2.98.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

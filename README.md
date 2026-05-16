@@ -9,6 +9,15 @@ pnpm install
 pnpm dev
 ```
 
+## 🗄️ DB 타입 업데이트
+
+DB 스키마 변경 시 아래 명령어를 실행한 뒤 `lib/supabase/database.types.ts`를 커밋하세요.
+손으로 row 타입을 작성하지 마세요 — 모든 타입은 자동 생성 타입(`Tables<'테이블명'>`)에서 파생합니다.
+
+```bash
+pnpm db:types
+```
+
 ## 🛠 기술 스택
 
 **Core**
