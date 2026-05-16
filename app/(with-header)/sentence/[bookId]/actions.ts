@@ -54,3 +54,37 @@ export async function createMemo({
 
   return { success: true };
 }
+
+type AnswerSurveyInput = {
+  wantsToSeeOthers: boolean;
+};
+
+type AnswerSurveyResult = { error: string } | { success: true };
+
+export async function answerSurvey({
+  wantsToSeeOthers,
+}: AnswerSurveyInput): Promise<AnswerSurveyResult> {
+  const supabase = await createClient();
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
+
+  if (authError || !user) {
+    return { error: '로그인이 필요합니다.' };
+  }
+
+  const { error: dbError } = await supabase
+    .from('users')
+    .update({
+      wants_to_see_others: wantsToSeeOthers,
+      survey_answered_at: new Date().toISOString(),
+    })
+    .eq('id', user.id);
+
+  if (dbError) {
+    return { error: '저장에 실패했습니다.' };
+  }
+
+  return { success: true };
+}

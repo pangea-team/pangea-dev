@@ -1,21 +1,33 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState, useTransition } from 'react';
+import Modal from '@/components/Modal';
 import { PATH } from '@/constants/path';
-import { createMemo } from '../actions';
+import { answerSurvey, createMemo } from '../actions';
 
 const MAX_LENGTH = 160;
 
 type Props = {
   selectedSentenceId: number | null;
   selectedContentIndex: number | null;
+  isLoggedIn: boolean;
+  hasAnsweredSurvey: boolean;
 };
 
-export default function MemoPanel({ selectedSentenceId, selectedContentIndex }: Props) {
+export default function MemoPanel({
+  selectedSentenceId,
+  selectedContentIndex,
+  isLoggedIn,
+  hasAnsweredSurvey,
+}: Props) {
+  const router = useRouter();
   const [note, setNote] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [hasAnsweredSurveyLocal, setHasAnsweredSurveyLocal] = useState(hasAnsweredSurvey);
   const [isPending, startTransition] = useTransition();
 
   const isActive = selectedSentenceId !== null && selectedContentIndex !== null;
@@ -28,6 +40,10 @@ export default function MemoPanel({ selectedSentenceId, selectedContentIndex }: 
   }, [selectedSentenceId, selectedContentIndex]);
 
   const handleSubmit = () => {
+    if (!isLoggedIn) {
+      router.push(PATH.LOGIN);
+      return;
+    }
     if (selectedSentenceId === null || selectedContentIndex === null) return;
     const sentenceId = selectedSentenceId;
     const contentIndex = selectedContentIndex;
@@ -35,18 +51,43 @@ export default function MemoPanel({ selectedSentenceId, selectedContentIndex }: 
     setSuccess(false);
 
     startTransition(async () => {
-      const result = await createMemo({
-        sentenceId,
-        contentIndex,
-        note,
-      });
+      const result = await createMemo({ sentenceId, contentIndex, note });
 
       if ('error' in result) {
+        if (result.error === '로그인이 필요합니다.') {
+          router.push(PATH.LOGIN);
+          return;
+        }
         setError(result.error);
-      } else {
-        setSuccess(true);
-        setNote('');
+        return;
       }
+
+      setSuccess(true);
+      setNote('');
+      if (!hasAnsweredSurveyLocal) {
+        setIsModalOpen(true);
+      }
+    });
+  };
+
+  const handleSurveyConfirm = () => {
+    startTransition(async () => {
+      const result = await answerSurvey({ wantsToSeeOthers: true });
+      if ('success' in result) {
+        setHasAnsweredSurveyLocal(true);
+      }
+      setIsModalOpen(false);
+      router.push(PATH.CART);
+    });
+  };
+
+  const handleSurveyCancel = () => {
+    startTransition(async () => {
+      const result = await answerSurvey({ wantsToSeeOthers: false });
+      if ('success' in result) {
+        setHasAnsweredSurveyLocal(true);
+      }
+      setIsModalOpen(false);
     });
   };
 
@@ -89,11 +130,20 @@ export default function MemoPanel({ selectedSentenceId, selectedContentIndex }: 
       <button
         type="button"
         onClick={handleSubmit}
-        disabled={!isActive || isPending || note.trim().length === 0}
+        disabled={isActive && (isPending || note.trim().length === 0)}
         className="self-start border border-primary px-6 py-2 text-pretendard-body-2 text-primary transition-colors hover:bg-primary hover:text-white disabled:opacity-30"
       >
         {isPending ? '저장 중...' : '마침표 찍기'}
       </button>
+
+      <Modal
+        isOpen={isModalOpen}
+        description="다른 사람들의 흔적도 궁금하신가요?"
+        cancelText="아니오"
+        confirmText="예"
+        onCancel={handleSurveyCancel}
+        onConfirm={handleSurveyConfirm}
+      />
     </div>
   );
 }
