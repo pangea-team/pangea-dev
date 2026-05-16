@@ -1,8 +1,6 @@
 'use client';
 
-import Link from 'next/dist/client/link';
 import { useState } from 'react';
-import { PATH } from '@/constants/path';
 import type { BookWithSentences } from '../_lib/get-book-with-sentences';
 import MemoPanel from './MemoPanel';
 import SentenceContent from './SentenceContent';
