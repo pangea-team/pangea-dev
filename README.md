@@ -46,7 +46,7 @@ pnpm db:types
 
 ## 📚 문서
 
-- [기여 가이드 (CONTRIBUTING.md)](./CONTRIBUTING.md) — 개발 환경, 브랜치 전략, PR 절차
-- [코딩 컨벤션 (CODING_CONVENTION.md)](./CODING_CONVENTION.md) — 네이밍, 폴더 구조, 스타일 규칙
+- [기여 가이드 (CONTRIBUTING.md)](./docs/CONTRIBUTING.md) — 개발 환경, 브랜치 전략, PR 절차
+- [코딩 컨벤션 (CODING_CONVENTION.md)](./docs/CODING_CONVENTION.md) — 네이밍, 폴더 구조, 스타일 규칙
 
   
