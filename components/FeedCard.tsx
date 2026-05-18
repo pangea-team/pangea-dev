@@ -139,10 +139,10 @@ export default function FeedCard({ feed, previewImageSrcs, headerBarBackgroundCo
         </div>
 
         <div className="flex items-center justify-end pt-2">
-          <span className="text-pretendard-label text-ink-100 px-2 py-1 whitespace-nowrap">
+          <span className="text-pretendard-body-3 text-ink-100 px-2 py-1 whitespace-nowrap">
             {feed.date}
           </span>
-          <span className="text-pretendard-label text-ink-100 py-1 pl-1 pr-3 text-right whitespace-nowrap">
+          <span className="text-pretendard-body-3 text-ink-100 py-1 pl-1 pr-3 text-right whitespace-nowrap">
             {feed.status}
           </span>
         </div>
