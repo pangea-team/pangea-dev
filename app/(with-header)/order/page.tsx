@@ -4,7 +4,6 @@ import { PATH } from '@/constants/path';
 import { getUserId } from '@/lib/supabase/auth-helpers';
 import OrderForm from './_components/OrderForm';
 import { getOrderContext } from './_lib/get-order-context';
-import { SHIPPING_FEE } from './_lib/payment-info';
 
 type Props = {
   searchParams: Promise<{ savedSentenceId?: string }>;
@@ -26,11 +25,11 @@ export default async function OrderPage({ searchParams }: Props) {
   // 책 제목은 배송 전까지 노출 금지 — book.title은 화면에 렌더하지 않는다.
   const bookLabel = `No.${String(book.book_no).padStart(2, '0')}`;
   const moodAndKeyword = [book.mood, ...book.keyword].filter(Boolean).join(', ');
-  const total = book.price + SHIPPING_FEE;
+  const total = book.price + book.shipping_fee;
 
   return (
     <div className="mx-auto w-full max-w-2xl lg:max-w-4xl xl:max-w-5xl px-content-x py-content-y">
-      <header className="mb-section-sm flex flex-col gap-2">
+      <header className="mb-page-x flex flex-col gap-2">
         <h1 className="text-noto-title-2 text-primary">주문하기</h1>
         <p className="text-pretendard-body-2 text-purple3">
           책 배송을 위한 기본 정보를 입력해 주세요.
@@ -39,7 +38,7 @@ export default async function OrderPage({ searchParams }: Props) {
 
       <section className="mb-section-sm flex flex-col gap-comp-sm">
         <div className="flex items-center gap-4">
-          <h2 className="text-noto-subtitle-1 text-primary whitespace-nowrap">상품</h2>
+          <h2 className="text-noto-subtitle-2 text-primary whitespace-nowrap">PANGEA TRACE BOX</h2>
           <hr className="flex-1 border-purple3 border-t" />
         </div>
 
@@ -54,9 +53,16 @@ export default async function OrderPage({ searchParams }: Props) {
             />
           </div>
           <div className="flex min-w-0 flex-col gap-2">
-            <span className="text-noto-subtitle-2 text-primary">{bookLabel}</span>
-            <span className="text-pretendard-body-2 text-purple3">{moodAndKeyword}</span>
+            <span className="text-noto-body-1 text-primary">{bookLabel}</span>
+            <span className="text-pretendard-body-3 text-purple3">{moodAndKeyword}</span>
             <p className="text-pretendard-body-2 text-text line-clamp-4">“{paragraph}”</p>
+
+            <div className="flex flex-col mt-2">
+              <p className="text-cormorant text-pretendard-caption text-purple2">Includes</p>
+              <p className="text-pretendard-caption text-purple2">
+                Book · Trace Card · Index · Packaging
+              </p>
+            </div>
           </div>
         </div>
 
@@ -64,7 +70,7 @@ export default async function OrderPage({ searchParams }: Props) {
 
         <div className="flex flex-col gap-2 text-pretendard-body-1">
           <Row label="상품가격" value={`${book.price.toLocaleString('ko-KR')} 원`} />
-          <Row label="배송비" value={`${SHIPPING_FEE.toLocaleString('ko-KR')} 원`} />
+          <Row label="배송비" value={`${book.shipping_fee.toLocaleString('ko-KR')} 원`} />
         </div>
 
         <hr className="border-purple3 border-t" />

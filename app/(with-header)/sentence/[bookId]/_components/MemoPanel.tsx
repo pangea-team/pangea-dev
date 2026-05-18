@@ -93,8 +93,8 @@ export default function MemoPanel({
 
   return (
     <div className="flex flex-col gap-4">
-      <p className="text-noto-body-1 text-purple3">
-        {isActive ? '흔적을 남겨보세요.' : '문단을 선택하면 메모할 수 있어요.'}
+      <p className="text-noto-body-1 text-purple2">
+        {isActive ? '흔적을 남겨보세요.' : '문장을 선택하면 메모할 수 있어요.'}
       </p>
 
       <div className={`flex flex-col gap-2 ${!isActive ? 'pointer-events-none opacity-35' : ''}`}>
@@ -107,7 +107,7 @@ export default function MemoPanel({
           placeholder="이 문단에서 느낀 것을 적어보세요."
           rows={5}
           disabled={!isActive || isPending}
-          className="w-full resize-none border border-purple3 bg-transparent p-3 text-pretendard-body-2 text-text outline-none placeholder:text-purple3 focus:border-primary"
+          className="w-full rounded-sm esize-none border border-purple3 bg-transparent p-3 text-pretendard-body-2 text-text outline-none placeholder:text-purple3 focus:border-primary"
         />
         <span className="self-end text-pretendard-caption text-purple3">
           {note.length}/{MAX_LENGTH}
@@ -131,7 +131,9 @@ export default function MemoPanel({
         type="button"
         onClick={handleSubmit}
         disabled={isActive && (isPending || note.trim().length === 0)}
-        className="self-start border border-primary px-6 py-2 text-pretendard-body-2 text-primary transition-colors hover:bg-primary hover:text-white disabled:opacity-30"
+        className={`self-start rounded-sm px-6 py-2 text-pretendard-body-2 text-white transition-colors ${
+          note.trim().length === 0 ? 'bg-gray-300' : 'bg-purple2 hover:bg-primary'
+        } disabled:bg-gray-300`}
       >
         {isPending ? '저장 중...' : '마침표 .'}
       </button>
