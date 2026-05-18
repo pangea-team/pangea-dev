@@ -182,11 +182,7 @@ export default function FeedUploadClient() {
             <button
               type="button"
               disabled={!completedCrop || isAddingImage}
-              className={
-                completedCrop && !isAddingImage
-                  ? 'bg-purple2 px-4 py-3 text-pretendard-body-2 text-surface-50 hover:bg-primary'
-                  : 'cursor-not-allowed bg-purple3/40 px-4 py-3 text-pretendard-body-2 text-surface-50'
-              }
+              className="bg-purple2 px-4 py-3 text-pretendard-body-2 text-white transition-opacity hover:opacity-80 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
               onClick={handleAddImage}
             >
               {isAddingImage ? '처리 중…' : '이 이미지 추가'}
@@ -210,22 +206,21 @@ export default function FeedUploadClient() {
       ) : showEmptyPlaceholder ? (
         <button
           type="button"
-          className="flex h-feed-image-h w-full flex-col items-center justify-center gap-section-sm bg-feed-placeholder px-4 py-6 text-center outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-50"
+          className="flex h-feed-image-h w-full flex-col items-center justify-center gap-3 rounded-md bg-feed-placeholder px-6 py-8 text-center outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-50"
           onClick={openFilePicker}
         >
-          <p className="text-pretendard-subtitle-1 whitespace-pre-line">
-            {'밑줄 또는 메모가 있는\n책의 일부만 업로드할 수 있습니다.'}
+          <p className="text-pretendard-subtitle-1">당신이 머물렀던 페이지를 올려주세요.</p>
+          <p className="text-pretendard-body-2 whitespace-pre-line text-gray-600">
+            {'밑줄과 메모, 오래 바라본 문장들.\n 나누고 싶은 부분이 잘 보이게 올려주세요.'}
           </p>
-          <p className="text-pretendard-body-2 whitespace-pre-line">
-            {
-              '1~3장까지 원하는 만큼 업로드할 수 있습니다.\n개인 정보가 포함된 이미지는 허용되지 않습니다.'
-            }
+          <p className="text-pretendard-caption mt-2 text-gray-400">
+            최대 3장까지 업로드 가능합니다. <br /> 개인정보가 포함된 이미지는 업로드할 수 없습니다.
           </p>
         </button>
       ) : canAddMore ? (
         <button
           type="button"
-          className="flex h-[120px] w-full flex-col items-center justify-center gap-2 border border-dashed border-primary/30 bg-feed-placeholder/50 text-center outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-50"
+          className="flex h-[120px] w-full flex-col items-center justify-center gap-2 rounded-md border border-dashed border-primary/30 bg-feed-placeholder/50 text-center outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-50"
           onClick={openFilePicker}
         >
           <p className="text-pretendard-body-2">
@@ -244,11 +239,7 @@ export default function FeedUploadClient() {
         <button
           type="button"
           disabled={savedImages.length === 0 || isEditing}
-          className={
-            savedImages.length > 0 && !isEditing
-              ? 'bg-purple2 px-4 py-3 text-pretendard-body-2 text-surface-50 hover:bg-primary'
-              : 'cursor-not-allowed bg-purple3/40 px-4 py-3 text-pretendard-body-2 text-surface-50'
-          }
+          className="w-full bg-purple2 px-4 py-3 text-pretendard-body-2 text-white transition-opacity hover:opacity-80 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
           onClick={handleProceedToPreview}
         >
           {`선택 완료 (${savedImages.length}장)`}

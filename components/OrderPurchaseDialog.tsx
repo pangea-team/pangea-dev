@@ -47,7 +47,7 @@ export default function OrderPurchaseDialog({ open, onClose, onConfirm }: Props)
           <div className="flex h-[70px] w-full items-center justify-center gap-[78px] border-t-[0.5px] border-primary">
             <button
               type="button"
-              className="text-pretendard-subtitle-1 min-w-[34px] px-2"
+              className="bg-purple2 px-4 py-2 text-pretendard-body-2 text-white transition-opacity hover:opacity-80 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
               onClick={() => {
                 onConfirm?.();
                 onClose();
@@ -55,7 +55,11 @@ export default function OrderPurchaseDialog({ open, onClose, onConfirm }: Props)
             >
               예
             </button>
-            <button type="button" className="text-pretendard-subtitle-1 px-2" onClick={onClose}>
+            <button
+              type="button"
+              className="border border-gray-300 px-4 py-2 text-pretendard-body-2 text-gray-600 transition-opacity hover:opacity-80 rounded-md"
+              onClick={onClose}
+            >
               아니오
             </button>
           </div>
