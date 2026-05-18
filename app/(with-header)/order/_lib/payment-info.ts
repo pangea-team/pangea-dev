@@ -1,9 +1,10 @@
-// TODO: 실제 입금 계좌 정보로 교체 필요
+import 'server-only';
+
 export const BANK_INFO = {
-  bankName: '국민은행',
-  accountNumber: '000-00-000000',
-  accountHolder: '권하경',
+  bankName: process.env.BANK_NAME!,
+  accountNumber: process.env.BANK_ACCOUNT_NUMBER!,
+  accountHolder: process.env.BANK_ACCOUNT_HOLDER!,
 } as const;
 
-export const SHIPPING_FEE = 3000;
-export const PAYMENT_DEADLINE_DAYS = 3;
+export const PAYMENT_DEADLINE_DAYS = Number(process.env.PAYMENT_DEADLINE_DAYS ?? 3);
+export const SHIPPING_FEE = Number(process.env.SHIPPING_FEE ?? 3000);

@@ -24,16 +24,16 @@ export default function BookCard({ book }: Props) {
           <span className="text-noto-subtitle-2 px-1 py-2">No.{book.book_no}</span>
           <div className="flex flex-col flex-wrap gap-section-sm pt-section-sm md:gap-12 md:pt-15">
             <div className="flex flex-col gap-2">
-              <span className="text-noto-body-1">MOOD</span>
-              <p className="text-noto-subtitle-2 whitespace-nowrap">{book.mood}</p>
+              <span className="text-pretendard-body-2">MOOD</span>
+              <p className="text-pretendard-body-2 whitespace-nowrap">{book.mood}</p>
             </div>
             <div className="flex flex-col gap-2">
-              <span className="text-noto-body-1">KEYWORD</span>
-              <p className="text-noto-subtitle-2 whitespace-nowrap">{book.keyword.join(' / ')}</p>
+              <span className="text-pretendard-body-2">KEYWORD</span>
+              <p className="text-pretendard-body-2 whitespace-nowrap">{book.keyword.join(' / ')}</p>
             </div>
             <div className="flex flex-col gap-2">
-              <span className="text-noto-body-1">TYPE</span>
-              <p className="text-noto-subtitle-2 whitespace-nowrap">{book.type}</p>
+              <span className="text-pretendard-body-2">TYPE</span>
+              <p className="text-pretendard-body-2 whitespace-nowrap">{book.type}</p>
             </div>
           </div>
         </div>
