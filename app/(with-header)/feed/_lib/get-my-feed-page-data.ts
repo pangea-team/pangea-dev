@@ -21,8 +21,7 @@ export async function getMyFeedPageData(): Promise<MyFeedPageData> {
     return {
       profile: {
         nickname: '',
-        profileRingSrc: '/icons/profile-ring.svg',
-        avatarSrc: '/icons/profile-avatar.svg',
+        profileSrc: '/images/profile_1.webp',
       },
       feeds: [],
     };
@@ -56,8 +55,7 @@ export async function getMyFeedPageData(): Promise<MyFeedPageData> {
   return {
     profile: {
       nickname: userData?.name ?? '',
-      profileRingSrc: '/icons/profile-ring.svg',
-      avatarSrc: '/icons/profile-avatar.svg',
+      profileSrc: '/images/profile_1.webp',
     },
     feeds: mappedFeeds,
   };

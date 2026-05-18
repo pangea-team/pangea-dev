@@ -27,8 +27,7 @@ const MOCK_ORDER_PURCHASABLE = [false, true, true, false, true, false, true, tru
 /** 타인 피드 목업 — `/feed/jay` 등 */
 export const MOCK_YOUR_FEED_PROFILE_JAY: MyFeedProfile = {
   nickname: 'Jay',
-  profileRingSrc: '/icons/profile-ring.svg',
-  avatarSrc: '/icons/profile-avatar.svg',
+  profileSrc: '/images/profile_1.webp',
 };
 
 export const MOCK_YOUR_FEED_ITEMS_JAY: FeedItem[] = Array.from({ length: 10 }, (_, i) =>

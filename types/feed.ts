@@ -22,10 +22,7 @@ export type FeedItem = {
 
 export type MyFeedProfile = {
   nickname: string;
-  /** 프로필 링(원형 배경) 이미지 URL */
-  profileRingSrc: string;
-  /** 링 안에 보이는 아바타(예: 돌맹이) 이미지 URL */
-  avatarSrc: string;
+  profileSrc: string;
 };
 
 export type MyFeedPageData = {
