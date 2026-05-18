@@ -13,6 +13,9 @@ import StepImageUpload from './StepImageUpload';
 import StepIndicator from './StepIndicator';
 import StepQuestionAnswer from './StepQuestionAnswer';
 
+// 1차 배포 후 false로 변경
+const IS_BEFORE_BOOK_ARRIVAL = true;
+
 type Step = 1 | 2 | 3;
 type Question = BookWithQuestions['questions'][number];
 
@@ -177,7 +180,7 @@ export default function FeedUploadFlow({ books }: Props) {
   const questions = selectedBook?.questions ?? [];
 
   const isNextDisabled =
-    (currentStep === 1 && selectedBook === null) ||
+    (currentStep === 1 && (selectedBook === null || IS_BEFORE_BOOK_ARRIVAL)) ||
     (currentStep === 2 && images.length === 0) ||
     (currentStep === 3 &&
       (selectedQuestion === null || answer.trim().length === 0 || isSubmitting));
@@ -236,6 +239,14 @@ export default function FeedUploadFlow({ books }: Props) {
             />
           ) : null}
         </div>
+
+        {currentStep === 1 && IS_BEFORE_BOOK_ARRIVAL && selectedBook !== null && (
+          <div className="rounded-none border border-primary/30 bg-primary/5 p-4">
+            <p className="text-pretendard-body-2 text-primary">
+              아직 첫 번째 책이 도착하기 전입니다.
+            </p>
+          </div>
+        )}
 
         <StepFooter
           showBack={currentStep > 1}

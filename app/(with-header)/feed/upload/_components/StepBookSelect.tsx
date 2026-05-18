@@ -15,8 +15,7 @@ export default function StepBookSelect({ books, selectedBook, onSelect }: Props)
       <div className="flex flex-col gap-1">
         <h2 className="text-noto-subtitle-1">어떤 책을 읽으셨나요?</h2>
         <p className="text-pretendard-body-2 whitespace-pre-line text-primary/60">
-          본인이 읽은 책만 선택해주세요. <br /> 선택한 순간, 책의 제목과 정보가 노출됩니다. <br />이
-          경험은 되돌릴 수 없습니다.
+          선택한 순간, 책의 제목과 정보가 노출됩니다. <br />이 경험은 되돌릴 수 없습니다.
         </p>
       </div>
 
