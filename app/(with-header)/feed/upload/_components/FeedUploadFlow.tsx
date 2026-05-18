@@ -217,6 +217,7 @@ export default function FeedUploadFlow({ books }: Props) {
           {currentStep === 2 ? (
             <StepImageUpload
               images={images}
+              bookTitle={selectedBook?.title ?? ''}
               onOpenCrop={handleOpenCrop}
               onRemove={handleRemoveImage}
             />

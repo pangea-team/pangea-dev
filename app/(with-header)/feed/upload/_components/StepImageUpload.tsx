@@ -5,16 +5,18 @@ import { MAX_FEED_IMAGES } from '@/lib/feed-card-layout';
 
 type Props = {
   images: FeedUploadDraftImage[];
+  bookTitle: string;
   onOpenCrop: () => void;
   onRemove: (id: string) => void;
 };
 
-export default function StepImageUpload({ images, onOpenCrop, onRemove }: Props) {
+export default function StepImageUpload({ images, bookTitle, onOpenCrop, onRemove }: Props) {
   const canAddMore = images.length < MAX_FEED_IMAGES;
 
   return (
     <div className="flex flex-col gap-section-sm">
       <div className="flex flex-col gap-1">
+        <p className="text-noto-subtitle-2 pb-2 text-purple2">[{bookTitle}]</p>
         <h2 className="text-noto-subtitle-1">당신이 머물렀던 페이지를 올려주세요.</h2>
         <p className="text-pretendard-body-2 whitespace-pre-line text-primary/60">
           {'밑줄과 메모, 오래 바라본 문장들.\n나누고 싶은 부분이 잘 보이게 올려주세요.'}
