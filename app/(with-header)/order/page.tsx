@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { PATH } from '@/constants/path';
-import { getUser } from '@/lib/supabase/auth';
+import { getUserId } from '@/lib/supabase/auth-helpers';
 import OrderForm from './_components/OrderForm';
 import { getOrderContext } from './_lib/get-order-context';
 import { SHIPPING_FEE } from './_lib/payment-info';
@@ -11,13 +11,13 @@ type Props = {
 };
 
 export default async function OrderPage({ searchParams }: Props) {
-  const claims = await getUser();
-  if (!claims) redirect(PATH.KAKAO_LOGIN);
+  const userId = await getUserId();
+  if (!userId) redirect(PATH.KAKAO_LOGIN);
 
   const { savedSentenceId } = await searchParams;
   if (!savedSentenceId) redirect(PATH.CART);
 
-  const context = await getOrderContext(savedSentenceId, claims.sub);
+  const context = await getOrderContext(savedSentenceId, userId);
   const sentence = context?.sentences;
   const book = sentence?.books;
   if (!context || !sentence || !book) redirect(PATH.CART);

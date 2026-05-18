@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { PATH } from '@/constants/path';
-import { getUser } from '@/lib/supabase/auth';
+import { getUserId } from '@/lib/supabase/auth-helpers';
 import { BANK_INFO, PAYMENT_DEADLINE_DAYS } from '../_lib/payment-info';
 import CopyAccountButton from './_components/CopyAccountButton';
 import { getOrderByNumber } from './_lib/get-order';
@@ -11,13 +11,13 @@ type Props = {
 };
 
 export default async function OrderCompletePage({ searchParams }: Props) {
-  const claims = await getUser();
-  if (!claims) redirect(PATH.KAKAO_LOGIN);
+  const userId = await getUserId();
+  if (!userId) redirect(PATH.KAKAO_LOGIN);
 
   const { orderNumber } = await searchParams;
   if (!orderNumber) redirect(PATH.CART);
 
-  const order = await getOrderByNumber(orderNumber, claims.sub);
+  const order = await getOrderByNumber(orderNumber, userId);
   if (!order) redirect(PATH.CART);
 
   return (
