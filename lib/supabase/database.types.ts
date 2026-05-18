@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      app_settings: {
+        Row: {
+          description: string | null
+          key: string
+          updated_at: string
+          value: Json
+        }
+        Insert: {
+          description?: string | null
+          key: string
+          updated_at?: string
+          value: Json
+        }
+        Update: {
+          description?: string | null
+          key?: string
+          updated_at?: string
+          value?: Json
+        }
+        Relationships: []
+      }
       books: {
         Row: {
           book_no: number
@@ -25,6 +46,7 @@ export type Database = {
           mood: string
           price: number
           season: number
+          shipping_fee: number
           title: string
           type: string
         }
@@ -38,6 +60,7 @@ export type Database = {
           mood: string
           price: number
           season: number
+          shipping_fee: number
           title?: string
           type: string
         }
@@ -51,6 +74,7 @@ export type Database = {
           mood?: string
           price?: number
           season?: number
+          shipping_fee?: number
           title?: string
           type?: string
         }
@@ -153,6 +177,7 @@ export type Database = {
           id: string
           item_price: number
           order_number: string
+          payment_due_at: string
           postal_code: string
           recipient_name: string
           recipient_phone: string
@@ -171,6 +196,7 @@ export type Database = {
           id: string
           item_price: number
           order_number: string
+          payment_due_at: string
           postal_code: string
           recipient_name: string
           recipient_phone: string
@@ -189,6 +215,7 @@ export type Database = {
           id?: string
           item_price?: number
           order_number?: string
+          payment_due_at?: string
           postal_code?: string
           recipient_name?: string
           recipient_phone?: string

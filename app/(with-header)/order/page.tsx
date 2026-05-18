@@ -4,7 +4,6 @@ import { PATH } from '@/constants/path';
 import { getUserId } from '@/lib/supabase/auth-helpers';
 import OrderForm from './_components/OrderForm';
 import { getOrderContext } from './_lib/get-order-context';
-import { SHIPPING_FEE } from './_lib/payment-info';
 
 type Props = {
   searchParams: Promise<{ savedSentenceId?: string }>;
@@ -26,7 +25,7 @@ export default async function OrderPage({ searchParams }: Props) {
   // 책 제목은 배송 전까지 노출 금지 — book.title은 화면에 렌더하지 않는다.
   const bookLabel = `No.${String(book.book_no).padStart(2, '0')}`;
   const moodAndKeyword = [book.mood, ...book.keyword].filter(Boolean).join(', ');
-  const total = book.price + SHIPPING_FEE;
+  const total = book.price + book.shipping_fee;
 
   return (
     <div className="mx-auto w-full max-w-2xl lg:max-w-4xl xl:max-w-5xl px-content-x py-content-y">
@@ -64,7 +63,7 @@ export default async function OrderPage({ searchParams }: Props) {
 
         <div className="flex flex-col gap-2 text-pretendard-body-1">
           <Row label="상품가격" value={`${book.price.toLocaleString('ko-KR')} 원`} />
-          <Row label="배송비" value={`${SHIPPING_FEE.toLocaleString('ko-KR')} 원`} />
+          <Row label="배송비" value={`${book.shipping_fee.toLocaleString('ko-KR')} 원`} />
         </div>
 
         <hr className="border-purple3 border-t" />
