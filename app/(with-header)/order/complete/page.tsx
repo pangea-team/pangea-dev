@@ -45,7 +45,11 @@ export default async function OrderCompletePage({ searchParams }: Props) {
         <SummaryRow label="입금 금액" value={`${order.total_amount.toLocaleString('ko-KR')} 원`} />
         <SummaryRow label="받는 분" value={order.recipient_name} />
         {/* <SummaryRow label="입금 기한" value={paymentDueAt} /> */}
-        <SummaryRow label="입금 기한" value={'5월 19일 (화) 오후 2시까지'} />
+        <SummaryRow label="입금 기한" value={'주문 후 1시간 이내'} />
+        <p className="text-pretendard-caption text-red-800">
+          * 입금 기한 1시간 초과 시 자동 취소됩니다. <br />* 화요일 오후 2시 전 ‘입금’ 완료 건에
+          한하여 이번주 발송됩니다.
+        </p>
       </section>
 
       <section className="mb-section-sm rounded-lg border border-purple3 p-6">
