@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import ReactCrop, { type Crop, type PixelCrop } from 'react-image-crop';
+import ReactCrop, { type PixelCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
+
 import { getCroppedImageBlob } from '@/app/(with-header)/feed/upload/_lib/crop-image';
 import { FEED_IMAGE_HEIGHT, FEED_IMAGE_MAX_HEIGHT_RATIO } from '@/lib/feed-card-layout';
 
@@ -14,31 +15,65 @@ type Props = {
 
 function clampCropHeight(c: PixelCrop): PixelCrop {
   if (c.width > 0 && c.height > c.width * FEED_IMAGE_MAX_HEIGHT_RATIO) {
-    return { ...c, height: Math.round(c.width * FEED_IMAGE_MAX_HEIGHT_RATIO) };
+    return {
+      ...c,
+      height: Math.round(c.width * FEED_IMAGE_MAX_HEIGHT_RATIO),
+    };
   }
+
   return c;
 }
 
 export default function CropModal({ src, onAdd, onCancel }: Props) {
   const imgRef = useRef<HTMLImageElement>(null);
-  const [crop, setCrop] = useState<Crop | undefined>(undefined);
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  const [crop, setCrop] = useState<PixelCrop | undefined>(undefined);
   const [completedCrop, setCompletedCrop] = useState<PixelCrop | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // 배경 스크롤 잠금
+  // iOS Safari까지 고려한 배경 스크롤 잠금
   useEffect(() => {
-    const prev = document.body.style.overflow;
+    const scrollY = window.scrollY;
+
+    const prevBodyPosition = document.body.style.position;
+    const prevBodyTop = document.body.style.top;
+    const prevBodyLeft = document.body.style.left;
+    const prevBodyRight = document.body.style.right;
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevBodyWidth = document.body.style.width;
+
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
     document.body.style.overflow = 'hidden';
+
     return () => {
-      document.body.style.overflow = prev;
+      document.body.style.position = prevBodyPosition;
+      document.body.style.top = prevBodyTop;
+      document.body.style.left = prevBodyLeft;
+      document.body.style.right = prevBodyRight;
+      document.body.style.width = prevBodyWidth;
+      document.body.style.overflow = prevBodyOverflow;
+
+      window.scrollTo(0, scrollY);
     };
+  }, []);
+
+  // dialog가 키보드 이벤트를 받을 수 있게 포커스 부여
+  useEffect(() => {
+    modalRef.current?.focus();
   }, []);
 
   const handleAdd = async () => {
     if (!completedCrop || !imgRef.current || isProcessing) return;
+
     setIsProcessing(true);
     setErrorMessage(null);
+
     try {
       const blob = await getCroppedImageBlob(imgRef.current, completedCrop);
       onAdd(blob);
@@ -50,33 +85,66 @@ export default function CropModal({ src, onAdd, onCancel }: Props) {
   };
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) onCancel();
+    if (e.target === e.currentTarget) {
+      onCancel();
+    }
+  };
+
+  const handleDialogKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Escape') {
+      onCancel();
+    }
   };
 
   return (
     <div
+      ref={modalRef}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
       onClick={handleBackdropClick}
-      onKeyDown={(e) => {
-        if (e.key === 'Escape') onCancel();
-      }}
+      onKeyDown={handleDialogKeyDown}
       role="dialog"
       aria-modal="true"
       aria-label="이미지 크롭"
+      tabIndex={-1}
     >
-      <div className="flex w-full max-w-[600px] flex-col gap-4 bg-surface-50 p-6 shadow-card">
+      <div className="flex max-h-[90dvh] w-full max-w-[600px] flex-col gap-4 bg-surface-50 p-6 shadow-card">
         <h2 className="text-noto-subtitle-2">이미지 영역 선택</h2>
 
-        <div className="w-full overflow-auto">
+        <div className="flex w-full justify-center overflow-hidden">
           <ReactCrop
             crop={crop}
-            onChange={(c) => setCrop(clampCropHeight(c))}
-            onComplete={(c) => setCompletedCrop(clampCropHeight(c))}
+            onChange={(pixelCrop) => {
+              const nextCrop = clampCropHeight(pixelCrop);
+              setCrop(nextCrop);
+            }}
+            onComplete={(pixelCrop) => {
+              const nextCompletedCrop = clampCropHeight(pixelCrop);
+              setCompletedCrop(nextCompletedCrop);
+            }}
             keepSelection
             ruleOfThirds
+            className="touch-none select-none"
+            style={{
+              touchAction: 'none',
+              WebkitUserSelect: 'none',
+              WebkitTouchCallout: 'none',
+              userSelect: 'none',
+            }}
           >
-            {/* biome-ignore lint/performance/noImgElement: react-image-crop은 imgRef.width/naturalWidth 비율로 좌표를 계산하므로 Next/Image의 래핑 구조와 호환 불가 */}
-            <img ref={imgRef} src={src} alt="" className="block max-h-[60vh] max-w-full" />
+            {/* biome-ignore lint/performance/noImgElement: canvas crop 작업을 위해 실제 HTMLImageElement 참조가 필요합니다. */}
+            <img
+              ref={imgRef}
+              src={src}
+              alt=""
+              draggable={false}
+              className="block max-h-[55dvh] max-w-full touch-none select-none"
+              style={{
+                touchAction: 'none',
+                WebkitUserSelect: 'none',
+                WebkitTouchCallout: 'none',
+                userSelect: 'none',
+              }}
+            />
           </ReactCrop>
         </div>
 
@@ -99,6 +167,7 @@ export default function CropModal({ src, onAdd, onCancel }: Props) {
           >
             {isProcessing ? '처리 중…' : '이 영역 추가'}
           </button>
+
           <button
             type="button"
             onClick={onCancel}

@@ -1,7 +1,7 @@
 'use server';
 
+import { getAppSettings } from '@/lib/app-settings';
 import { createClient } from '@/lib/supabase/server';
-import { SHIPPING_FEE } from './_lib/payment-info';
 
 type CreateOrderInput = {
   savedSentenceId: string;
@@ -68,7 +68,7 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
       id,
       sentences (
         book_id,
-        books ( id, price )
+        books ( id, price, shipping_fee )
       )
     `)
     .eq('id', input.savedSentenceId)
@@ -84,10 +84,15 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
     return { error: '책 정보를 찾을 수 없습니다.' };
   }
 
+  const { paymentDeadlineDays } = await getAppSettings();
+
   const itemPrice = book.price;
-  const shippingFee = SHIPPING_FEE;
+  const shippingFee = book.shipping_fee;
   const totalAmount = itemPrice + shippingFee;
   const orderNumber = generateOrderNumber();
+
+  const paymentDueAt = new Date();
+  paymentDueAt.setDate(paymentDueAt.getDate() + paymentDeadlineDays);
 
   const { error: insertError } = await supabase.from('orders').insert({
     id: crypto.randomUUID(),
@@ -104,6 +109,7 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
     address,
     address_detail: addressDetail,
     delivery_message: deliveryMessage || null,
+    payment_due_at: paymentDueAt.toISOString(),
   });
 
   if (insertError) {

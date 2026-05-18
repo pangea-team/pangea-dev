@@ -9,7 +9,7 @@ export async function getOrderContext(savedSentenceId: string, userId: string) {
       id, content_index, note,
       sentences (
         id, book_id, content,
-        books ( id, book_no, mood, keyword, cover_image, price )
+        books ( id, book_no, mood, keyword, cover_image, price, shipping_fee )
       )
     `)
     .eq('id', savedSentenceId)

@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata } from 'next';
 import { Cormorant, Noto_Serif_KR } from 'next/font/google';
 import localFont from 'next/font/local';
@@ -50,6 +51,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col font-noto">
         <QueryProvider>{children}</QueryProvider>
+        {process.env.NODE_ENV === 'production' && process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
       </body>
     </html>
   );
