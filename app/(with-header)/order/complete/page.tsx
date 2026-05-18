@@ -42,7 +42,7 @@ export default async function OrderCompletePage({ searchParams }: Props) {
           <div className="flex items-center justify-between gap-2">
             <span className="text-pretendard-body-2 text-purple2">계좌번호</span>
             <div className="flex items-center gap-3">
-              <span className="text-pretendard-body-1 text-text">{BANK_INFO.accountNumber}</span>
+              <span className="text-pretendard-body-2 text-text">{BANK_INFO.accountNumber}</span>
               <CopyAccountButton value={BANK_INFO.accountNumber} />
             </div>
           </div>
