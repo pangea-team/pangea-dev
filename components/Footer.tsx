@@ -17,7 +17,7 @@ export default function Footer() {
             Someone is reading you.
           </p>
         </div>
-        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+        {/* <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <a
             href={SOCIAL.kakaoTalk}
             target="_blank"
@@ -36,14 +36,11 @@ export default function Footer() {
           >
             <Icon name="instagram" className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12" />
           </a>
-        </div>
+        </div> */}
       </div>
 
       <div className="border-purple3 mt-4 flex flex-col gap-3 border-t pt-4 sm:mt-comp-sm sm:flex-row sm:items-start sm:justify-between sm:gap-6 sm:pt-comp-sm">
         <div className="flex flex-col gap-2">
-          <p className="text-pretendard-body-3 sm:text-pretendard-footer-meta">
-            판게아&nbsp;&nbsp;|&nbsp;&nbsp;권 하 경
-          </p>
           <a href="mailto:khkbt3731@gmail.com" className="text-cormorant-footer-meta">
             khkbt3731@gmail.com
           </a>
