@@ -17,6 +17,7 @@ export type Database = {
       books: {
         Row: {
           book_no: number
+          cover_color: string | null
           cover_image: string
           created_at: string
           id: number
@@ -29,6 +30,7 @@ export type Database = {
         }
         Insert: {
           book_no: number
+          cover_color?: string | null
           cover_image: string
           created_at?: string
           id?: number
@@ -41,6 +43,7 @@ export type Database = {
         }
         Update: {
           book_no?: number
+          cover_color?: string | null
           cover_image?: string
           created_at?: string
           id?: number
@@ -52,6 +55,93 @@ export type Database = {
           type?: string
         }
         Relationships: []
+      }
+      feeds: {
+        Row: {
+          answer: string
+          book_id: number
+          created_at: string
+          id: string
+          images: string[]
+          question_id: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          answer: string
+          book_id: number
+          created_at?: string
+          id?: string
+          images?: string[]
+          question_id: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          answer?: string
+          book_id?: number
+          created_at?: string
+          id?: string
+          images?: string[]
+          question_id?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "feeds_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "feeds_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "feeds_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      questions: {
+        Row: {
+          book_id: number
+          content: string
+          created_at: string
+          id: number
+          order_no: number
+        }
+        Insert: {
+          book_id: number
+          content: string
+          created_at?: string
+          id?: number
+          order_no: number
+        }
+        Update: {
+          book_id?: number
+          content?: string
+          created_at?: string
+          id?: number
+          order_no?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "questions_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       orders: {
         Row: {

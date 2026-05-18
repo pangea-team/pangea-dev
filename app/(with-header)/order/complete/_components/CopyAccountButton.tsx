@@ -24,7 +24,7 @@ export default function CopyAccountButton({ value }: Props) {
     <button
       type="button"
       onClick={handleClick}
-      className="border border-purple3 px-3 py-1 text-pretendard-body-2 text-primary transition-opacity hover:opacity-70"
+      className="border border-purple3 px-3 py-1 text-pretendard-caption text-primary transition-opacity hover:opacity-70"
     >
       {isCopied ? '복사됨' : '복사'}
     </button>

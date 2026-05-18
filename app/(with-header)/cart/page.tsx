@@ -1,14 +1,14 @@
 import { redirect } from 'next/navigation';
 import { PATH } from '@/constants/path';
-import { getUser } from '@/lib/supabase/auth';
+import { getUserIdFromClaims } from '@/lib/supabase/auth-helpers';
 import SavedSentenceCard from './_components/SavedSentenceCard';
 import { getSavedSentences } from './_lib/get-saved-sentences';
 
 export default async function CartPage() {
-  const claims = await getUser();
-  if (!claims) redirect(PATH.KAKAO_LOGIN);
+  const userId = await getUserIdFromClaims();
+  if (!userId) redirect(PATH.KAKAO_LOGIN);
 
-  const rows = await getSavedSentences(claims.sub);
+  const rows = await getSavedSentences(userId);
 
   return (
     <div className="mx-auto w-full max-w-2xl lg:max-w-4xl xl:max-w-5xl px-content-x py-content-y">
