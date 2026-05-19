@@ -26,7 +26,7 @@ export async function getBooksWithQuestions() {
   const { data, error } = await supabase
     .from('books')
     .select(`
-      id, book_no, title, cover_image, cover_color, mood,
+      id, book_no, title, cover_image, cover_color, mood, author,
       questions ( id, order_no, content )
     `)
     .order('book_no', { ascending: true })

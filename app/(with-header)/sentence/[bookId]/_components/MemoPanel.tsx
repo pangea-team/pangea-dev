@@ -117,12 +117,12 @@ export default function MemoPanel({
       {error && <p className="text-pretendard-caption text-destructive">{error}</p>}
       {success && (
         <div className="flex items-center justify-between">
-          <p className="text-pretendard-caption text-primary">흔적이 남겨졌습니다.</p>
+          <p className="text-pretendard-body-3 text-primary">흔적을 남겼습니다.</p>
           <Link
             href={PATH.CART}
-            className="text-pretendard-caption text-primary underline underline-offset-4 hover:opacity-60"
+            className="text-pretendard-body-3 text-primary underline underline-offset-4 hover:opacity-60"
           >
-            담아둔 것들 →
+            담아둔 것들에서 확인하기 →
           </Link>
         </div>
       )}
