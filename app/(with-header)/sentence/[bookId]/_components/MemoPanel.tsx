@@ -94,7 +94,7 @@ export default function MemoPanel({
   return (
     <div className="flex flex-col gap-4">
       <p className="text-noto-body-1 text-purple2">
-        {isActive ? '흔적을 남겨보세요.' : '문장을 선택하면 메모할 수 있어요.'}
+        {isActive ? 'First trace 를 남겨보세요.' : '문장을 선택하면 메모할 수 있어요.'}
       </p>
 
       <div className={`flex flex-col gap-2 ${!isActive ? 'pointer-events-none opacity-35' : ''}`}>

@@ -8,8 +8,12 @@ import { PATH } from '@/constants/path';
 import { createClient } from '@/lib/supabase/client';
 
 const MENU_ITEMS = [
-  { href: PATH.CART, label: '담아둔 것들', requiresAuth: true },
-  { href: PATH.FEED, label: '나의 대륙', requiresAuth: false },
+  {
+    href: PATH.CART,
+    label: '담아둔 것들',
+    requiresAuth: true,
+  },
+  { href: PATH.FEED, label: '내 서재', requiresAuth: false },
   // { href: PATH.EXPLORE, label: '탐험', requiresAuth: false },
 ] as const;
 
