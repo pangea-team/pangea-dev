@@ -138,8 +138,7 @@ export default function IntroSequence() {
     <section
       ref={containerRef}
       aria-label="PANGEA 소개. 방향키 또는 휠로 탐색"
-      // h-[calc(100dvh-3.75rem)]: full viewport minus header (h-15)
-      className="flex h-[calc(100dvh-3.75rem)] items-center justify-center text-center touch-none pb-32"
+      className="relative flex h-[calc(100dvh-3.75rem)] items-center justify-center text-center touch-none pb-20"
     >
       <div className="relative w-full">
         <AnimatePresence mode="wait" custom={direction}>
@@ -153,12 +152,20 @@ export default function IntroSequence() {
             transition={{ duration, ease: 'easeOut' }}
             aria-live="polite"
           >
-            <p className="text-pretendard-body-2 sm:text-pretendard-body-2 md:text-pretendard-subtitle-1 lg:text-pretendard-subtitle-1 text-primary whitespace-pre-line">
-              {INTRO_SECTIONS[currentIndex]}
-            </p>
+            {currentIndex === 0 ? (
+              <p className="text-pretendard-body-1 leading-loose sm:text-pretendard-body-2 md:text-pretendard-subtitle-1 lg:text-pretendard-subtitle-1 text-primary whitespace-pre-line">
+                <span className="block text-pretendard-body-1 font-bold">Welcome to PANGEA.</span>
+                {INTRO_SECTIONS[0].replace('Welcome to PANGEA.', '')}
+              </p>
+            ) : (
+              <p className="text-pretendard-body-1 leading-loose sm:text-pretendard-body-2 md:text-pretendard-subtitle-1 lg:text-pretendard-subtitle-1 text-primary whitespace-pre-line">
+                {INTRO_SECTIONS[currentIndex]}
+              </p>
+            )}
           </motion.div>
         </AnimatePresence>
 
+        {/* 버튼을 텍스트 컨테이너 기준 absolute로 배치 */}
         <AnimatePresence>
           {showButton && (
             <motion.div
@@ -166,7 +173,7 @@ export default function IntroSequence() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="absolute inset-x-0 top-full mt-20"
+              className="absolute inset-x-0 top-full mt-10"
             >
               <Link
                 href={PATH.BOOKS}
