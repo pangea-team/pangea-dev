@@ -69,7 +69,17 @@ export default async function OrderPage({ searchParams }: Props) {
         <hr className="border-purple3 border-t" />
 
         <div className="flex flex-col gap-2 text-pretendard-body-1">
-          <Row label="상품가격" value={`${book.price.toLocaleString('ko-KR')} 원`} />
+          <div className="flex items-center justify-between">
+            <div>상품가격</div>
+            <div className="flex items-center gap-2">
+              <span className="decoration-red-800 line-through">
+                {book.price.toLocaleString('ko-KR')} 원
+              </span>
+              <span className="text-red-800">9,900 원</span>
+            </div>
+          </div>
+          <p className="text-pretendard-caption text-right text-red-800">첫 번째 박스 한정</p>
+          {/* <Row label="상품가격" value={`${book.price.toLocaleString('ko-KR')} 원`} /> */}
           <Row label="배송비" value={`${book.shipping_fee.toLocaleString('ko-KR')} 원`} />
         </div>
 
@@ -77,7 +87,9 @@ export default async function OrderPage({ searchParams }: Props) {
 
         <div className="flex items-center justify-between text-noto-subtitle-1 text-primary">
           <span>Total</span>
-          <span>{total.toLocaleString('ko-KR')} 원</span>
+          <span>12,900 원</span>
+          {/* 2차때 고치기 */}
+          {/* <span>{total.toLocaleString('ko-KR')} 원</span> */}
         </div>
       </section>
 

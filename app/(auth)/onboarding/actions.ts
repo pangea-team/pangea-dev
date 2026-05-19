@@ -54,6 +54,6 @@ export async function completeOnboarding({
     return { error: '저장에 실패했습니다. 다시 시도해주세요.' };
   }
 
-  revalidatePath(PATH.HOME);
-  redirect(PATH.HOME);
+  revalidatePath(PATH.LANDING);
+  redirect(PATH.LANDING);
 }
