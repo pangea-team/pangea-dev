@@ -94,7 +94,7 @@ export default function MemoPanel({
   return (
     <div className="flex flex-col gap-4">
       <p className="text-noto-body-1 text-purple2">
-        {isActive ? '흔적을 남겨보세요.' : '문장을 선택하면 메모할 수 있어요.'}
+        {isActive ? 'First trace 를 남겨보세요.' : '문장을 선택하면 메모할 수 있어요.'}
       </p>
 
       <div className={`flex flex-col gap-2 ${!isActive ? 'pointer-events-none opacity-35' : ''}`}>
@@ -104,7 +104,7 @@ export default function MemoPanel({
             setNote(e.target.value.slice(0, MAX_LENGTH));
             setSuccess(false);
           }}
-          placeholder="이 문단에서 느낀 것을 적어보세요."
+          placeholder="이 문단에서 느낀 것을 적어보세요. 나만 볼 수 있도록 저장됩니다."
           rows={5}
           disabled={!isActive || isPending}
           className="w-full rounded-sm esize-none border border-purple3 bg-transparent p-3 text-pretendard-body-2 text-text outline-none placeholder:text-purple3 focus:border-primary"
@@ -117,12 +117,12 @@ export default function MemoPanel({
       {error && <p className="text-pretendard-caption text-destructive">{error}</p>}
       {success && (
         <div className="flex items-center justify-between">
-          <p className="text-pretendard-caption text-primary">흔적이 남겨졌습니다.</p>
+          <p className="text-pretendard-body-3 text-primary">흔적을 남겼습니다.</p>
           <Link
             href={PATH.CART}
-            className="text-pretendard-caption text-primary underline underline-offset-4 hover:opacity-60"
+            className="text-pretendard-body-3 text-primary underline underline-offset-4 hover:opacity-60"
           >
-            담아둔 것들 →
+            담아둔 것들에서 확인하기 →
           </Link>
         </div>
       )}

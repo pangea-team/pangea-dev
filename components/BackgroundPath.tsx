@@ -9,7 +9,7 @@ const DURATION = 80;
 const DOT_COUNT = 3;
 
 const DOTS = Array.from({ length: DOT_COUNT }, (_, index) => ({
-  id: `dot-${index + 1}`, // 'dot-1', 'dot-2', 'dot-3'
+  id: `dot-${index + 1}`,
   delay: -(DURATION / DOT_COUNT) * index,
 }));
 
@@ -17,8 +17,8 @@ export default function BackgroundPath() {
   return (
     <div className="absolute inset-0 -z-10 overflow-hidden ">
       <div
-        className="absolute left-1/2 -translate-x-1/2 top-148.5 
-                w-[200vw] md:w-full md:max-w-355.5 
+        className="absolute left-1/2 -translate-x-1/2 top-148.5
+                w-[200vw] md:w-full md:max-w-355.5
                 aspect-1462/2519"
       >
         <svg
@@ -29,7 +29,6 @@ export default function BackgroundPath() {
           aria-hidden="true"
           className="block w-full h-full"
         >
-          {/* 메인 path */}
           <path
             id="motion-path"
             d={MOTION_PATH}
@@ -38,7 +37,6 @@ export default function BackgroundPath() {
             vectorEffect="non-scaling-stroke"
           />
 
-          {/* 움직이는 노란 점들 */}
           {DOTS.map(({ id, delay }) => (
             <motion.circle
               key={id}

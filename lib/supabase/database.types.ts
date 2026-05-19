@@ -14,6 +14,21 @@ export type Database = {
   }
   public: {
     Tables: {
+      admins: {
+        Row: {
+          created_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       app_settings: {
         Row: {
           description: string | null
@@ -37,8 +52,9 @@ export type Database = {
       }
       books: {
         Row: {
+          author: string
           book_no: number
-          cover_color: string | null
+          cover_color: string
           cover_image: string
           created_at: string
           id: number
@@ -51,8 +67,9 @@ export type Database = {
           type: string
         }
         Insert: {
+          author?: string
           book_no: number
-          cover_color?: string | null
+          cover_color?: string
           cover_image: string
           created_at?: string
           id?: number
@@ -65,8 +82,9 @@ export type Database = {
           type: string
         }
         Update: {
+          author?: string
           book_no?: number
-          cover_color?: string | null
+          cover_color?: string
           cover_image?: string
           created_at?: string
           id?: number
@@ -135,38 +153,6 @@ export type Database = {
           },
         ]
       }
-      questions: {
-        Row: {
-          book_id: number
-          content: string
-          created_at: string
-          id: number
-          order_no: number
-        }
-        Insert: {
-          book_id: number
-          content: string
-          created_at?: string
-          id?: number
-          order_no: number
-        }
-        Update: {
-          book_id?: number
-          content?: string
-          created_at?: string
-          id?: number
-          order_no?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "questions_book_id_fkey"
-            columns: ["book_id"]
-            isOneToOne: false
-            referencedRelation: "books"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       orders: {
         Row: {
           address: string
@@ -196,7 +182,7 @@ export type Database = {
           id: string
           item_price: number
           order_number: string
-          payment_due_at: string
+          payment_due_at?: string
           postal_code: string
           recipient_name: string
           recipient_phone: string
@@ -245,6 +231,38 @@ export type Database = {
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      questions: {
+        Row: {
+          book_id: number
+          content: string
+          created_at: string
+          id: number
+          order_no: number
+        }
+        Insert: {
+          book_id: number
+          content: string
+          created_at?: string
+          id?: never
+          order_no: number
+        }
+        Update: {
+          book_id?: number
+          content?: string
+          created_at?: string
+          id?: never
+          order_no?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "questions_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
             referencedColumns: ["id"]
           },
         ]

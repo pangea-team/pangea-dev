@@ -20,7 +20,7 @@ export default async function Page() {
     .maybeSingle();
 
   if (profile) {
-    redirect(PATH.HOME);
+    redirect(PATH.LANDING);
   }
 
   return (
