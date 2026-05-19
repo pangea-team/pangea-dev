@@ -104,7 +104,7 @@ export default function MemoPanel({
             setNote(e.target.value.slice(0, MAX_LENGTH));
             setSuccess(false);
           }}
-          placeholder="이 문단에서 느낀 것을 적어보세요."
+          placeholder="이 문단에서 느낀 것을 적어보세요. 나만 볼 수 있도록 저장됩니다."
           rows={5}
           disabled={!isActive || isPending}
           className="w-full rounded-sm esize-none border border-purple3 bg-transparent p-3 text-pretendard-body-2 text-text outline-none placeholder:text-purple3 focus:border-primary"
