@@ -10,5 +10,5 @@ export async function signOut() {
   await supabase.auth.signOut();
 
   revalidatePath('/', 'layout');
-  redirect(PATH.HOME);
+  redirect(PATH.LANDING);
 }

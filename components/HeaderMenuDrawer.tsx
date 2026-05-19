@@ -8,6 +8,7 @@ import { PATH } from '@/constants/path';
 import { createClient } from '@/lib/supabase/client';
 
 const MENU_ITEMS = [
+  { href: PATH.LANDING, label: '브랜드 소개', requiresAuth: false },
   {
     href: PATH.CART,
     label: '담아둔 것들',

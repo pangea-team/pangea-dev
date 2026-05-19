@@ -11,7 +11,7 @@ export default async function Header() {
 
   return (
     <header className="flex h-15 shrink-0 items-center justify-between px-4 py-4">
-      <Link href={PATH.HOME} className="flex items-center ">
+      <Link href={PATH.BOOKS} className="flex items-center ">
         <Image src={logo} alt="" width={60} height={60} className="shrink-0" priority />
         <span className="whitespace-nowrap uppercase text-cormorant-logo">PANGEA</span>
       </Link>
