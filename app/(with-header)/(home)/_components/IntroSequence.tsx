@@ -154,7 +154,9 @@ export default function IntroSequence() {
           >
             {currentIndex === 0 ? (
               <p className="text-pretendard-body-1 leading-loose sm:text-pretendard-body-2 md:text-pretendard-subtitle-1 lg:text-pretendard-subtitle-1 text-primary whitespace-pre-line">
-                <span className="block text-pretendard-body-1 font-bold">Welcome to PANGEA.</span>
+                <span className="block font-bold text-pretendard-subtitle-1 sm:text-pretendard-subtitle-1 md:text-pretendard-title-2 lg:text-pretendard-title-1 mb-4">
+                  Welcome to PANGEA.
+                </span>
                 {INTRO_SECTIONS[0].replace('Welcome to PANGEA.', '')}
               </p>
             ) : (
@@ -173,7 +175,7 @@ export default function IntroSequence() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="absolute inset-x-0 top-full mt-10"
+              className="absolute inset-x-0 top-full mt-2"
             >
               <Link
                 href={PATH.BOOKS}
