@@ -1,3 +1,6 @@
+packages:
+  - "scripts/supabase-to-sheets"
+
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver

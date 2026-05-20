@@ -1,0 +1,62 @@
+name: Supabase to Google Sheets Sync
+
+on:
+  # 매일 오전 9시 (KST = UTC+9 → 00:00 UTC)
+  schedule:
+    - cron: "0 0 * * *"
+  # 수동 실행 (모드 선택 가능)
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Sync mode"
+        required: true
+        default: "overwrite"
+        type: choice
+        options:
+          - overwrite
+          - append
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: scripts/supabase-to-sheets
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+          cache-dependency-path: scripts/supabase-to-sheets/pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run sync
+        run: pnpm run sync -- --mode=${{ github.event.inputs.mode || 'overwrite' }}
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+          # ── 단일 테이블 모드 ──────────────────────────────────────────────────
+          # SYNC_TARGETS 없을 때 아래 세 항목 사용
+          TABLE_NAME: ${{ secrets.TABLE_NAME }}
+          COLUMNS: ${{ secrets.COLUMNS }}
+          SHEET_NAME: ${{ secrets.SHEET_NAME }}
+          # ── 다중 테이블 모드 ──────────────────────────────────────────────────
+          # SYNC_TARGETS 있으면 단일 모드 무시
+          # 형식: "테이블명:시트탭명,테이블명:시트탭명,..."
+          SYNC_TARGETS: ${{ secrets.SYNC_TARGETS }}
+          # 각 테이블 컬럼 — COLUMNS_<TABLE_NAME_대문자>
+          # 없으면 SELECT * (전체 컬럼)
+          COLUMNS_ORDERS: ${{ secrets.COLUMNS_ORDERS }}
+          COLUMNS_SAVED_SENTENCES: ${{ secrets.COLUMNS_SAVED_SENTENCES }}
+          COLUMNS_USERS: ${{ secrets.COLUMNS_USERS }}

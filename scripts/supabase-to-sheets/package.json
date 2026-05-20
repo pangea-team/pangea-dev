@@ -1,0 +1,22 @@
+{
+  "name": "supabase-to-sheets",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "sync": "ts-node src/sync.ts",
+    "sync:append": "ts-node src/sync.ts --mode=append",
+    "build": "tsc",
+    "start": "node dist/sync.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "dotenv": "^16.4.0",
+    "googleapis": "^144.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.39",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.3.0"
+  }
+}
